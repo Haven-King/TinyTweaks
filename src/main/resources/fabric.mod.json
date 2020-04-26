@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "littletweaks",
+  "version": "${version}",
+  "name": "LittleTweaks",
+  "description": "A collection of small tweaks",
+  "authors": [
+    "Haven King"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/littletweaks/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.hephaestus.tweaks.Tweaks"
+    ],
+    "modmenu": [
+      "dev.hephaestus.tweaks.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "tweaks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  }
+}

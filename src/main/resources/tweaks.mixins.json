@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "package": "dev.hephaestus.tweaks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BoatEntityRendererMixin",
+    "CameraMixin",
+    "FarmerVillagerMixin",
+    "FlintAndSteelMixin",
+    "HoeItemMixin",
+    "ItemEntityMixin",
+    "LanternResistanceMixin",
+    "LilyPadBlockMixin",
+    "PlayerEntityRendererMixin",
+    "animals.ChickenEntityMixin",
+    "animals.CowEntityMixin",
+    "animals.HorseAndDonkeyMixin",
+    "animals.PigEntityMixin",
+    "animals.SheepEntityMixin",
+    "animals.WolfEntityMixin",
+    "plants.CropBlockMixin",
+    "plants.FernBlockMixin",
+    "plants.SpreadableBlockMixin",
+    "plants.SugarCaneMixin",
+    "plants.TallPlantBlockMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
