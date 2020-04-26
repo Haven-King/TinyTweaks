@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.GameRules;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -31,7 +32,7 @@ public class GroundFoodMateGoal extends Goal {
     }
 
     public boolean canStart() {
-        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
+        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
             this.foodEntity = this.findFood();
         }
 
