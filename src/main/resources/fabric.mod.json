@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "littletweaks",
+  "id": "tinytweaks",
   "version": "${version}",
-  "name": "LittleTweaks",
+  "name": "TinyTweaks",
   "description": "A collection of small tweaks",
   "authors": [
     "Haven King"
@@ -10,7 +10,7 @@
   "contributors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/littletweaks/icon.png",
+  "icon": "assets/tinytweaks/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

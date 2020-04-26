@@ -16,8 +16,8 @@ public class Tweaks implements ModInitializer {
 
     public static Logger LOGGER = LogManager.getLogger();
 
-    public static final String MOD_ID = "littletweaks";
-    public static final String MOD_NAME = "LittleTweaks";
+    public static final String MOD_ID = "tinytweaks";
+    public static final String MOD_NAME = "TinyTweaks";
 
     public static TweaksConfig CONFIG = new TweaksConfig();
 
