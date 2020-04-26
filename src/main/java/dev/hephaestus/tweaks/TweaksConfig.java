@@ -25,6 +25,9 @@ public class TweaksConfig implements ConfigData {
     public boolean spreadableGroundcover = true;
 
     @ConfigEntry.Category("plants")
+    public boolean passableLeaves = true;
+
+    @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.Tooltip
     public boolean farmerVillagerAutomation = true;
 

@@ -20,6 +20,7 @@
     "animals.WolfEntityMixin",
     "plants.CropBlockMixin",
     "plants.FernBlockMixin",
+    "plants.LeavesBlockMixin",
     "plants.SpreadableBlockMixin",
     "plants.SugarCaneMixin",
     "plants.TallPlantBlockMixin"

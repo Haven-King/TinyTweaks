@@ -8,7 +8,10 @@
     "Haven King"
   ],
   "contributors": [],
-  "contact": {},
+  "contact": {
+    "sources": "https://github.com/Hephaestus-Dev/TinyTweaks",
+    "issues": "https://github.com/Hephaestus-Dev/TinyTweaks/issues"
+  },
   "license": "MIT",
   "icon": "assets/tinytweaks/icon.png",
   "environment": "*",

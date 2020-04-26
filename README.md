@@ -6,6 +6,7 @@ A collection of small tweaks for Minecraft.
 * Easy Harvest Sugarcane - Right clicking sugarcane harvests all sugarcane higher than the one you clicked. Preserves the bottom-most block
 * Sapling Succession - Saplings that fall on dirt or grass will automatically plant
 * Grass Spreading - Grass and long grass spread naturally over time. Also removes hitboxes from grass and long grass. Seeds can be obtained by hoeing the ground under them
+* Passable Leaves - Removes collision from leaves
 * Farmer Villager Automation - Farmer villagers will deposit excess items into a nearby chest
 
 ## Animal Tweaks

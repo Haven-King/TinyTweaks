@@ -19,7 +19,7 @@
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.@Tooltip": "Saplings that fall on dirt or grass will automatically plant",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance": "Sturdy Lanterns",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance.@Tooltip[0]": "Gives lanterns a blast resistance of 6",
-  "text.autoconfig.tinytweaks.option.lanternBlastResistance.@Tooltip[1]": "§cApplied on game start",
+  "text.autoconfig.tinytweaks.option.lanternBlastResistance.@Tooltip[1]": "§cRequires restart",
   "text.autoconfig.tinytweaks.option.animalsEatOffGround": "Animals Eat off the Ground",
   "text.autoconfig.tinytweaks.option.animalsEatOffGround.@Tooltip": "Chickens, cows, horeses, pigs, sheep, and wolves will eat off the ground",
   "text.autoconfig.tinytweaks.option.breedWildWolves": "Wild Wolves Breed",
@@ -28,6 +28,7 @@
   "text.autoconfig.tinytweaks.option.spreadableGroundcover.@Tooltip[0]": "Grass and long grass spread naturally over time",
   "text.autoconfig.tinytweaks.option.spreadableGroundcover.@Tooltip[1]": "§oAlso removes hitboxes from grass and long grass",
   "text.autoconfig.tinytweaks.option.spreadableGroundcover.@Tooltip[2]": "§oSeeds can be obtained by hoeing the ground under them",
+  "text.autoconfig.tinytweaks.option.passableLeaves": "Passable Leaves",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.true": "§aOn",
@@ -37,6 +38,7 @@
   "text.autoconfig.tinytweaks.option.breedWildWolves.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.flintAndSteel.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.passableLeaves.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.false": "§cOff",
@@ -45,5 +47,6 @@
   "text.autoconfig.tinytweaks.option.animalsEatOffGround.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.breedWildWolves.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.flintAndSteel.enabled.boolean.false": "§cOff",
-  "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.false": "§cOff"
+  "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.passableLeaves.boolean.false": "§aOff"
 }

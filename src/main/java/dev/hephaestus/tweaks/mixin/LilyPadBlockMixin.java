@@ -14,13 +14,17 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@SuppressWarnings("OverwriteAuthorRequired")
 @Mixin(LilyPadBlock.class)
 public abstract class LilyPadBlockMixin extends PlantBlock {
     protected LilyPadBlockMixin(Settings settings) {
         super(settings);
     }
 
+    /**
+     * @author Haven King
+     * @reason to stop boats from breaking our lily pads.
+     * I highly doubt anyone else will mess with this aspect of lily pads, but if you DO, ~~fuck off~~ talk to me
+     */
     @Overwrite
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         super.onEntityCollision(state, world, pos, entity);
@@ -28,6 +32,10 @@ public abstract class LilyPadBlockMixin extends PlantBlock {
 
     private static final VoxelShape COLLIDER = Block.createCuboidShape(1.0D, -0.125D, 1.0D, 15.0D, 0D, 15.0D);
 
+    /**
+     * @author Haven King
+     * @reason Because it's the same as injecting and returning, but with more clarity.
+     */
     @Overwrite
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
         return COLLIDER;
