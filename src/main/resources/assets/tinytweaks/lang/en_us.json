@@ -42,6 +42,7 @@
   "text.autoconfig.tinytweaks.option.flintAndSteel.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.passableLeaves.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.betterLilyPads.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.false": "§cOff",
@@ -51,5 +52,6 @@
   "text.autoconfig.tinytweaks.option.breedWildWolves.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.flintAndSteel.enabled.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.false": "§cOff",
-  "text.autoconfig.tinytweaks.option.passableLeaves.boolean.false": "§aOff"
+  "text.autoconfig.tinytweaks.option.passableLeaves.boolean.false": "§aOff",
+  "text.autoconfig.tinytweaks.option.betterLilyPads.boolean.false": "§aOff"
 }
