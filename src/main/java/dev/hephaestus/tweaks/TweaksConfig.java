@@ -53,6 +53,9 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean lanternBlastResistance = true;
 
+    @ConfigEntry.Category("debug")
+    public boolean grassDestroysRedstoneTorches = false;
+
     public static class Rejuvenation {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;

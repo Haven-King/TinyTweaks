@@ -1,5 +1,6 @@
 package dev.hephaestus.tweaks.mixin;
 
+import dev.hephaestus.tweaks.Tweaks;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +15,6 @@ public class RedstoneTorchMixin extends TorchBlock {
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return ((!FabricLoader.getInstance().isDevelopmentEnvironment()) || world.getBlockState(pos.down()).getBlock() != Blocks.GRASS_BLOCK) && super.canPlaceAt(state, world, pos);
+        return ((!Tweaks.CONFIG.grassDestroysRedstoneTorches) || world.getBlockState(pos.down()).getBlock() != Blocks.GRASS_BLOCK) && super.canPlaceAt(state, world, pos);
     }
 }
