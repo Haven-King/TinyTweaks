@@ -12,6 +12,7 @@
     "LanternResistanceMixin",
     "LilyPadBlockMixin",
     "PlayerEntityRendererMixin",
+    "RedstoneTorchMixin",
     "animals.ChickenEntityMixin",
     "animals.CowEntityMixin",
     "animals.HorseAndDonkeyMixin",
