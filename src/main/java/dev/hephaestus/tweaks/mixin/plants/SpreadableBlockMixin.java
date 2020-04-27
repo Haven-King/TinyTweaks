@@ -16,7 +16,7 @@ import java.util.Random;
 public class SpreadableBlockMixin {
     @Inject(method = "scheduledTick", at = @At(value = "INVOKE", target = "net/minecraft/block/SpreadableBlock.getDefaultState()Lnet/minecraft/block/BlockState;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     public void growGrass(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (Tweaks.CONFIG.spreadableGroundcover && state.getBlock() == Blocks.GRASS_BLOCK) {
+        if (Tweaks.CONFIG.rejuvenation.enabled && state.getBlock() == Blocks.GRASS_BLOCK) {
             Block above = world.getBlockState(pos.up()).getBlock();
             int friends = 0;
 
@@ -36,8 +36,18 @@ public class SpreadableBlockMixin {
             if (above == Blocks.AIR && random.nextFloat() < 0.01 + 0.2 * (friends)) {
                 world.setBlockState(pos.up(), Blocks.GRASS.getDefaultState());
                 ci.cancel();
-            } else if (above == Blocks.GRASS && random.nextFloat() < 0.001) {
-                ((TallPlantBlock)Blocks.TALL_GRASS).placeAt(world, pos.up(), 2);
+            } else if (Tweaks.CONFIG.rejuvenation.longGrass > 0.000001 && above == Blocks.GRASS) {
+                Random tallGrassRandom = new Random();
+                tallGrassRandom.setSeed(pos.asLong());
+                if (tallGrassRandom.nextFloat() < Tweaks.CONFIG.rejuvenation.longGrass && random.nextFloat() < 0.01) {
+                    ((TallPlantBlock) Blocks.TALL_GRASS).placeAt(world, pos.up(), 2);
+                    ci.cancel();
+                }
+            }
+
+            if (Tweaks.CONFIG.rejuvenation.saplings && world.getBlockState(pos.up()).getBlock() == Blocks.DEAD_BUSH) {
+                Block sapling = Blocks.OAK_SAPLING;
+                world.setBlockState(pos.up(), sapling.getDefaultState());
                 ci.cancel();
             }
         }

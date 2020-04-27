@@ -18,7 +18,7 @@ public class FernBlockMixin extends PlantBlock {
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
-        if (Tweaks.CONFIG.spreadableGroundcover)
+        if (Tweaks.CONFIG.rejuvenation.enabled)
             return VoxelShapes.empty();
         else
             return super.getOutlineShape(state, view, pos, context);

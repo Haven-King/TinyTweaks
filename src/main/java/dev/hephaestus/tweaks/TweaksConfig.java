@@ -21,8 +21,8 @@ public class TweaksConfig implements ConfigData {
     public boolean saplingsAutoPlant = true;
 
     @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip(count = 3)
-    public boolean spreadableGroundcover = true;
+    @ConfigEntry.Gui.CollapsibleObject
+    public Rejuvenation rejuvenation = new Rejuvenation();
 
     @ConfigEntry.Category("plants")
     public boolean passableLeaves = true;
@@ -52,6 +52,17 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("misc")
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean lanternBlastResistance = true;
+
+    public static class Rejuvenation {
+        @ConfigEntry.Gui.Tooltip
+        public boolean enabled = true;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public float longGrass = 0.01f;
+
+        @ConfigEntry.Gui.Tooltip
+        public boolean saplings = true;
+    }
 
     public static class FlintAndSteelConfig {
         @ConfigEntry.Gui.Tooltip

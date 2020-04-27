@@ -19,6 +19,7 @@
     "animals.SheepEntityMixin",
     "animals.WolfEntityMixin",
     "plants.CropBlockMixin",
+    "plants.DeadBushBlockMixin",
     "plants.FernBlockMixin",
     "plants.LeavesBlockMixin",
     "plants.SpreadableBlockMixin",
