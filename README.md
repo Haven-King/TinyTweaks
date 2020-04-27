@@ -7,6 +7,7 @@ A collection of small tweaks for Minecraft.
 * Sapling Succession - Saplings that fall on dirt or grass will automatically plant
 * Grass Spreading - Grass and long grass spread naturally over time. Also removes hitboxes from grass and long grass. Seeds can be obtained by hoeing the ground under them
 * Passable Leaves - Removes collision from leaves
+* Better Lily Pads - Allows boats to pass through lily pads without breaking them. Also allows entities to rise through the bottom of a lily pad
 * Farmer Villager Automation - Farmer villagers will deposit excess items into a nearby chest
 
 ## Animal Tweaks

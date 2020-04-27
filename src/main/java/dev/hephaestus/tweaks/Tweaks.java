@@ -19,6 +19,8 @@ public class Tweaks implements ModInitializer {
     public static final String MOD_ID = "tinytweaks";
     public static final String MOD_NAME = "TinyTweaks";
 
+    public static final double LILY_PAD_MOD = 0.2109375D /* 27 / 128 */;
+
     public static TweaksConfig CONFIG = new TweaksConfig();
 
     @Override

@@ -1,5 +1,6 @@
 package dev.hephaestus.tweaks.mixin;
 
+import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LilyPadBlock;
@@ -11,38 +12,42 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LilyPadBlock.class)
 public abstract class LilyPadBlockMixin extends PlantBlock {
+    @Shadow @Final protected static VoxelShape SHAPE;
+
     protected LilyPadBlockMixin(Settings settings) {
         super(settings);
     }
 
-    /**
-     * @author Haven King
-     * @reason to stop boats from breaking our lily pads.
-     * I highly doubt anyone else will mess with this aspect of lily pads, but if you DO, ~~fuck off~~ talk to me
-     */
-    @Overwrite
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        super.onEntityCollision(state, world, pos, entity);
+    @Inject(method = "onEntityCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;breakBlock(Lnet/minecraft/util/math/BlockPos;ZLnet/minecraft/entity/Entity;)Z"), cancellable = true)
+    public void overwriteEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
+        if (Tweaks.CONFIG.betterLilyPads)
+            ci.cancel();
     }
 
-    private static final VoxelShape COLLIDER = Block.createCuboidShape(1.0D, -0.125D, 1.0D, 15.0D, 0D, 15.0D);
+    private static final VoxelShape COLLIDER = Block.createCuboidShape(1.0D, -0.155D, 1.0D, 15.0D, -1.5D, 15.0D);
 
-    /**
-     * @author Haven King
-     * @reason Because it's the same as injecting and returning, but with more clarity.
-     */
-    @Overwrite
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
-        return COLLIDER;
+    @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
+    public void overwriteOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context, CallbackInfoReturnable<VoxelShape> cir) {
+        if (Tweaks.CONFIG.betterLilyPads)
+            cir.setReturnValue(COLLIDER);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
-        return context.isAbove(COLLIDER, pos, false) ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+        if (Tweaks.CONFIG.betterLilyPads)
+            return context.isAbove(COLLIDER, pos, false) ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+        else
+            return super.getCollisionShape(state, view, pos, context);
     }
 }

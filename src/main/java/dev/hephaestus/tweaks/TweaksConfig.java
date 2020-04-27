@@ -28,6 +28,10 @@ public class TweaksConfig implements ConfigData {
     public boolean passableLeaves = true;
 
     @ConfigEntry.Category("plants")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean betterLilyPads = true;
+
+    @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.Tooltip
     public boolean farmerVillagerAutomation = true;
 
