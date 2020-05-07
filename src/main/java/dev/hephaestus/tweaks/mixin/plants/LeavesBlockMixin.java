@@ -20,6 +20,9 @@ public class LeavesBlockMixin extends Block{
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
-        return Tweaks.CONFIG.passableLeaves ? VoxelShapes.empty() : super.getCollisionShape(state, view, pos, context);
+        if (state.get(LeavesBlock.PERSISTENT))
+            return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
+        else
+            return Tweaks.CONFIG.leaves.collide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
     }
 }

@@ -33,7 +33,10 @@
   "text.autoconfig.tinytweaks.option.rejuvenation.longGrass.@Tooltip[1]": "0.0 is disabled, 0.01 is default, 1.0 is all of them",
   "text.autoconfig.tinytweaks.option.rejuvenation.saplings": "Saplings",
   "text.autoconfig.tinytweaks.option.rejuvenation.saplings.@Tooltip": "Dead bushes turn into saplings when on grass blocks",
-  "text.autoconfig.tinytweaks.option.passableLeaves": "Passable Leaves",
+  "text.autoconfig.tinytweaks.option.leaves": "Passable Leaves",
+  "text.autoconfig.tinytweaks.option.leaves.collide": "Leaves Collide",
+  "text.autoconfig.tinytweaks.option.leaves.persistentCollide": "Persistent Leaves Collide",
+  "text.autoconfig.tinytweaks.option.leaves.persistentCollide.@Tooltip": "These are leaves placed by the player",
   "text.autoconfig.tinytweaks.option.betterLilyPads": "Better Lily Pads",
   "text.autoconfig.tinytweaks.option.betterLilyPads.@Tooltip[0]": "Allows boats to pass through lily pads without breaking them",
   "text.autoconfig.tinytweaks.option.betterLilyPads.@Tooltip[1]": "Also allows entities to rise through the bottom of a lily pad",
@@ -48,7 +51,6 @@
   "text.autoconfig.tinytweaks.option.breedWildWolves.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.flintAndSteel.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.true": "§aOn",
-  "text.autoconfig.tinytweaks.option.passableLeaves.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.betterLilyPads.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
@@ -60,6 +62,5 @@
   "text.autoconfig.tinytweaks.option.breedWildWolves.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.flintAndSteel.enabled.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.lanternBlastResistance.boolean.false": "§cOff",
-  "text.autoconfig.tinytweaks.option.passableLeaves.boolean.false": "§aOff",
   "text.autoconfig.tinytweaks.option.betterLilyPads.boolean.false": "§aOff"
 }
