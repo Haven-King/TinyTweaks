@@ -6,7 +6,7 @@
   "text.autoconfig.tinytweaks.category.misc": "Miscellaneous",
   "text.autoconfig.tinytweaks.category.debug": "Debug",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops": "Easy Harvest Crops",
-  "text.autoconfig.tinytweaks.option.easyHarvestCrops.@Tooltip": "Right clicking fully grown clops harvests and replants them",
+  "text.autoconfig.tinytweaks.option.easyHarvestCrops.@Tooltip": "Right clicking fully grown crops harvests and replants them",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane": "Easy Harvest Sugarcane",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.@Tooltip[0]": "Right clicking sugarcane harvests all sugarcane higher than the one you clicked",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.@Tooltip[1]": "Preserves the bottom-most block",

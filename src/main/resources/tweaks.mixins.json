@@ -19,10 +19,12 @@
     "animals.PigEntityMixin",
     "animals.SheepEntityMixin",
     "animals.WolfEntityMixin",
+    "plants.CocoaBlockMixin",
     "plants.CropBlockMixin",
     "plants.DeadBushBlockMixin",
     "plants.FernBlockMixin",
     "plants.LeavesBlockMixin",
+    "plants.NetherWartBlockMixin",
     "plants.SpreadableBlockMixin",
     "plants.SugarCaneMixin",
     "plants.TallPlantBlockMixin"
