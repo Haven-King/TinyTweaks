@@ -90,5 +90,8 @@ public class TweaksConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         public boolean containerLabels = true;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 200)
+        public long labelScale = 100;
     }
 }

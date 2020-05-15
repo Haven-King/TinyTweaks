@@ -42,6 +42,7 @@
   "text.autoconfig.tinytweaks.option.namesAndThings.freeRenames.@Tooltip": "Renaming items in anvils doesn't cost levels",
   "text.autoconfig.tinytweaks.option.namesAndThings.containerLabels": "Chest Labels",
   "text.autoconfig.tinytweaks.option.namesAndThings.containerLabels.@Tooltip": "Looking at a chest renders its name above it",
+  "text.autoconfig.tinytweaks.option.namesAndThings.labelScale": "Label Scale",
   "text.autoconfig.tinytweaks.option.betterLilyPads": "Better Lily Pads",
   "text.autoconfig.tinytweaks.option.betterLilyPads.@Tooltip[0]": "Allows boats to pass through lily pads without breaking them",
   "text.autoconfig.tinytweaks.option.betterLilyPads.@Tooltip[1]": "Also allows entities to rise through the bottom of a lily pad",

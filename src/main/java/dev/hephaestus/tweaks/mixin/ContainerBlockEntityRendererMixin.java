@@ -18,6 +18,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -64,20 +65,44 @@ public abstract class ContainerBlockEntityRendererMixin<T extends BlockEntity> e
                     g = 1.0F - g;
                     g = 1.0F - g * g * g;
 
-                    if (g < 0.01F) {
+                    if (g < 0.01F && world != null) {
                         matrices.push();
-                        switch (chestType) {
+
+                        double dx = chestType == ChestType.LEFT ? 0.0D : chestType == ChestType.RIGHT ? 1.0D : 0.5D;
+
+                        BlockPos top = blockEntity.getPos().up();
+                        double dy;
+
+                        Direction facing = blockState.get(ChestBlock.FACING);
+
+                        boolean cameraIsAbove = dispatcher.camera.getPos().getY() > top.getY();
+                        switch(chestType) {
+                            case SINGLE:
+                                dy = world.getBlockState(top).isAir() && cameraIsAbove ? 1.25D : 0.5D;
+                                break;
                             case LEFT:
-                                matrices.translate(0.0D, 1.25D, 0.5);
+                                BlockPos otherTop = top.offset(facing.rotateYClockwise());
+                                dy = world.getBlockState(top).isAir() &&
+                                     world.getBlockState(otherTop).isAir() &&
+                                     cameraIsAbove ? 1.25D : 0.5D;
                                 break;
                             case RIGHT:
-                                matrices.translate(1.0D, 1.25D, 0.5);
+                                otherTop = top.offset(facing.rotateYCounterclockwise());
+                                dy = world.getBlockState(top).isAir() &&
+                                        world.getBlockState(otherTop).isAir() &&
+                                        cameraIsAbove ? 1.25D : 0.5D;
                                 break;
-                            case SINGLE:
-                                matrices.translate(0.5D, 1.25D, 0.5);
-                                break;
+                            default:
+                                throw new IllegalStateException("Unexpected value: " + chestType);
                         }
-                        matrices.scale(0.010416667F, -0.010416667F, 0.010416667F);
+
+                        BlockPos front = blockEntity.getPos().offset(facing);
+                        double dz = world.getBlockState(front).isAir() && dy == 0.5D ? 1.0D : 0.5D;
+
+                        matrices.translate(dx, dy, dz);
+
+                        float scale = 0.010416667F * (((float)Tweaks.CONFIG.namesAndThings.labelScale) / 100);
+                        matrices.scale(scale, -scale, scale);
 
                         TextRenderer textRenderer = dispatcher.getTextRenderer();
                         String string = ((LockableContainerBlockEntity) blockEntity).getName().asString();
