@@ -4,11 +4,14 @@ import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.container.AnvilContainer;
 import net.minecraft.container.Property;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AnvilContainer.class)
-public class AnvilContainerMixin {
+public abstract class AnvilContainerMixin {
+    @Shadow public static int getNextCost(int cost) {return 0;}
+
     private boolean itemNameChanged = false;
 
     @Inject(method = "updateResult", at = @At("HEAD"))
@@ -30,6 +33,11 @@ public class AnvilContainerMixin {
     @ModifyVariable(method = "updateResult", ordinal = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/container/Property;set(I)V", ordinal = 5, shift = At.Shift.AFTER))
     private int setI(int i) {
         return itemNameChanged && Tweaks.CONFIG.namesAndThings.freeRenames ? 1 : i;
+    }
+
+    @Redirect(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/container/AnvilContainer;getNextCost(I)I"))
+    private int changeNextCost(int cost) {
+        return Tweaks.CONFIG.namesAndThings.freeRenames ? 2 * cost : getNextCost(cost);
     }
 
     @Mixin(targets = "net/minecraft/container/AnvilContainer$2")

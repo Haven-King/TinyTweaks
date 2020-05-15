@@ -19,6 +19,9 @@
     "main": [
       "dev.hephaestus.tweaks.Tweaks"
     ],
+    "client": [
+      "dev.hephaestus.tweaks.Tweaks"
+    ],
     "modmenu": [
       "dev.hephaestus.tweaks.ModMenuIntegration"
     ]

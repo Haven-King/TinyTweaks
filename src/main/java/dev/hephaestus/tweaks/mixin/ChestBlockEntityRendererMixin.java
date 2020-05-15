@@ -27,13 +27,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChestBlockEntityRenderer.class)
-public abstract class ContainerBlockEntityRendererMixin<T extends BlockEntity> extends BlockEntityRenderer<T> {
-    public ContainerBlockEntityRendererMixin(BlockEntityRenderDispatcher dispatcher) {
+public abstract class ChestBlockEntityRendererMixin extends BlockEntityRenderer<ChestBlockEntity> {
+    public ChestBlockEntityRendererMixin(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
     }
 
     @Inject(method = "render(Lnet/minecraft/block/entity/BlockEntity;FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;pop()V"))
-    public void renderLabel(T blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
+    public void renderLabel(BlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
         if (Tweaks.CONFIG.namesAndThings.containerLabels) {
             if (dispatcher.crosshairTarget.getType() == HitResult.Type.BLOCK && ((BlockHitResult) dispatcher.crosshairTarget).getBlockPos().equals(blockEntity.getPos()) && blockEntity instanceof ChestBlockEntity && MinecraftClient.getInstance().getNetworkHandler() != null) {
                 if (!((LockableContainerBlockEntity) blockEntity).hasCustomName()) {
@@ -108,7 +108,7 @@ public abstract class ContainerBlockEntityRendererMixin<T extends BlockEntity> e
                         String string = ((LockableContainerBlockEntity) blockEntity).getName().asString();
 
                         float s = (float) (-textRenderer.getStringWidth(string) / 2);
-                        textRenderer.draw(string, s, 0f, 16777215, true, matrices.peek().getModel(), vertexConsumers, false, 0, light);
+                        textRenderer.draw(string, s, 0f, 16777215, true, matrices.peek().getModel(), vertexConsumers, false, 0, 15728880);
                         matrices.pop();
                     }
                 }

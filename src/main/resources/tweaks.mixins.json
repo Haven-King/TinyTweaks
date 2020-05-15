@@ -29,10 +29,11 @@
     "plants.TallPlantBlockMixin"
   ],
   "client": [
-    "CameraMixin",
     "BoatEntityRendererMixin",
+    "CameraMixin",
+    "ChestBlockEntityRendererMixin",
     "PlayerEntityRendererMixin",
-    "ContainerBlockEntityRendererMixin"
+    "ShulkerBoxEntityRendererMixin"
   ],
   "server": [],
   "injectors": {
