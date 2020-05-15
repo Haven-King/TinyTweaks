@@ -1,17 +1,12 @@
 package dev.hephaestus.tweaks;
 
-import dev.hephaestus.tweaks.client.BarrelBlockEntityRenderer;
+import dev.hephaestus.tweaks.client.BarrelBlockLabelRenderer;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Property;
-import net.minecraft.util.StringIdentifiable;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,6 +38,6 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BlockEntityRendererRegistry.INSTANCE.register(BlockEntityType.BARREL, BarrelBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(BlockEntityType.BARREL, BarrelBlockLabelRenderer::new);
     }
 }

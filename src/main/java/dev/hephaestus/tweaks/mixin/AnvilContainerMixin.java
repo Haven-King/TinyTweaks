@@ -3,6 +3,7 @@ package dev.hephaestus.tweaks.mixin;
 import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.container.AnvilContainer;
 import net.minecraft.container.Property;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
@@ -42,7 +43,8 @@ public abstract class AnvilContainerMixin {
 
     @Mixin(targets = "net/minecraft/container/AnvilContainer$2")
     public static class AnvilContainerSlotMixin {
-        @Redirect(method = "canTakeItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/container/Property;get()I"))
+        @Dynamic
+        @Redirect(method = "canTakeItems(Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/container/Property;get()I"))
         private int redirInt(Property property) {
             // This condition is dumb. Why EXPLICITLY disallow 0 cost recipes? Like if there's a stack there
             // it should work, right?

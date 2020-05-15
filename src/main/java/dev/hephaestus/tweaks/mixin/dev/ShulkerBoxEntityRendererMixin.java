@@ -1,10 +1,10 @@
-package dev.hephaestus.tweaks.mixin;
+package dev.hephaestus.tweaks.mixin.dev;
 
 import dev.hephaestus.tweaks.Tweaks;
-import dev.hephaestus.tweaks.client.BarrelBlockEntityRenderer;
 import dev.hephaestus.tweaks.client.LabelRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
@@ -24,7 +24,7 @@ public abstract class ShulkerBoxEntityRendererMixin extends BlockEntityRenderer<
         super(dispatcher);
     }
 
-    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;pop()V", shift = At.Shift.AFTER))
+    @Inject(method = "render", at = @At("TAIL"))
     private void renderLabel(ShulkerBoxBlockEntity shulkerBoxBlockEntity, float f, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int i, int j, CallbackInfo ci) {
         if (Tweaks.CONFIG.namesAndThings.containerLabels && shulkerBoxBlockEntity.hasWorld()) {
             LabelRenderer.renderLabel(shulkerBoxBlockEntity, dispatcher, matrices, vertexConsumers, shulkerBoxBlockEntity.getAnimationStage() != ShulkerBoxBlockEntity.AnimationStage.CLOSED, Direction.UP);
