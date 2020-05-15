@@ -54,6 +54,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean lanternBlastResistance = true;
 
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.CollapsibleObject
+    public NamesAndThings namesAndThings = new NamesAndThings();
+
     @ConfigEntry.Category("debug")
     public boolean grassDestroysRedstoneTorches = false;
 
@@ -78,5 +82,13 @@ public class TweaksConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;
         public int burnTime = 3;
+    }
+
+    public static class NamesAndThings {
+        @ConfigEntry.Gui.Tooltip
+        public boolean freeRenames = true;
+
+        @ConfigEntry.Gui.Tooltip
+        public boolean containerLabels = true;
     }
 }

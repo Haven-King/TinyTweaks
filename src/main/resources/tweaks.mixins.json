@@ -3,15 +3,14 @@
   "package": "dev.hephaestus.tweaks.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BoatEntityRendererMixin",
-    "CameraMixin",
+    "AnvilContainerMixin",
+    "AnvilContainerMixin$AnvilContainerSlotMixin",
     "FarmerVillagerMixin",
     "FlintAndSteelMixin",
     "HoeItemMixin",
     "ItemEntityMixin",
     "LanternResistanceMixin",
     "LilyPadBlockMixin",
-    "PlayerEntityRendererMixin",
     "RedstoneTorchMixin",
     "animals.ChickenEntityMixin",
     "animals.CowEntityMixin",
@@ -29,7 +28,12 @@
     "plants.SugarCaneMixin",
     "plants.TallPlantBlockMixin"
   ],
-  "client": [],
+  "client": [
+    "CameraMixin",
+    "BoatEntityRendererMixin",
+    "PlayerEntityRendererMixin",
+    "ContainerBlockEntityRendererMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1
