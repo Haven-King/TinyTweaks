@@ -1,6 +1,8 @@
 package dev.hephaestus.tweaks.mixin;
 
+import dev.hephaestus.tweaks.Tweaks;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -19,8 +21,15 @@ public class VolatileMixinPlugin implements IMixinConfigPlugin {
         return null;
     }
 
+    private static boolean TEST = true;
+
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if (mixinClassName.contains("AnvilContainer") && FabricLoader.getInstance().isModLoaded("strongandfairanvils")) {
+            Tweaks.log("Strong and Fair Anvils is present; deferring rename cost adjustment to them.");
+            return false;
+        }
+
         boolean isDevelopmentEnvironment = FabricLoader.getInstance().isDevelopmentEnvironment();
         if (mixinClassName.contains("mixin.dev") && !isDevelopmentEnvironment)
             return false;
