@@ -32,11 +32,11 @@
   "client": [
     "BoatEntityRendererMixin",
     "CameraMixin",
-    "prod.ChestBlockEntityRendererMixin",
     "PlayerEntityRendererMixin",
-    "prod.ShulkerBoxEntityRendererMixin",
     "dev.ChestBlockEntityRendererMixin",
-    "dev.ShulkerBoxEntityRendererMixin"
+    "dev.ShulkerBoxEntityRendererMixin",
+    "prod.ChestBlockEntityRendererMixin",
+    "prod.ShulkerBoxEntityRendererMixin"
   ],
   "server": [],
   "injectors": {

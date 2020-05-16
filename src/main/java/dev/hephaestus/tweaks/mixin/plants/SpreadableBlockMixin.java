@@ -2,6 +2,7 @@ package dev.hephaestus.tweaks.mixin.plants;
 
 import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,6 +45,7 @@ public class SpreadableBlockMixin {
                     ci.cancel();
                 }
             }
+
 
             if (Tweaks.CONFIG.rejuvenation.saplings && world.getBlockState(pos.up()).getBlock() == Blocks.DEAD_BUSH) {
                 Block sapling = Blocks.OAK_SAPLING;

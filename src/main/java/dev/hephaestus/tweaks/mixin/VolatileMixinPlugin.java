@@ -2,7 +2,6 @@ package dev.hephaestus.tweaks.mixin;
 
 import dev.hephaestus.tweaks.Tweaks;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,15 +12,12 @@ import java.util.Set;
 public class VolatileMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
-        System.out.printf("mixinPackage: %s", mixinPackage);
     }
 
     @Override
     public String getRefMapperConfig() {
         return null;
     }
-
-    private static boolean TEST = true;
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {

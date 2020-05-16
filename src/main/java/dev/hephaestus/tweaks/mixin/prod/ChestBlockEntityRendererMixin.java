@@ -37,7 +37,7 @@ public abstract class ChestBlockEntityRendererMixin<T extends BlockEntity & Ches
     @Dynamic
     @Inject(method = "method_3569", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;pop()V"))
     public void renderLabel(T blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
-        if (Tweaks.CONFIG.namesAndThings.containerLabels) {
+        if (Tweaks.CONFIG.namesAndThings.containerLabels && blockEntity instanceof LockableContainerBlockEntity) {
             LabelRenderer.renderLabel((LockableContainerBlockEntity) blockEntity, dispatcher, matrices, vertexConsumers, tickDelta);
         }
     }

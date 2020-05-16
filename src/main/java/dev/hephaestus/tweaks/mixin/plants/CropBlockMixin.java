@@ -41,7 +41,7 @@ public abstract class CropBlockMixin extends PlantBlock {
                     else
                         Block.dropStack(world, pos, stack);
                 });
-
+                
                 world.setBlockState(pos, this.withAge(0));
             }
             return ActionResult.SUCCESS;

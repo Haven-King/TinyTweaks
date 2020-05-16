@@ -10,8 +10,11 @@ import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.model.BakedModel;
+import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.text.LiteralText;
@@ -23,6 +26,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.world.World;
 
+import java.util.List;
+import java.util.Random;
+
 @Environment(EnvType.CLIENT)
 public class LabelRenderer {
     private static final Vector3f yAxis = new Vector3f(0F, 1F, 0F);
@@ -30,7 +36,18 @@ public class LabelRenderer {
     private static final Quaternion rotate180 = new Quaternion(yAxis, 180, true);
     private static final Quaternion rotate270 = new Quaternion(yAxis, 270, true);
 
+    static boolean test = true;
     public static void renderLabel(LockableContainerBlockEntity blockEntity, BlockEntityRenderDispatcher dispatcher, MatrixStack matrices, VertexConsumerProvider vertexConsumers, boolean open, Direction facing) {
+        if (test) {
+            BlockState state = Blocks.STONE.getDefaultState();
+            BakedModel model = MinecraftClient.getInstance().getBlockRenderManager().getModel(state);
+            List<BakedQuad> quads = model.getQuads(state, null, new Random());
+            Tweaks.log("Model: %s", model.toString());
+            for (BakedQuad quad : quads) {
+                Tweaks.log("Quad: %s", quad.toString());
+            }
+            test = false;
+        }
         if (!blockEntity.hasCustomName() && MinecraftClient.getInstance().getNetworkHandler() != null) {
             MinecraftClient.getInstance().getNetworkHandler().getDataQueryHandler().queryBlockNbt(blockEntity.getPos(), (tag) -> {
                 if (tag.contains("CustomName", 8)) {
@@ -91,7 +108,7 @@ public class LabelRenderer {
     }
 
     public static void renderLabel(LockableContainerBlockEntity blockEntity, BlockEntityRenderDispatcher dispatcher, MatrixStack matrices, VertexConsumerProvider vertexConsumers, float tickDelta) {
-        if (dispatcher.crosshairTarget.getType() == HitResult.Type.BLOCK && ((BlockHitResult) dispatcher.crosshairTarget).getBlockPos().equals(blockEntity.getPos()) && blockEntity instanceof ChestBlockEntity && MinecraftClient.getInstance().getNetworkHandler() != null) {
+        if (blockEntity.getWorld() != null && dispatcher.crosshairTarget.getType() == HitResult.Type.BLOCK && ((BlockHitResult) dispatcher.crosshairTarget).getBlockPos().equals(blockEntity.getPos()) && blockEntity instanceof ChestBlockEntity && MinecraftClient.getInstance().getNetworkHandler() != null) {
             if (!blockEntity.hasCustomName()) {
                 MinecraftClient.getInstance().getNetworkHandler().getDataQueryHandler().queryBlockNbt(blockEntity.getPos(), (tag) -> {
                     if (tag.contains("CustomName", 8)) {
