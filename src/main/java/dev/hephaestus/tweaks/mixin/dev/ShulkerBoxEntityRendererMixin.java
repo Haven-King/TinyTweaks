@@ -1,10 +1,9 @@
 package dev.hephaestus.tweaks.mixin.dev;
 
 import dev.hephaestus.tweaks.Tweaks;
-import dev.hephaestus.tweaks.client.LabelRenderer;
+import dev.hephaestus.tweaks.client.render.block.entity.LabelRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;

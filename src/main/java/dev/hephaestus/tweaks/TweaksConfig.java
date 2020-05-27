@@ -62,6 +62,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public NamesAndThings namesAndThings = new NamesAndThings();
 
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean mossyThings = true;
+
     @ConfigEntry.Category("debug")
     public boolean grassDestroysRedstoneTorches = false;
 

@@ -53,11 +53,14 @@
   "text.autoconfig.tinytweaks.option.betterLilyPads": "Better Lily Pads",
   "text.autoconfig.tinytweaks.option.betterLilyPads.@Tooltip[0]": "Allows boats to pass through lily pads without breaking them",
   "text.autoconfig.tinytweaks.option.betterLilyPads.@Tooltip[1]": "Also allows entities to rise through the bottom of a lily pad",
+  "text.autoconfig.tinytweaks.option.mossyThings": "Mossy Things",
+  "text.autoconfig.tinytweaks.option.mossyThings.@Tooltip[0]": "Cobblestone, stone bricks, and their stairs/slabs/walls turn mossy when near water or in rain",
+  "text.autoconfig.tinytweaks.option.mossyThings.@Tooltip[1]": "Mossy cobblestone, stone bricks, and their stairs/slabs/walls turn normal in sunlight",
   "text.autoconfig.tinytweaks.option.grassDestroysRedstoneTorches": "Grass Destroys Redstone Torches",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.true": "§aOn",
-  "text.autoconfig.tinytweaks.option.rejuvenation.enabled.boolean.true": "§cOff",
+  "text.autoconfig.tinytweaks.option.rejuvenation.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.rejuvenation.longGrass.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.rejuvenation.saplings.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.farmerVillagerAutomation.boolean.true": "§aOn",
@@ -72,6 +75,7 @@
   "text.autoconfig.tinytweaks.option.leaves.collide.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.leaves.slow.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.mossyThings.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.false": "§cOff",
@@ -89,5 +93,6 @@
   "text.autoconfig.tinytweaks.option.plantHitboxes.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.leaves.collide.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.leaves.slow.boolean.false": "§cOff",
-  "text.autoconfig.tinytweaks.option.leaves.persistentCollide.boolean.false": "§cOff"
+  "text.autoconfig.tinytweaks.option.leaves.persistentCollide.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.mossyThings.boolean.false": "§cOff"
 }
