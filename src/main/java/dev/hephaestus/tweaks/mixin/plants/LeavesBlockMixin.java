@@ -4,11 +4,15 @@ import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(LeavesBlock.class)
@@ -24,5 +28,11 @@ public class LeavesBlockMixin extends Block{
             return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
         else
             return Tweaks.CONFIG.leaves.collide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
+    }
+
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (Tweaks.CONFIG.leaves.slow && !(entity instanceof ItemEntity))
+            entity.slowMovement(state, new Vec3d(0.75D, 2D, 0.75D));
     }
 }

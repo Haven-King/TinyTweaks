@@ -6,6 +6,7 @@ import net.minecraft.block.FernBlock;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.block.TallPlantBlock;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -19,7 +20,7 @@ public class TallPlantBlockMixin extends PlantBlock {
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
-        if (Tweaks.CONFIG.rejuvenation.enabled)
+        if (!Tweaks.CONFIG.plantHitboxes && !context.isHolding(Items.SHEARS))
             return VoxelShapes.empty();
         else
             return super.getOutlineShape(state, view, pos, context);

@@ -34,7 +34,7 @@ public abstract class ItemEntityMixin extends Entity {
     private BlockPos triedToPlantAt;
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;tick()V"))
     public void plantSaplings(CallbackInfo ci) {
-        if (Tweaks.CONFIG.saplingsAutoPlant) {
+        if (Tweaks.CONFIG.saplingsAutoPlant && this.age > 20) {
             ItemStack stack = this.getStack();
             BlockPos pos = this.getBlockPos();
             BlockState state = world.getBlockState(pos);

@@ -15,19 +15,19 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(FernBlock.class)
-public class FernBlockMixin extends PlantBlock {
-    @Shadow @Final protected static VoxelShape SHAPE;
+@Mixin(FlowerBlock.class)
+public class FlowerBlockMixin extends PlantBlock {
+	@Shadow @Final protected static VoxelShape SHAPE;
 
-    protected FernBlockMixin(Settings settings) {
-        super(settings);
-    }
+	protected FlowerBlockMixin(Settings settings) {
+		super(settings);
+	}
 
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
-        if (!Tweaks.CONFIG.plantHitboxes && !context.isHolding(Items.SHEARS))
-            return VoxelShapes.empty();
-        else
-            return SHAPE;
-    }
+	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
+		if (!Tweaks.CONFIG.plantHitboxes && !context.isHolding(Items.SHEARS))
+			return VoxelShapes.empty();
+		else
+			return SHAPE;
+	}
 }

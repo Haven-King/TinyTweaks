@@ -25,6 +25,10 @@ public class TweaksConfig implements ConfigData {
     public Rejuvenation rejuvenation = new Rejuvenation();
 
     @ConfigEntry.Category("plants")
+    @ConfigEntry.Gui.Tooltip(count = 4)
+    public boolean plantHitboxes = false;
+
+    @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.CollapsibleObject
     public LeavesConfig leaves = new LeavesConfig();
 
@@ -76,6 +80,9 @@ public class TweaksConfig implements ConfigData {
         public boolean collide = false;
         @ConfigEntry.Gui.Tooltip
         public boolean persistentCollide = false;
+
+        @ConfigEntry.Gui.Tooltip
+        public boolean slow = true;
     }
 
     public static class FlintAndSteelConfig {
