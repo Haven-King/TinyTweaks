@@ -42,10 +42,7 @@ public class LabelRenderer {
             BlockState state = Blocks.STONE.getDefaultState();
             BakedModel model = MinecraftClient.getInstance().getBlockRenderManager().getModel(state);
             List<BakedQuad> quads = model.getQuads(state, null, new Random());
-            Tweaks.log("Model: %s", model.toString());
-            for (BakedQuad quad : quads) {
-                Tweaks.log("Quad: %s", quad.toString());
-            }
+
             test = false;
         }
         if (!blockEntity.hasCustomName() && MinecraftClient.getInstance().getNetworkHandler() != null) {
