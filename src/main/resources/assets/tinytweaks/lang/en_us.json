@@ -42,6 +42,7 @@
   "text.autoconfig.tinytweaks.option.leaves.collide": "Leaf Collision",
   "text.autoconfig.tinytweaks.option.leaves.slow": "Leaves Slow",
   "text.autoconfig.tinytweaks.option.leaves.slow.@Tooltip": "Leaves slow non-item entities passing through them",
+  "text.autoconfig.tinytweaks.option.leaves.climb": "Climbable Trees",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide": "Persistent Leaf Collision",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide.@Tooltip": "These are leaves placed by the player",
   "text.autoconfig.tinytweaks.option.namesAndThings": "Names and Things",
@@ -73,6 +74,7 @@
   "text.autoconfig.tinytweaks.option.leaves.collide.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.leaves.slow.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.leaves.climb.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.mossyThings.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
@@ -92,5 +94,6 @@
   "text.autoconfig.tinytweaks.option.leaves.collide.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.leaves.slow.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.leaves.climb.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.mossyThings.boolean.false": "§cOff"
 }

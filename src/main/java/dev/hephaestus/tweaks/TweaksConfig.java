@@ -87,6 +87,8 @@ public class TweaksConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         public boolean slow = true;
+
+        public boolean climb = true;
     }
 
     public static class FlintAndSteelConfig {

@@ -1,5 +1,6 @@
 package dev.hephaestus.tweaks.mixin.entity;
 
+import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
@@ -25,13 +26,15 @@ public abstract class LivingEntityMixin extends Entity {
 		BlockPos pos = this.getBlockPos();
 
 		if ((state.getBlock() instanceof LeavesBlock || world.getBlockState(pos.up()).getBlock() instanceof LeavesBlock)) {
-			boolean logsAdjacent =
-							world.getBlockState(pos.north()).getBlock() instanceof LogBlock ||
-											world.getBlockState(pos.east()).getBlock() instanceof LogBlock ||
-											world.getBlockState(pos.south()).getBlock() instanceof LogBlock ||
-											world.getBlockState(pos.west()).getBlock() instanceof LogBlock;
+			if (Tweaks.CONFIG.leaves.climb) {
+				boolean logsAdjacent =
+								world.getBlockState(pos.north()).getBlock() instanceof LogBlock ||
+												world.getBlockState(pos.east()).getBlock() instanceof LogBlock ||
+												world.getBlockState(pos.south()).getBlock() instanceof LogBlock ||
+												world.getBlockState(pos.west()).getBlock() instanceof LogBlock;
 
-			info.setReturnValue(logsAdjacent);
+				info.setReturnValue(logsAdjacent);
+			}
 		}
 	}
 }
