@@ -8,6 +8,7 @@
     "block.CropBlockMixin",
     "block.DeadBushBlockMixin",
     "block.FernBlockMixin",
+    "block.FireBlockMixin",
     "block.FlowerBlockMixin",
     "block.LanternResistanceMixin",
     "block.LeavesBlockMixin",
@@ -29,6 +30,7 @@
     "entity.passive.SheepEntityMixin",
     "entity.passive.WolfEntityMixin",
     "fluid.WaterFluidMixin",
+    "item.CharcoalDoesntBurnMixin",
     "item.FlintAndSteelMixin",
     "item.HoeItemMixin",
     "item.ShovelMixin"

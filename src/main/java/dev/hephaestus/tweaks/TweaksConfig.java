@@ -66,6 +66,9 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean mossyThings = true;
 
+    @ConfigEntry.Category("misc")
+    public boolean burningLogsDropCharcoal = true;
+
     @ConfigEntry.Category("debug")
     public boolean grassDestroysRedstoneTorches = false;
 

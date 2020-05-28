@@ -4,13 +4,18 @@ import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.pattern.CachedBlockPosition;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RayTraceContext;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,9 +43,17 @@ public abstract class ItemEntityMixin extends Entity {
             ItemStack stack = this.getStack();
             BlockPos pos = this.getBlockPos();
             BlockState state = world.getBlockState(pos);
-            if (this.getBlockPos() != triedToPlantAt && stack.getItem().isIn(ItemTags.SAPLINGS) && stack.getItem() instanceof BlockItem && state.getBlock() == Blocks.AIR && isDirt(world.getBlockState(pos.down()).getBlock())) {
-                world.setBlockState(pos, ((BlockItem) stack.getItem()).getBlock().getDefaultState());
-                stack.decrement(1);
+            if (this.getBlockPos() != triedToPlantAt) {
+                stack.useOnBlock(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
+                    new RayTraceContext(
+                        new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
+                        new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5),
+                        RayTraceContext.ShapeType.COLLIDER,
+                        RayTraceContext.FluidHandling.ANY,
+                        this
+                    )
+                )));
+
                 triedToPlantAt = this.getBlockPos();
             }
         }

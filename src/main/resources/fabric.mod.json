@@ -26,6 +26,7 @@
       "dev.hephaestus.tweaks.ModMenuIntegration"
     ]
   },
+  "accessWidener" : "tweaks.accesswidener",
   "mixins": [
     "tweaks.mixins.json"
   ],
