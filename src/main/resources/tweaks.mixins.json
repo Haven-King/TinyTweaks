@@ -19,8 +19,6 @@
     "block.SpreadableBlockMixin",
     "block.SugarCaneMixin",
     "block.TallPlantBlockMixin",
-    "container.AnvilContainerMixin",
-    "container.AnvilContainerMixin$AnvilContainerSlotMixin",
     "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.ai.brain.task.FarmerVillagerTaskMixin",

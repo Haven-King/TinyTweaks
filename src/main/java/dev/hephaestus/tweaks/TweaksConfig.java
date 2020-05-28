@@ -97,9 +97,6 @@ public class TweaksConfig implements ConfigData {
 
     public static class NamesAndThings {
         @ConfigEntry.Gui.Tooltip
-        public boolean freeRenames = true;
-
-        @ConfigEntry.Gui.Tooltip
         public boolean containerLabels = true;
 
         @ConfigEntry.BoundedDiscrete(min = 0, max = 200)

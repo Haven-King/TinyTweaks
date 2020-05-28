@@ -45,8 +45,6 @@
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide": "Persistent Leaf Collision",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide.@Tooltip": "These are leaves placed by the player",
   "text.autoconfig.tinytweaks.option.namesAndThings": "Names and Things",
-  "text.autoconfig.tinytweaks.option.namesAndThings.freeRenames": "Renaming is Free",
-  "text.autoconfig.tinytweaks.option.namesAndThings.freeRenames.@Tooltip": "Renaming items in anvils doesn't cost levels",
   "text.autoconfig.tinytweaks.option.namesAndThings.containerLabels": "Chest Labels",
   "text.autoconfig.tinytweaks.option.namesAndThings.containerLabels.@Tooltip": "Looking at a chest renders its name above it",
   "text.autoconfig.tinytweaks.option.namesAndThings.labelScale": "Label Scale",
