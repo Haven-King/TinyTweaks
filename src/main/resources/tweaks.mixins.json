@@ -17,6 +17,7 @@
     "block.MoistObjectsMixin",
     "block.NetherWartBlockMixin",
     "block.RedstoneTorchMixin",
+    "block.SignBlockMixin",
     "block.SpreadableBlockMixin",
     "block.SugarCaneMixin",
     "block.TallPlantBlockMixin",
@@ -36,6 +37,7 @@
     "item.ShovelMixin"
   ],
   "client": [
+    "client.gui.screen.ingame.SignEditScreenMixin",
     "client.render.CameraMixin",
     "client.render.entity.BoatEntityRendererMixin",
     "client.render.entity.PlayerEntityRendererMixin",
