@@ -97,7 +97,7 @@ public class LabelRenderer {
                 TextRenderer textRenderer = dispatcher.getTextRenderer();
                 String string = blockEntity.getName().asString();
 
-                float s = (float) (-textRenderer.getStringWidth(string) / 2);
+                float s = (float) (-textRenderer.getWidth(string) / 2);
                 textRenderer.draw(string, s, 0f, 16777215, true, matrices.peek().getModel(), vertexConsumers, false, 0, 15728880);
                 matrices.pop();
             }
@@ -177,7 +177,7 @@ public class LabelRenderer {
                     TextRenderer textRenderer = dispatcher.getTextRenderer();
                     String string = blockEntity.getName().asString();
 
-                    float s = (float) (-textRenderer.getStringWidth(string) / 2);
+                    float s = (float) (-textRenderer.getWidth(string) / 2);
                     textRenderer.draw(string, s, 0f, 16777215, true, matrices.peek().getModel(), vertexConsumers, false, 0, 15728880);
                     matrices.pop();
                 }

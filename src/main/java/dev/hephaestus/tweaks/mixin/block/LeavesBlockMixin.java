@@ -4,8 +4,8 @@ import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -23,7 +23,7 @@ public class LeavesBlockMixin extends Block{
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
+    public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         if (state.get(LeavesBlock.PERSISTENT))
             return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
         else

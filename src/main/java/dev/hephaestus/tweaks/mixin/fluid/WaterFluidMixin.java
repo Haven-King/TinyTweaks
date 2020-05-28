@@ -2,7 +2,7 @@ package dev.hephaestus.tweaks.mixin.fluid;
 
 import dev.hephaestus.tweaks.block.Moistener;
 import net.minecraft.block.BlockState;
-import net.minecraft.fluid.BaseFluid;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.Random;
 
 @Mixin(WaterFluid.class)
-public abstract class WaterFluidMixin extends BaseFluid {
+public abstract class WaterFluidMixin extends Fluid {
 	@Override
 	protected void onRandomTick(World world, BlockPos pos, FluidState state, Random random) {
 		if (this.isStill(state)) {

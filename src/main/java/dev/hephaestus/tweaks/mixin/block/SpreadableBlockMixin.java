@@ -2,7 +2,6 @@ package dev.hephaestus.tweaks.mixin.block;
 
 import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.*;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +14,7 @@ import java.util.Random;
 
 @Mixin(SpreadableBlock.class)
 public class SpreadableBlockMixin {
-    @Inject(method = "scheduledTick", at = @At(value = "INVOKE", target = "net/minecraft/block/SpreadableBlock.getDefaultState()Lnet/minecraft/block/BlockState;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "randomTick", at = @At(value = "INVOKE", target = "net/minecraft/block/SpreadableBlock.getDefaultState()Lnet/minecraft/block/BlockState;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     public void growGrass(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         if (Tweaks.CONFIG.rejuvenation.enabled && state.getBlock() == Blocks.GRASS_BLOCK) {
             Block above = world.getBlockState(pos.up()).getBlock();

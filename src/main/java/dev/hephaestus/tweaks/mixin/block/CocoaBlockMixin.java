@@ -26,7 +26,7 @@ public abstract class CocoaBlockMixin extends HorizontalFacingBlock {
                         stack.setCount(stack.getCount() - 1);
                     }
 
-                    boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity)player).method_14239();
+                    boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity)player).isDisconnected();
                     if (playerAvailable)
                         player.inventory.offerOrDrop(world, stack);
                     else

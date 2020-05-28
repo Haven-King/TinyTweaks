@@ -43,9 +43,4 @@ public class MoistBlock extends Block {
 	public boolean hasRandomTicks(BlockState state) {
 		return true;
 	}
-
-	@Override
-	public int getTickRate(WorldView worldView) {
-		return 5;
-	}
 }

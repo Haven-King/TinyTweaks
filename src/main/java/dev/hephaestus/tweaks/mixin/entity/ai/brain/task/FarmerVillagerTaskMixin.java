@@ -57,17 +57,17 @@ public class FarmerVillagerTaskMixin {
 
             if (target != null) {
                 Inventory inventory = villagerEntity.getInventory();
-                for(int i = 0; i < inventory.getInvSize(); ++i) {
-                    ItemStack stack = inventory.getInvStack(i);
+                for(int i = 0; i < inventory.size(); ++i) {
+                    ItemStack stack = inventory.getStack(i);
                     if (stack.getCount() > stack.getMaxCount()/2) {
                         int amount = stack.getCount() - stack.getMaxCount()/2;
-                        ItemStack itemStack2 = HopperBlockEntity.transfer(inventory, target, inventory.takeInvStack(i, amount), null);
+                        ItemStack itemStack2 = HopperBlockEntity.transfer(inventory, target, inventory.removeStack(i, amount), null);
                         if (itemStack2.isEmpty()) {
                             inventory.markDirty();
                             break;
                         }
 
-                        inventory.getInvStack(i).decrement(amount);
+                        inventory.getStack(i).decrement(amount);
                     }
                 }
             }

@@ -1,12 +1,8 @@
 package dev.hephaestus.tweaks.mixin.block;
 
 import dev.hephaestus.tweaks.Tweaks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LilyPadBlock;
-import net.minecraft.block.PlantBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -14,7 +10,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,13 +33,13 @@ public abstract class LilyPadBlockMixin extends PlantBlock {
     private static final VoxelShape COLLIDER = Block.createCuboidShape(1.0D, -0.155D, 1.0D, 15.0D, -1.5D, 15.0D);
 
     @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
-    public void overwriteOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context, CallbackInfoReturnable<VoxelShape> cir) {
+    public void overwriteOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (Tweaks.CONFIG.betterLilyPads)
             cir.setReturnValue(COLLIDER);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
+    public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         if (Tweaks.CONFIG.betterLilyPads)
             return context.isAbove(COLLIDER, pos, false) ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
         else

@@ -27,8 +27,6 @@ public class SugarCaneMixin extends Block {
         super(settings);
     }
 
-
-
     private int destroySugarcane(World world, BlockPos pos) {
         int r = 0;
         if (world.getBlockState(pos).getBlock() == Blocks.SUGAR_CANE) {
@@ -49,7 +47,7 @@ public class SugarCaneMixin extends Block {
         }
 
         if (n > 0) {
-            boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity) player).method_14239();
+            boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity) player).isDisconnected();
             if (playerAvailable)
                 player.inventory.offerOrDrop(world, new ItemStack(Items.SUGAR_CANE, n));
             else
