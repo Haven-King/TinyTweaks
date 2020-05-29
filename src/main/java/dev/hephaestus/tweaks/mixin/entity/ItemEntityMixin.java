@@ -42,8 +42,7 @@ public abstract class ItemEntityMixin extends Entity {
         if (Tweaks.CONFIG.saplingsAutoPlant && this.age > 20) {
             ItemStack stack = this.getStack();
             BlockPos pos = this.getBlockPos();
-            BlockState state = world.getBlockState(pos);
-            if (this.getBlockPos() != triedToPlantAt) {
+            if (stack.getItem().isIn(ItemTags.SAPLINGS) && this.getBlockPos() != triedToPlantAt) {
                 stack.useOnBlock(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
                     new RayTraceContext(
                         new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
