@@ -1,2 +1,3 @@
 accessWidener	v1	named
 accessible method net/minecraft/item/ItemPlacementContext <init> (Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/item/ItemStack;Lnet/minecraft/util/hit/BlockHitResult;)V
+accessible method net/minecraft/block/BubbleColumnBlock calculateDrag (Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z

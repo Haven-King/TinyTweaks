@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "plugin": "dev.hephaestus.tweaks.mixin.VolatileMixinPlugin",
   "mixins": [
+    "block.BubbleColumnBlockMixin",
     "block.CocoaBlockMixin",
     "block.CropBlockMixin",
     "block.DeadBushBlockMixin",
@@ -33,6 +34,7 @@
     "entity.passive.SheepEntityMixin",
     "entity.passive.WolfEntityMixin",
     "fluid.WaterFluidMixin",
+    "item.BucketItemMixin",
     "item.CharcoalDoesntBurnMixin",
     "item.FlintAndSteelMixin",
     "item.HoeItemMixin",

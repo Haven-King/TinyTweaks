@@ -73,6 +73,9 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean doubleDoors = true;
 
+    @ConfigEntry.Category("misc")
+    public boolean bubbleColumnsFlow = false;
+
     @ConfigEntry.Category("debug")
     public boolean grassDestroysRedstoneTorches = false;
 
