@@ -84,7 +84,10 @@ public class TweaksConfig implements ConfigData {
         public boolean enabled = true;
 
         @ConfigEntry.Gui.Tooltip(count = 2)
-        public float longGrass = 0.01f;
+        public double growthRate = 0.025D;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public float longGrass = 0.01F;
 
         @ConfigEntry.Gui.Tooltip
         public boolean saplings = true;

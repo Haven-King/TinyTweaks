@@ -33,13 +33,13 @@ public class SpreadableBlockMixin {
                 }
             }
 
-            if (above == Blocks.AIR && random.nextFloat() < 0.01 + 0.2 * (friends)) {
+            if (above == Blocks.AIR && random.nextFloat() < Tweaks.CONFIG.rejuvenation.growthRate + 0.2 * (friends)) {
                 world.setBlockState(pos.up(), Blocks.GRASS.getDefaultState());
                 ci.cancel();
             } else if (Tweaks.CONFIG.rejuvenation.longGrass > 0.000001 && above == Blocks.GRASS) {
                 Random tallGrassRandom = new Random();
                 tallGrassRandom.setSeed(pos.asLong());
-                if (tallGrassRandom.nextFloat() < Tweaks.CONFIG.rejuvenation.longGrass && random.nextFloat() < 0.01) {
+                if (tallGrassRandom.nextFloat() < Tweaks.CONFIG.rejuvenation.longGrass && random.nextFloat() < Tweaks.CONFIG.rejuvenation.growthRate) {
                     ((TallPlantBlock) Blocks.TALL_GRASS).placeAt(world, pos.up(), 2);
                     ci.cancel();
                 }
