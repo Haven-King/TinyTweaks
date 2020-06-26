@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(BucketItem.class)
+@Mixin(value = BucketItem.class, priority = 2000)
 public class BucketItemMixin {
 	boolean shouldChange = false;
 	@Inject(method = "use", at = @At("HEAD"))
