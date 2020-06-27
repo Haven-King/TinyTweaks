@@ -27,6 +27,7 @@
     "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.ai.brain.task.FarmerVillagerTaskMixin",
+    "entity.InteractableEntityMixin",
     "entity.passive.ChickenEntityMixin",
     "entity.passive.CowEntityMixin",
     "entity.passive.HorseAndDonkeyMixin",
