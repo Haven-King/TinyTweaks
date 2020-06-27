@@ -31,7 +31,7 @@ public class GroundFoodMateGoal extends Goal {
     }
 
     public boolean canStart() {
-        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
+        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
             this.foodEntity = this.findFood();
         }
 
