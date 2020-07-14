@@ -3,6 +3,7 @@ package dev.hephaestus.tweaks;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
+import sun.nio.ch.Net;
 
 @Config(name = "tinytweaks")
 @Config.Gui.Background("minecraft:textures/block/hay_block_side.png")
@@ -49,6 +50,11 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean breedWildWolves = true;
 
+    // - Nether! --------------------------------------------------------------
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.Gui.CollapsibleObject
+    public NetherRejuvenation netherRejuvenation = new NetherRejuvenation();
+
     // - Miscellaneous! -------------------------------------------------------
     @ConfigEntry.Category("misc")
     @ConfigEntry.Gui.CollapsibleObject
@@ -76,9 +82,6 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("misc")
     public boolean bubbleColumnsFlow = false;
 
-    @ConfigEntry.Category("debug")
-    public boolean grassDestroysRedstoneTorches = false;
-
     public static class Rejuvenation {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;
@@ -91,6 +94,21 @@ public class TweaksConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         public boolean saplings = true;
+    }
+
+    public static class NetherRejuvenation {
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public boolean enabled = true;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public double growthRate = 0.0125D;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        public int sproutRootsRatio = 75;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public double vinesChance = 0.01;
     }
 
     public static class LeavesConfig {
