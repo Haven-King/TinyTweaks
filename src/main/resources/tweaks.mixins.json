@@ -41,12 +41,16 @@
     "item.ShovelMixin"
   ],
   "client": [
+    "client.gui.hud.InGameOverlayRendererMixin",
     "client.gui.screen.ingame.SignEditScreenMixin",
     "client.render.CameraMixin",
     "client.render.entity.BoatEntityRendererMixin",
+    "client.render.entity.EntityRenderDispatcherMixin",
     "client.render.entity.PlayerEntityRendererMixin",
+    "client.render.model.ModelLoaderMixin",
     "dev.ChestBlockEntityRendererMixin",
     "dev.ShulkerBoxEntityRendererMixin",
+    "entity.SetSoulFireType",
     "prod.ChestBlockEntityRendererMixin",
     "prod.ShulkerBoxEntityRendererMixin"
   ],

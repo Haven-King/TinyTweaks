@@ -55,6 +55,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public NetherRejuvenation netherRejuvenation = new NetherRejuvenation();
 
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean blueSoulFireEffects = true;
+
     // - Miscellaneous! -------------------------------------------------------
     @ConfigEntry.Category("misc")
     @ConfigEntry.Gui.CollapsibleObject
