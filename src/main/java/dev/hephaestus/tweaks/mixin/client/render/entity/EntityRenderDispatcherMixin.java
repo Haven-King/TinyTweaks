@@ -27,11 +27,21 @@ public class EntityRenderDispatcherMixin {
 		this.renderedEntity = entity;
 	}
 
-	@Redirect(method = "renderFire", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SpriteIdentifier;getSprite()Lnet/minecraft/client/texture/Sprite;"))
-	private Sprite renderSoulFire(SpriteIdentifier spriteIdentifier) {
+	@Redirect(method = "renderFire", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SpriteIdentifier;getSprite()Lnet/minecraft/client/texture/Sprite;", ordinal = 0))
+	private Sprite renderSoulFire0(SpriteIdentifier spriteIdentifier) {
 		SoulFire.FireTypeModifier.of(renderedEntity).updateFireType();
 		if (this.renderedEntity != null && Tweaks.CONFIG.blueSoulFireEffects && SoulFire.FireTypeModifier.of(this.renderedEntity).getFireType() == SoulFire.FireType.SOUL) {
-			return SoulFire.getSprite();
+			return SoulFire.SPRITE_0.getSprite();
+		} else {
+			return spriteIdentifier.getSprite();
+		}
+	}
+
+	@Redirect(method = "renderFire", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SpriteIdentifier;getSprite()Lnet/minecraft/client/texture/Sprite;", ordinal = 1))
+	private Sprite renderSoulFire1(SpriteIdentifier spriteIdentifier) {
+		SoulFire.FireTypeModifier.of(renderedEntity).updateFireType();
+		if (this.renderedEntity != null && Tweaks.CONFIG.blueSoulFireEffects && SoulFire.FireTypeModifier.of(this.renderedEntity).getFireType() == SoulFire.FireType.SOUL) {
+			return SoulFire.SPRITE_1.getSprite();
 		} else {
 			return spriteIdentifier.getSprite();
 		}
