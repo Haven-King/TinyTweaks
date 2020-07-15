@@ -67,6 +67,7 @@
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled": "Enabled",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.@Tooltip[0]": "Causes nylium, roots, and nether sprouts to spread",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.@Tooltip[1]": "Only spread within their respective biomes",
+  "text.autoconfig.tinytweaks.option.netherRejuvenation.growthRate": "Growth Rate",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.growthRate.@Tooltip[0]": "Percent chance of roots/sprouts spreading",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.growthRate.@Tooltip[1]": "0.0 is never, 1.0 is every random tick",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.sproutRootsRatio": "Ratio of Sprouts to Roots",

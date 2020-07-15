@@ -24,7 +24,7 @@ public class InGameOverlayRendererMixin {
 			SoulFire.FireTypeModifier.of(playerEntity).updateFireType();
 
 			if (SoulFire.FireTypeModifier.of(playerEntity).getFireType() == SoulFire.FireType.SOUL) {
-				return SoulFire.getSprite();
+				return SoulFire.SPRITE_1.getSprite();
 			}
 		}
 
