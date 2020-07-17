@@ -35,15 +35,15 @@ public abstract class NyliumBlockMixin {
 				for (int y = 0; y <= 1; y++) {
 					for (int z = -1; z <= 1; z++) {
 						Block friend = world.getBlockState(pos.add(x, y, z)).getBlock();
-						if (friend instanceof FernBlock || friend instanceof TallPlantBlock) {
+						if (friend instanceof RootsBlock || friend instanceof SproutsBlock) {
 							friends++;
-							friends *= 1.25;
+							friends *= Tweaks.CONFIG.netherRejuvenation.thePowerOfFriendship;
 						}
 					}
 				}
 			}
 
-			if (world.getBlockState(pos.up()).isAir() && random.nextFloat() < Tweaks.CONFIG.netherRejuvenation.growthRate + 0.2 * (friends)) {
+			if (world.getBlockState(pos.up()).isAir() && random.nextFloat() < Tweaks.CONFIG.netherRejuvenation.rootsGrowthRate * (friends)) {
 				float f = random.nextFloat();
 				double ratio = Tweaks.CONFIG.netherRejuvenation.sproutRootsRatio / 100D;
 				Block block;

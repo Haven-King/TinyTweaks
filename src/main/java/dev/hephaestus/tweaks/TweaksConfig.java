@@ -90,8 +90,11 @@ public class TweaksConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;
 
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public double growthRate = 0.0125D;
+        @ConfigEntry.Gui.Tooltip
+        public double grassGrowthRate = 0.0125D;
+
+        @ConfigEntry.Gui.Tooltip(count = 5)
+        public double thePowerOfFriendship = 1.25;
 
         @ConfigEntry.Gui.Tooltip(count = 2)
         public float longGrass = 0.01F;
@@ -104,8 +107,11 @@ public class TweaksConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip(count = 2)
         public boolean enabled = true;
 
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public double growthRate = 0.0125D;
+        @ConfigEntry.Gui.Tooltip
+        public double rootsGrowthRate = 0.0125D;
+
+        @ConfigEntry.Gui.Tooltip(count = 5)
+        public double thePowerOfFriendship = 1.25;
 
         @ConfigEntry.Gui.Tooltip(count = 2)
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)

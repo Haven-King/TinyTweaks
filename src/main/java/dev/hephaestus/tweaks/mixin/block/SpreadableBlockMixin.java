@@ -18,7 +18,7 @@ public class SpreadableBlockMixin {
     public void growGrass(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         if (Tweaks.CONFIG.rejuvenation.enabled && state.getBlock() == Blocks.GRASS_BLOCK) {
             Block above = world.getBlockState(pos.up()).getBlock();
-            int friends = 0;
+            int friends = 1;
 
 
             for (int x = -1; x <= 1; x++) {
@@ -27,19 +27,19 @@ public class SpreadableBlockMixin {
                         Block friend = world.getBlockState(pos.add(x, y, z)).getBlock();
                         if (friend instanceof FernBlock || friend instanceof TallPlantBlock) {
                             friends++;
-                            friends *= 1.25;
+                            friends *= Tweaks.CONFIG.rejuvenation.thePowerOfFriendship;
                         }
                     }
                 }
             }
 
-            if (above == Blocks.AIR && random.nextFloat() < Tweaks.CONFIG.rejuvenation.growthRate + 0.2 * (friends)) {
+            if (above == Blocks.AIR && random.nextFloat() < Tweaks.CONFIG.rejuvenation.grassGrowthRate * (friends)) {
                 world.setBlockState(pos.up(), Blocks.GRASS.getDefaultState());
                 ci.cancel();
             } else if (Tweaks.CONFIG.rejuvenation.longGrass > 0.000001 && above == Blocks.GRASS) {
                 Random tallGrassRandom = new Random();
                 tallGrassRandom.setSeed(pos.asLong());
-                if (tallGrassRandom.nextFloat() < Tweaks.CONFIG.rejuvenation.longGrass && random.nextFloat() < Tweaks.CONFIG.rejuvenation.growthRate) {
+                if (tallGrassRandom.nextFloat() < Tweaks.CONFIG.rejuvenation.longGrass && random.nextFloat() < Tweaks.CONFIG.rejuvenation.grassGrowthRate) {
                     ((TallPlantBlock) Blocks.TALL_GRASS).placeAt(world, pos.up(), 2);
                     ci.cancel();
                 }
