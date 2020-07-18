@@ -30,7 +30,7 @@ public class MoistBlock extends Block {
 			}
 
 			if (isSkyVisible) {
-				if (world.isRaining()) {
+				if (world.isRaining() && world.getBiome(pos).getRainfall() > 0) {
 					world.setBlockState(pos, Moistener.moisten(state));
 				} else if (world.isDay() && !isWaterNearby) {
 					world.setBlockState(pos, Moistener.dry(state));

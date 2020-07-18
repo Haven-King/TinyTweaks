@@ -1,5 +1,6 @@
 package dev.hephaestus.tweaks.mixin.fluid;
 
+import dev.hephaestus.tweaks.Tweaks;
 import dev.hephaestus.tweaks.block.Moistener;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluid;
@@ -15,7 +16,7 @@ import java.util.Random;
 public abstract class WaterFluidMixin extends Fluid {
 	@Override
 	protected void onRandomTick(World world, BlockPos pos, FluidState state, Random random) {
-		if (this.isStill(state)) {
+		if (this.isStill(state) && Tweaks.CONFIG.mossyThings) {
 			Iterable<BlockPos> adjacent = BlockPos.iterate(pos.down().north().west(), pos.south().east());
 
 			for (BlockPos potentialPos : adjacent) {

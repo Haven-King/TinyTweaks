@@ -3,7 +3,6 @@ package dev.hephaestus.tweaks;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
-import sun.nio.ch.Net;
 
 @Config(name = "tinytweaks")
 @Config.Gui.Background("minecraft:textures/block/hay_block_side.png")
@@ -73,7 +72,7 @@ public class TweaksConfig implements ConfigData {
     public NamesAndThings namesAndThings = new NamesAndThings();
 
     @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 2)
+    @ConfigEntry.Gui.Tooltip(count = 4)
     public boolean mossyThings = true;
 
     @ConfigEntry.Category("misc")

@@ -16,19 +16,19 @@ public class MoistBlocksMixin {
 	}
 
 	@SuppressWarnings("UnresolvedMixinReference")
-	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/block/Block", ordinal = 40))
+	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/block/Block", ordinal = 41))
 	private static Block dryMossyCobblestone(Block.Settings settings) {
 		return new MoistBlock(settings);
 	}
 
 	@SuppressWarnings("UnresolvedMixinReference")
-	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/block/Block", ordinal = 47))
+	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/block/Block", ordinal = 48))
 	private static Block moistenStoneBricks(Block.Settings settings) {
 		return new MoistBlock(settings);
 	}
 
 	@SuppressWarnings("UnresolvedMixinReference")
-	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/block/Block", ordinal = 48))
+	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/block/Block", ordinal = 49))
 	private static Block dryStoneBricks(Block.Settings settings) {
 		return new MoistBlock(settings);
 	}
