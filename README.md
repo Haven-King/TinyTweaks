@@ -21,3 +21,6 @@ A collection of small tweaks for Minecraft.
 * Editable Signs - No config for this one, just don't use it if you don't want it!
 * Entity Ignition - Right click mobs with flint and steel to light them on fire
 * Sturdy Lanterns - Gives lanterns a blast resistance of 6 (allows them to survive Ghast fireballs)
+
+## Contact Me
+I can be found hanging out on the Fabric Discord as Haven King#2790. Feel free to shoot me a message there if you have any questions.

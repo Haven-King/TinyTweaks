@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = BubbleColumnBlock.class, priority = 2000)
 public class BubbleColumnBlockMixin {
 	@Redirect(method = "getStateForNeighborUpdate", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/TickScheduler;schedule(Lnet/minecraft/util/math/BlockPos;Ljava/lang/Object;I)V"))
-	private void dontFluidTick(TickScheduler<Fluid> tickScheduler, BlockPos pos, Object object, int delay) {
+	private <T> void dontFluidTick(TickScheduler<T> tickScheduler, BlockPos pos, T object, int delay) {
 		if (Tweaks.CONFIG.bubbleColumnsFlow) {
-			tickScheduler.schedule(pos, (Fluid) object, delay);
+			tickScheduler.schedule(pos, object, delay);
 		}
 	}
 }
