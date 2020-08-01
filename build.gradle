@@ -36,7 +36,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-language-kotlin:1.3.72+build.1"
 	modImplementation "curse.maven:sodium:3003093"
 	modImplementation "curse.maven:lithium:3000628"
-	modImplementation "curse.maven:makkit:2986981"
 
 	modApi "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
 	include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"

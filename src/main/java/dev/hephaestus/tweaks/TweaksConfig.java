@@ -85,6 +85,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("misc")
     public boolean bubbleColumnsFlow = false;
 
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip
+    public boolean infiniteCauldrons = true;
+
     public static class Rejuvenation {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;

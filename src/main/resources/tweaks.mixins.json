@@ -5,6 +5,7 @@
   "plugin": "dev.hephaestus.tweaks.mixin.VolatileMixinPlugin",
   "mixins": [
     "block.BubbleColumnBlockMixin",
+    "block.CauldronBlockMixin",
     "block.CocoaBlockMixin",
     "block.CropBlockMixin",
     "block.DeadBushBlockMixin",

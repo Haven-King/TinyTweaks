@@ -91,6 +91,8 @@
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects": "Improved Soul Fire",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.@Tooltip[0]": "Makes fire rendered on the hud and entities on fire blue",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.@Tooltip[1]": "when lit on fire by soul fire",
+  "text.autoconfig.tinytweaks.option.infiniteCauldrons": "Infinite Cauldrons",
+  "text.autoconfig.tinytweaks.option.infiniteCauldrons.@Tooltip": "Right click a cauldron with a Heart of the Sea to make it infinite",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.true": "§aOn",
@@ -138,5 +140,6 @@
   "text.autoconfig.tinytweaks.option.burningLogsDropCharcoal.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.doubleDoors.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.bubbleColumnsFlow.boolean.false": "§cOff",
-  "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.false": "§cOff"
+  "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.false": "§cOff",
+  "block.cauldron.makeInfinite": "This cauldron has been blessed with the heart of the sea"
 }
