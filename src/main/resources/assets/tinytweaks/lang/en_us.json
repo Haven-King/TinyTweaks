@@ -118,6 +118,7 @@
   "text.autoconfig.tinytweaks.option.doubleDoors.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.bubbleColumnsFlow.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.saplingsAutoPlant.boolean.false": "§cOff",
@@ -142,5 +143,6 @@
   "text.autoconfig.tinytweaks.option.doubleDoors.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.bubbleColumnsFlow.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.false": "§cOff",
   "block.cauldron.makeInfinite": "This cauldron has been blessed with the heart of the sea"
 }
