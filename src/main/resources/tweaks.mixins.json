@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "plugin": "dev.hephaestus.tweaks.mixin.VolatileMixinPlugin",
   "mixins": [
+    "block.AbstractBlockMixin",
     "block.BubbleColumnBlockMixin",
     "block.CocoaBlockMixin",
     "block.CropBlockMixin",

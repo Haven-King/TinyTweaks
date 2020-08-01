@@ -2,6 +2,7 @@ package dev.hephaestus.tweaks;
 
 import dev.hephaestus.tweaks.block.Moistener;
 import dev.hephaestus.tweaks.client.render.block.entity.BarrelBlockLabelRenderer;
+import dev.hephaestus.tweaks.world.feature.AddWaterLogPropertyForLeavesUnderWater;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
@@ -38,6 +39,8 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
         Moistener.canMoisten(Blocks.STONE_BRICK_SLAB, Blocks.MOSSY_STONE_BRICK_SLAB);
         Moistener.canMoisten(Blocks.STONE_BRICK_STAIRS, Blocks.MOSSY_STONE_BRICK_STAIRS);
         Moistener.canMoisten(Blocks.STONE_BRICK_WALL, Blocks.MOSSY_STONE_BRICK_WALL);
+
+        AddWaterLogPropertyForLeavesUnderWater.replaceLeaves();
     }
 
     public static void log(Level level, String message, Object... args){
