@@ -24,15 +24,17 @@ public class LeavesBlockMixin extends Block{
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        if (state.get(LeavesBlock.PERSISTENT))
-            return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
-        else
-            return Tweaks.CONFIG.leaves.collide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
+        if (state.get(LeavesBlock.PERSISTENT)) {
+            return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+        } else {
+            return Tweaks.CONFIG.leaves.collide ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+        }
     }
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (Tweaks.CONFIG.leaves.slow && !(entity instanceof ItemEntity))
+        if (Tweaks.CONFIG.leaves.slow && !(entity instanceof ItemEntity)) {
             entity.setVelocity(entity.getVelocity().multiply(Tweaks.CONFIG.leaves.slowAmount));
+        }
     }
 }
