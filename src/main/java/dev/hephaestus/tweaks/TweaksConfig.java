@@ -132,6 +132,8 @@ public class TweaksConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean slow = true;
 
+        public double slowAmount = 0.75D;
+
         public boolean climb = true;
     }
 

@@ -50,6 +50,7 @@
   "text.autoconfig.tinytweaks.option.leaves.collide": "Leaf Collision",
   "text.autoconfig.tinytweaks.option.leaves.slow": "Leaves Slow",
   "text.autoconfig.tinytweaks.option.leaves.slow.@Tooltip": "Leaves slow non-item entities passing through them",
+  "text.autoconfig.tinytweaks.option.leaves.slowAmount": "Slow Amount",
   "text.autoconfig.tinytweaks.option.leaves.climb": "Climbable Trees",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide": "Persistent Leaf Collision",
   "text.autoconfig.tinytweaks.option.leaves.persistentCollide.@Tooltip": "These are leaves placed by the player",

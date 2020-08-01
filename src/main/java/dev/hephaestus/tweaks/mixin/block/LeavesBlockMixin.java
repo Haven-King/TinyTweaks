@@ -33,6 +33,6 @@ public class LeavesBlockMixin extends Block{
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (Tweaks.CONFIG.leaves.slow && !(entity instanceof ItemEntity))
-            entity.slowMovement(state, new Vec3d(0.75D, 2D, 0.75D));
+            entity.setVelocity(entity.getVelocity().multiply(Tweaks.CONFIG.leaves.slowAmount));
     }
 }
