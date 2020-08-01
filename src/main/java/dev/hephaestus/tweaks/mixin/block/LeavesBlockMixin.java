@@ -1,12 +1,10 @@
 package dev.hephaestus.tweaks.mixin.block;
 
 import dev.hephaestus.tweaks.Tweaks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
@@ -24,6 +22,10 @@ public class LeavesBlockMixin extends Block{
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+        if (context == EntityShapeContext.ABSENT) {
+            return VoxelShapes.fullCube();
+        }
+
         if (state.get(LeavesBlock.PERSISTENT)) {
             return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
         } else {
