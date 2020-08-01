@@ -6,6 +6,7 @@
   "mixins": [
     "block.AbstractBlockMixin",
     "block.BubbleColumnBlockMixin",
+    "block.CauldronBlockMixin",
     "block.CocoaBlockMixin",
     "block.CropBlockMixin",
     "block.DeadBushBlockMixin",

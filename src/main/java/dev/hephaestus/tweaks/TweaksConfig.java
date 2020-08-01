@@ -17,8 +17,8 @@ public class TweaksConfig implements ConfigData {
     public boolean easyHarvestSugarcane = true;
 
     @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip
-    public boolean saplingsAutoPlant = true;
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoPlanting autoPlanting = new AutoPlanting();
 
     @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.CollapsibleObject
@@ -85,6 +85,18 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("misc")
     public boolean bubbleColumnsFlow = false;
 
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip
+    public boolean infiniteCauldrons = true;
+
+    public static class AutoPlanting {
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public boolean enabled = true;
+
+        @ConfigEntry.Gui.Tooltip
+        public int delay = 20;
+    }
+
     public static class Rejuvenation {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;
@@ -127,6 +139,8 @@ public class TweaksConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         public boolean slow = true;
+
+        public double slowAmount = 0.75D;
 
         public boolean climb = true;
     }

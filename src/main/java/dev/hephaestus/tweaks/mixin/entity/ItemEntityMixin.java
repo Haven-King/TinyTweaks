@@ -32,28 +32,27 @@ public abstract class ItemEntityMixin extends Entity {
 
     @Shadow public abstract ItemStack getStack();
 
-    private static boolean isDirt(Block block) {
-        return block == Blocks.DIRT || block == Blocks.GRASS_BLOCK || block == Blocks.PODZOL || block == Blocks.COARSE_DIRT || block == Blocks.MYCELIUM;
-    }
-
     private BlockPos triedToPlantAt;
+
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;tick()V"))
     public void plantSaplings(CallbackInfo ci) {
-        if (Tweaks.CONFIG.saplingsAutoPlant && this.age > 20) {
+        if (Tweaks.CONFIG.autoPlanting.enabled && this.age >= Tweaks.CONFIG.autoPlanting.delay) {
             ItemStack stack = this.getStack();
             BlockPos pos = this.getBlockPos();
-            if (stack.getItem().isIn(ItemTags.SAPLINGS) && this.getBlockPos() != triedToPlantAt && world.getFluidState(pos).isEmpty()) {
-                stack.useOnBlock(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
-                    new RayTraceContext(
-                        new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
-                        new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5),
-                        RayTraceContext.ShapeType.COLLIDER,
-                        RayTraceContext.FluidHandling.ANY,
-                        this
-                    )
-                )));
+            if (this.getBlockPos() != triedToPlantAt && world.getFluidState(pos).isEmpty()) {
+                if (stack.getItem().isIn(ItemTags.SAPLINGS)) {
+                    stack.useOnBlock(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
+                            new RayTraceContext(
+                                    new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
+                                    new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5),
+                                    RayTraceContext.ShapeType.COLLIDER,
+                                    RayTraceContext.FluidHandling.ANY,
+                                    this
+                            )
+                    )));
 
-                triedToPlantAt = this.getBlockPos();
+                    triedToPlantAt = this.getBlockPos();
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block;
 
 import dev.hephaestus.tweaks.Tweaks;
+
 import dev.hephaestus.tweaks.block.LeaveBlockWaterLogGetter;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -12,6 +13,9 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+
+import net.minecraft.text.HoverEvent;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -39,16 +43,22 @@ public abstract class LeavesBlockMixin extends Block implements LeaveBlockWaterL
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        if (state.get(LeavesBlock.PERSISTENT))
-            return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
-        else
-            return Tweaks.CONFIG.leaves.collide ? super.getCollisionShape(state, view, pos, context) :  VoxelShapes.empty();
+        if (context == EntityShapeContext.ABSENT) {
+            return VoxelShapes.fullCube();
+        }
+
+        if (state.get(LeavesBlock.PERSISTENT)) {
+            return Tweaks.CONFIG.leaves.persistentCollide ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+        } else {
+            return Tweaks.CONFIG.leaves.collide ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+        }
     }
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (Tweaks.CONFIG.leaves.slow && !(entity instanceof ItemEntity))
-            entity.slowMovement(state, new Vec3d(0.75D, 2D, 0.75D));
+        if (Tweaks.CONFIG.leaves.slow && !(entity instanceof ItemEntity)) {
+            entity.setVelocity(entity.getVelocity().multiply(Tweaks.CONFIG.leaves.slowAmount));
+        }
     }
 
 /*****************************************************Water Logging*****************************************************/
