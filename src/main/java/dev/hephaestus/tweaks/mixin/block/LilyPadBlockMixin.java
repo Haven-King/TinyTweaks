@@ -30,18 +30,19 @@ public abstract class LilyPadBlockMixin extends PlantBlock {
             ci.cancel();
     }
 
-    private static final VoxelShape COLLIDER = Block.createCuboidShape(1.0D, -0.155D, 1.0D, 15.0D, -1.5D, 15.0D);
+    private static final VoxelShape OUTLINES = Block.createCuboidShape(1D, -1.75D, 1D, 15D, -0.75D, 15D);
+    private static final VoxelShape COLLIDER = Block.createCuboidShape(1.0D, -10D, 1.0D, 15.0D, 0, 15.0D);
 
     @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
     public void overwriteOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (Tweaks.CONFIG.betterLilyPads)
-            cir.setReturnValue(COLLIDER);
+            cir.setReturnValue(OUTLINES);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
         if (Tweaks.CONFIG.betterLilyPads)
-            return context.isAbove(COLLIDER, pos, false) ? super.getCollisionShape(state, view, pos, context) : VoxelShapes.empty();
+            return context.isAbove(COLLIDER, pos, false) ? COLLIDER : VoxelShapes.empty();
         else
             return super.getCollisionShape(state, view, pos, context);
     }
