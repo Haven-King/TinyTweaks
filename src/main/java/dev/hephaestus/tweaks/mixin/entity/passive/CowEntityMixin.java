@@ -17,20 +17,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.annotation.Nullable;
 
 @Mixin(CowEntity.class)
-public class CowEntityMixin extends AnimalEntity {
+public abstract class CowEntityMixin extends AnimalEntity {
     protected CowEntityMixin(EntityType<? extends AnimalEntity> type, World world) {
         super(type, world);
     }
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     public void addGoal(CallbackInfo ci) {
-        this.goalSelector.add(4, new GroundFoodMateGoal(this, Ingredient.ofItems(Items.WHEAT)));
-    }
-
-    @Shadow
-    @Nullable
-    @Override
-    public CowEntity createChild(PassiveEntity mate) {
-        return null;
+        this.goalSelector.add(2, new GroundFoodMateGoal(this, Ingredient.ofItems(Items.WHEAT)));
     }
 }

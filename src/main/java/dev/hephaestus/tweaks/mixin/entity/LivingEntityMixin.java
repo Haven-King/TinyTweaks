@@ -23,7 +23,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "isClimbing", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getBlock()Lnet/minecraft/block/Block;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	public void onIsClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos) {
-		if ((world.getBlockState(pos).getBlock() instanceof LeavesBlock || world.getBlockState(pos.up()).getBlock() instanceof LeavesBlock)) {
+		if (world.getBlockState(pos).getBlock() instanceof LeavesBlock || world.getBlockState(pos.up()).getBlock() instanceof LeavesBlock || world.getBlockState(pos.up(2)).getBlock() instanceof LeavesBlock) {
 			if (Tweaks.CONFIG.leaves.climb) {
 				boolean logsAdjacent =
 								world.getBlockState(pos.north()).getBlock().isIn(BlockTags.LOGS) ||

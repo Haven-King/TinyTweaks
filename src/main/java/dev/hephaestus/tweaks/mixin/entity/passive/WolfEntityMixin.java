@@ -17,21 +17,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.annotation.Nullable;
 
 @Mixin(WolfEntity.class)
-public class WolfEntityMixin extends TameableEntity {
+public abstract class WolfEntityMixin extends TameableEntity {
     protected WolfEntityMixin(EntityType<? extends TameableEntity> type, World world) {
         super(type, world);
     }
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     public void addGoal(CallbackInfo ci) {
-        this.goalSelector.add(8, new GroundFoodMateGoal(this, this::isBreedingItem));
-    }
-
-    @Shadow
-    @Nullable
-    @Override
-    public WolfEntity createChild(PassiveEntity mate) {
-        return null;
+        this.goalSelector.add(7, new GroundFoodMateGoal(this, this::isBreedingItem));
     }
 
     @Redirect(method = "canBreedWith", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/WolfEntity;isTamed()Z"))

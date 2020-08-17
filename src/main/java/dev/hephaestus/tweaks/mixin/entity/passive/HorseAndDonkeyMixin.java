@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.annotation.Nullable;
 
 @Mixin(HorseBaseEntity.class)
-public class HorseAndDonkeyMixin extends AnimalEntity {
+public abstract class HorseAndDonkeyMixin extends AnimalEntity {
     private static final Ingredient BREEDING_INGREDIENT = Ingredient.ofItems(Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.GOLDEN_CARROT);
 
     protected HorseAndDonkeyMixin(EntityType<? extends AnimalEntity> type, World world) {
@@ -24,13 +24,6 @@ public class HorseAndDonkeyMixin extends AnimalEntity {
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     protected void initGoals(CallbackInfo ci) {
-        this.goalSelector.add(3, new GroundFoodMateGoal(this, BREEDING_INGREDIENT));
-    }
-
-    @Shadow
-    @Nullable
-    @Override
-    public PassiveEntity createChild(PassiveEntity mate) {
-        return null;
+        this.goalSelector.add(2, new GroundFoodMateGoal(this, BREEDING_INGREDIENT));
     }
 }

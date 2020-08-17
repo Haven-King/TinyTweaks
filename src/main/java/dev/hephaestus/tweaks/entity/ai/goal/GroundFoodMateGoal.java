@@ -57,7 +57,7 @@ public class GroundFoodMateGoal extends Goal {
     }
 
     private ItemEntity findFood() {
-        List<ItemEntity> list = animal.world.getEntities(ItemEntity.class, this.animal.getBoundingBox().expand(8.0D), null);
+        List<ItemEntity> list = animal.world.getEntitiesByClass(ItemEntity.class, this.animal.getBoundingBox().expand(8.0D), null);
         double d = Double.MAX_VALUE;
 
         ItemEntity result = null;

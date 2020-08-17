@@ -6,6 +6,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.annotation.Nullable;
 
 @Mixin(ChickenEntity.class)
-public class ChickenEntityMixin extends AnimalEntity {
+public abstract class ChickenEntityMixin extends AnimalEntity {
     @Shadow @Final private static Ingredient BREEDING_INGREDIENT;
 
     protected ChickenEntityMixin(EntityType<? extends AnimalEntity> type, World world) {
@@ -26,13 +27,6 @@ public class ChickenEntityMixin extends AnimalEntity {
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     public void addGoal(CallbackInfo ci) {
-        this.goalSelector.add(4, new GroundFoodMateGoal(this, BREEDING_INGREDIENT));
-    }
-
-    @Shadow
-    @Nullable
-    @Override
-    public ChickenEntity createChild(PassiveEntity mate) {
-        return null;
+        this.goalSelector.add(2, new GroundFoodMateGoal(this, BREEDING_INGREDIENT));
     }
 }

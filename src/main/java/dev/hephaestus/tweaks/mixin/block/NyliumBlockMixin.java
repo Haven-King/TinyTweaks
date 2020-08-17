@@ -4,8 +4,8 @@ import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldView;
-import net.minecraft.world.biome.Biomes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,12 +18,15 @@ import java.util.Random;
 public abstract class NyliumBlockMixin {
 	@Shadow private static boolean stayAlive(BlockState state, WorldView world, BlockPos pos) {return true;}
 
-	private static boolean canSpread(BlockState state, WorldView worldView, BlockPos pos) {
+	private static boolean canSpread(BlockState state, ServerWorld world, BlockPos pos) {
 		BlockPos blockPos = pos.up();
-		BlockState blockState = worldView.getBlockState(blockPos);
+		BlockState blockState = world.getBlockState(blockPos);
+
+
+
 		return blockState.isAir() &&
-				(state.getBlock() == Blocks.WARPED_NYLIUM && worldView.getBiome(pos) == Biomes.WARPED_FOREST ||
-				state.getBlock() == Blocks.CRIMSON_NYLIUM && worldView.getBiome(pos) == Biomes.CRIMSON_FOREST);
+				(state.getBlock() == Blocks.WARPED_NYLIUM && world.getRegistryManager().get(Registry.BIOME_KEY).getId(world.getBiome(pos)).getPath().equals("warped_forest") ||
+				state.getBlock() == Blocks.CRIMSON_NYLIUM && world.getRegistryManager().get(Registry.BIOME_KEY).getId(world.getBiome(pos)).getPath().equals("crimson_forest"));
 	}
 
 	@Inject(method = "randomTick", at = @At("TAIL"))
