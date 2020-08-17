@@ -41,20 +41,4 @@ public abstract class LivingEntityMixin extends Entity {
 			}
 		}
 	}
-
-	@Unique private BlockState landedState;
-	@Unique private BlockPos landedPosition;
-
-	@Inject(method = "fall", at = @At(value = "NEW", target = "net/minecraft/particle/BlockStateParticleEffect"))
-	private void captureArgs(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
-		this.landedState = landedState;
-		this.landedPosition = landedPosition;
-	}
-
-	@Redirect(method = "fall", at = @At(value = "NEW", target = "net/minecraft/particle/BlockStateParticleEffect"))
-	private BlockStateParticleEffect lilyPadsOnWater(ParticleType<BlockStateParticleEffect> particleType, BlockState blockState) {
-		BlockState above = world.getBlockState(this.landedPosition.up());
-
-		return new BlockStateParticleEffect(particleType, this.landedState.getBlock().is(Blocks.WATER) && above.getBlock().is(Blocks.LILY_PAD) ? above : this.landedState);
-	}
 }

@@ -21,7 +21,7 @@ public abstract class ChestBlockEntityRendererMixin<T extends BlockEntity & Ches
         super(dispatcher);
     }
 
-    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;pop()V"))
+    @Inject(method = "render(Lnet/minecraft/block/entity/BlockEntity;FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;pop()V"))
     public void renderLabel(T blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
         if (Tweaks.CONFIG.namesAndThings.containerLabels && blockEntity instanceof LockableContainerBlockEntity) {
             LabelRenderer.renderLabel((LockableContainerBlockEntity) blockEntity, dispatcher, matrices, vertexConsumers, tickDelta);
