@@ -61,6 +61,7 @@
     "client.render.entity.BoatEntityRendererMixin",
     "client.render.entity.PlayerEntityRendererMixin",
     "client.render.entity.RenderSoulFire",
+    "client.render.entity.TippedArrowEntityRenderer",
     "dev.ChestBlockEntityRendererMixin",
     "dev.ShulkerBoxEntityRendererMixin",
     "entity.SetSoulFireType",
