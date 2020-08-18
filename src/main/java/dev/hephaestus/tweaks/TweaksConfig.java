@@ -94,7 +94,7 @@ public class TweaksConfig implements ConfigData {
     public boolean easyXp = true;
 
     public static class AutoPlanting {
-        @ConfigEntry.Gui.Tooltip(count = 2)
+        @ConfigEntry.Gui.Tooltip(count = 4)
         public boolean enabled = true;
 
         @ConfigEntry.Gui.Tooltip

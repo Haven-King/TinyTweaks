@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.entity;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.item.Tags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,8 +26,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
 @Mixin(ItemEntity.class)
-public abstract class AutoPlantSaplings extends Entity {
-    public AutoPlantSaplings(EntityType<?> type, World world) {
+public abstract class AutoPlant extends Entity {
+    public AutoPlant(EntityType<?> type, World world) {
         super(type, world);
     }
 
@@ -40,8 +41,8 @@ public abstract class AutoPlantSaplings extends Entity {
             ItemStack stack = this.getStack();
             BlockPos pos = this.getBlockPos();
             if (this.getBlockPos() != triedToPlantAt && world.getFluidState(pos).isEmpty()) {
-                if (stack.getItem().isIn(ItemTags.SAPLINGS)) {
-                    stack.useOnBlock(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
+                if (stack.getItem().isIn(ItemTags.SAPLINGS) || stack.getItem().isIn(Tags.PLANTABLE) && stack.getItem() instanceof BlockItem) {
+                    ((BlockItem) stack.getItem()).place(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
                             new RayTraceContext(
                                     new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
                                     new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5),

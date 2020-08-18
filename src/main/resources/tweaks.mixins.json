@@ -28,7 +28,7 @@
     "block.planthitboxes.TallPlants",
     "block.rejuvenation.RejuvenateDeadBushes",
     "block.rejuvenation.TallGrassSpread",
-    "entity.AutoPlantSaplings",
+    "entity.AutoPlant",
     "entity.BurnUsableEntities",
     "entity.LivingEntityMixin",
     "entity.ai.brain.task.FarmerVillagersDepositSurplus",
