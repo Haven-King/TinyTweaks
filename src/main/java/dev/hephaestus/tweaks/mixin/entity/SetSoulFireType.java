@@ -23,6 +23,8 @@ public abstract class SetSoulFireType implements SoulFire.FireTypeModifier {
 
 	@Shadow public abstract Box getBoundingBox();
 
+	@Shadow public abstract boolean isInLava();
+
 	private SoulFire.FireType fireType = SoulFire.FireType.NORMAL;
 
 	@Override
@@ -32,6 +34,11 @@ public abstract class SetSoulFireType implements SoulFire.FireTypeModifier {
 
 	@Override
 	public void updateFireType() {
+		if (this.isInLava()) {
+			this.fireType = SoulFire.FireType.NORMAL;
+			return;
+		}
+
 		if (this.world.isClient && Tweaks.CONFIG.blueSoulFireEffects) {
 			Box box = this.getBoundingBox();
 			BlockPos blockPos = new BlockPos(box.minX + 0.001D, box.minY + 0.001D, box.minZ + 0.001D);
