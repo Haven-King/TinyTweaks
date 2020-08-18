@@ -98,6 +98,9 @@
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.@Tooltip[1]": "when lit on fire by soul fire",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons": "Infinite Cauldrons",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.@Tooltip": "Right click a cauldron with a Heart of the Sea to make it infinite",
+  "text.autoconfig.tinytweaks.option.easyXp": "Easy XP",
+  "text.autoconfig.tinytweaks.option.easyXp.@Tooltip[0]": "XP is given right to the player, instead of spawning",
+  "text.autoconfig.tinytweaks.option.easyXp.@Tooltip[1]": "experience orbs in the world",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.autoPlanting.enabled.boolean.true": "§aOn",
@@ -123,6 +126,7 @@
   "text.autoconfig.tinytweaks.option.bubbleColumnsFlow.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.easyXp.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.autoPlanting.enabled.boolean.false": "§cOff",
@@ -148,5 +152,6 @@
   "text.autoconfig.tinytweaks.option.bubbleColumnsFlow.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.easyXp.boolean.false": "§cOff",
   "block.cauldron.makeInfinite": "This cauldron has been blessed with the heart of the sea"
 }

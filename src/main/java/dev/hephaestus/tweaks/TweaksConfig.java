@@ -89,6 +89,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean infiniteCauldrons = true;
 
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean easyXp = true;
+
     public static class AutoPlanting {
         @ConfigEntry.Gui.Tooltip(count = 2)
         public boolean enabled = true;
