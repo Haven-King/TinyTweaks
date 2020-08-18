@@ -1,4 +1,4 @@
-package dev.hephaestus.tweaks.mixin.screen;
+package dev.hephaestus.tweaks.mixin.dev;
 
 import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.entity.player.PlayerEntity;

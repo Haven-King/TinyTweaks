@@ -28,6 +28,7 @@
     "block.planthitboxes.TallPlants",
     "block.rejuvenation.RejuvenateDeadBushes",
     "block.rejuvenation.TallGrassSpread",
+    "dev.DepositGrindstoneXp",
     "entity.AutoPlant",
     "entity.BurnUsableEntities",
     "entity.LivingEntityMixin",
@@ -51,7 +52,7 @@
     "item.FlintAndSteelMixin",
     "item.HoeItemMixin",
     "item.ShovelMixin",
-    "screen.DepositGrindstoneXp"
+    "prod.DepositGrindstoneXp"
   ],
   "client": [
     "client.gui.hud.RenderSoulFire",
