@@ -36,6 +36,6 @@
     "fabric": "*"
   },
   "breaks": {
-    "soulfire": "*:"
+    "onsoulfire": "*"
   }
 }
