@@ -1,26 +1,24 @@
-package dev.hephaestus.tweaks.block;
+package dev.hephaestus.tweaks.mixin.block.mossythings;
 
 import dev.hephaestus.tweaks.Tweaks;
-import net.minecraft.block.Block;
+import dev.hephaestus.tweaks.block.Moistener;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-public class MoistBlock extends Block {
-	public MoistBlock(Settings settings) {
-		super(settings);
-	}
-
-	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		randomTick(state, world, pos);
-	}
-
-	public static void randomTick(BlockState state, ServerWorld world, BlockPos pos) {
-		if (Tweaks.CONFIG.mossyThings) {
+@Mixin(AbstractBlock.class)
+public class MoistenAbstractBlock {
+	@Inject(method = "scheduledTick", at = @At("HEAD"))
+	private void doTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+		if (Tweaks.CONFIG.mossyThings && Moistener.canMoisten(state.getBlock())) {
 			boolean isSkyVisible = false;
 			boolean isWaterNearby = false;
 			for (BlockPos adjacent : BlockPos.iterate(pos.up().north().west(), pos.down().south().east())) {
@@ -34,12 +32,8 @@ public class MoistBlock extends Block {
 				} else if (world.isDay() && !isWaterNearby) {
 					world.setBlockState(pos, Moistener.dry(state));
 				}
+
 			}
 		}
-	}
-
-	@Override
-	public boolean hasRandomTicks(BlockState state) {
-		return true;
 	}
 }

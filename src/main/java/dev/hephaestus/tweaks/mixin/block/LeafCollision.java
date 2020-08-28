@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(LeavesBlock.class)
 public class LeafCollision extends Block{
-
     public LeafCollision(Settings settings) {
         super(settings);
     }
