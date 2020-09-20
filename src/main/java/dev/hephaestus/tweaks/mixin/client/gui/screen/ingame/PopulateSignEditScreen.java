@@ -16,16 +16,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SignEditScreen.class)
 @Environment(EnvType.CLIENT)
 public class PopulateSignEditScreen {
-	@Shadow @Final private String[] field_24285;
+	@Shadow @Final private String[] text;
 
 	@Shadow @Final private SignBlockEntity sign;
 
 	@Inject(method = "init", at = @At("TAIL"))
 	private void setRows(CallbackInfo ci) {
 		for (int i = 0; i < 4; ++i) {
-			Text text = sign.method_30843(i);
+			Text text = sign.getTextOnRow(i);
 
-			this.field_24285[i] = (text == null ? LiteralText.EMPTY : text).getString();
+			this.text[i] = (text == null ? LiteralText.EMPTY : text).getString();
 		}
 	}
 }

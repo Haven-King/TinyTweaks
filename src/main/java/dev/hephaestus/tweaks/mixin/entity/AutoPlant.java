@@ -12,11 +12,10 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RayTraceContext;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -42,12 +41,12 @@ public abstract class AutoPlant extends Entity {
             BlockPos pos = this.getBlockPos();
             if (this.getBlockPos() != triedToPlantAt && world.getFluidState(pos).isEmpty()) {
                 if (stack.getItem().isIn(ItemTags.SAPLINGS) || stack.getItem().isIn(Tags.PLANTABLE) && stack.getItem() instanceof BlockItem) {
-                    ((BlockItem) stack.getItem()).place(new ItemPlacementContext(world, null, null, stack, world.rayTrace(
-                            new RayTraceContext(
+                    ((BlockItem) stack.getItem()).place(new ItemPlacementContext(world, null, null, stack, world.raycast(
+                            new RaycastContext(
                                     new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
                                     new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5),
-                                    RayTraceContext.ShapeType.COLLIDER,
-                                    RayTraceContext.FluidHandling.ANY,
+                                    RaycastContext.ShapeType.COLLIDER,
+                                    RaycastContext.FluidHandling.ANY,
                                     this
                             )
                     )));

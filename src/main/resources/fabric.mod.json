@@ -31,7 +31,7 @@
     "tweaks.mixins.json"
   ],
   "depends": {
-    "minecraft": "1.16.2",
+    "minecraft": ">=1.16.2",
     "fabricloader": ">=0.4.0",
     "fabric": "*"
   },
