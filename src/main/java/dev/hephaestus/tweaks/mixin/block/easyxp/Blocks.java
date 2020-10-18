@@ -2,6 +2,7 @@ package dev.hephaestus.tweaks.mixin.block.easyxp;
 
 import dev.hephaestus.tweaks.Tweaks;
 import dev.hephaestus.tweaks.block.PlayerProvider;
+import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -41,7 +42,7 @@ public class Blocks implements PlayerProvider {
 	@Inject(method = "dropExperience", at = @At("HEAD"), cancellable = true)
 	protected void depositXpToPlayer(ServerWorld world, BlockPos pos, int size, CallbackInfo ci) {
 		if (this.getPlayer() != null && Tweaks.CONFIG.easyXp) {
-			this.getPlayer().addExperience(size);
+			XpUtil.addXp(this.getPlayer(), size);
 			this.setPlayer(null);
 			ci.cancel();
 		}

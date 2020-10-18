@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.entity.easyxp;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.entity.ai.goal.AnimalMateGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.FoxEntity;
@@ -25,7 +26,7 @@ public abstract class MateGoalXp extends AnimalMateGoal {
 		ServerPlayerEntity playerEntity = this.animal.getLovingPlayer();
 
 		if (playerEntity != null && Tweaks.CONFIG.easyXp) {
-			playerEntity.addExperience(this.animal.getRandom().nextInt(7) + 1);
+			XpUtil.addXp(playerEntity, this.animal.getRandom().nextInt(7) + 1);
 			ci.cancel();
 		}
 	}

@@ -9,13 +9,16 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.state.property.BooleanProperty;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.spongepowered.asm.mixin.Unique;
 
 public class Tweaks implements ModInitializer, ClientModInitializer {
+    public static final BooleanProperty INFINITE = BooleanProperty.of("infinite");
 
-    public static Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MOD_ID = "tinytweaks";
     public static final String MOD_NAME = "TinyTweaks";

@@ -52,7 +52,8 @@
     "item.FlintAndSteelMixin",
     "item.HoeItemMixin",
     "item.ShovelMixin",
-    "prod.DepositGrindstoneXp"
+    "prod.DepositGrindstoneXp",
+    "prod.DepositGrindstoneXp$SlotMixin"
   ],
   "client": [
     "client.gui.hud.RenderSoulFire",

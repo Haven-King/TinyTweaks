@@ -11,7 +11,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -32,7 +31,6 @@ import java.util.Random;
 
 @Mixin(CauldronBlock.class)
 public class MakeCauldronsInfinite extends Block {
-    @Unique private static final BooleanProperty INFINITE = BooleanProperty.of("infinite");
 
     public MakeCauldronsInfinite(Settings settings) {
         super(settings);
@@ -40,19 +38,19 @@ public class MakeCauldronsInfinite extends Block {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addInfiniteState(Block.Settings settings, CallbackInfo ci) {
-        this.setDefaultState(this.getDefaultState().with(INFINITE, false));
+        this.setDefaultState(this.getDefaultState().with(Tweaks.INFINITE, false));
     }
 
     @Inject(method = "setLevel", at = @At("HEAD"), cancellable = true)
     private void dontDecreaseLevelIfInfinite(World world, BlockPos pos, BlockState state, int level, CallbackInfo ci) {
-        if (level < state.get(Properties.LEVEL_3) && state.get(INFINITE)) {
+        if (level < state.get(Properties.LEVEL_3) && state.get(Tweaks.INFINITE)) {
             ci.cancel();
         }
     }
 
     @Inject(method = "appendProperties", at = @At("TAIL"))
     private void addInfiniteState(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
-        builder.add(INFINITE);
+        builder.add(Tweaks.INFINITE);
     }
 
     @Unique private static boolean LAST_CAULDRON_INFINITE = false;
@@ -62,7 +60,7 @@ public class MakeCauldronsInfinite extends Block {
         LAST_CAULDRON_INFINITE = false;
         ItemStack stack = player.getStackInHand(hand);
 
-        if (Tweaks.CONFIG.infiniteCauldrons && stack.getItem().equals(Items.HEART_OF_THE_SEA) && !state.get(INFINITE)) {
+        if (Tweaks.CONFIG.infiniteCauldrons && stack.getItem().equals(Items.HEART_OF_THE_SEA) && !state.get(Tweaks.INFINITE)) {
             if (world.isClient) {
                 for(int int_1 = -2; int_1 <= 2; ++int_1) {
                     for(int int_2 = -2; int_2 <= 2; ++int_2) {
@@ -77,7 +75,7 @@ public class MakeCauldronsInfinite extends Block {
                     }
                 }
             } else {
-                world.setBlockState(pos, state.with(INFINITE, true).with(Properties.LEVEL_3, 3));
+                world.setBlockState(pos, state.with(Tweaks.INFINITE, true).with(Properties.LEVEL_3, 3));
 
                 if (!player.isCreative()) {
                     stack.decrement(1);
@@ -88,16 +86,16 @@ public class MakeCauldronsInfinite extends Block {
                 LAST_CAULDRON_INFINITE = true;
                 cir.setReturnValue(ActionResult.SUCCESS);
             }
-        } else if (!Tweaks.CONFIG.infiniteCauldrons && state.get(INFINITE) && !world.isClient) {
-            world.setBlockState(pos, state.with(INFINITE, false));
+        } else if (!Tweaks.CONFIG.infiniteCauldrons && state.get(Tweaks.INFINITE) && !world.isClient) {
+            world.setBlockState(pos, state.with(Tweaks.INFINITE, false));
             LAST_CAULDRON_INFINITE = false;
         } else {
-            LAST_CAULDRON_INFINITE = state.get(INFINITE);
+            LAST_CAULDRON_INFINITE = state.get(Tweaks.INFINITE);
         }
     }
 
     @ModifyArg(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/CauldronBlock;setLevel(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)V"), index = 2)
     private BlockState updateState(BlockState state) {
-        return state.with(INFINITE, LAST_CAULDRON_INFINITE);
+        return state.with(Tweaks.INFINITE, LAST_CAULDRON_INFINITE);
     }
 }

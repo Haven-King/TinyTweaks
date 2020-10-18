@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.entity.easyxp;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -31,7 +32,7 @@ public abstract class AnimalEntityBreedXp extends LivingEntity {
 		}
 
 		if (playerEntity != null && Tweaks.CONFIG.easyXp) {
-			playerEntity.addExperience(this.getRandom().nextInt(7) + 1);
+			XpUtil.addXp(playerEntity, this.getRandom().nextInt(7) + 1);
 			ci.cancel();
 		}
 	}
