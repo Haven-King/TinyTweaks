@@ -32,6 +32,7 @@
     "entity.AutoPlant",
     "entity.BurnUsableEntities",
     "entity.LivingEntityMixin",
+    "entity.SoulFireDoesMoreDamage",
     "entity.ai.brain.task.FarmerVillagersDepositSurplus",
     "entity.betterlilypads.FallingParticles",
     "entity.betterlilypads.SprintingParticles",
@@ -66,7 +67,6 @@
     "client.render.entity.TippedArrowEntityRenderer",
     "dev.ChestBlockEntityRendererMixin",
     "dev.ShulkerBoxEntityRendererMixin",
-    "entity.SetSoulFireType",
     "prod.ChestBlockEntityRendererMixin",
     "prod.ShulkerBoxEntityRendererMixin"
   ],

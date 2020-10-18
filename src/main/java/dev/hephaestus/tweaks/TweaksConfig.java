@@ -58,6 +58,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean blueSoulFireEffects = true;
 
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean soulFireDoesMoreDamage = false;
+
     // - Miscellaneous! -------------------------------------------------------
     @ConfigEntry.Category("misc")
     @ConfigEntry.Gui.CollapsibleObject

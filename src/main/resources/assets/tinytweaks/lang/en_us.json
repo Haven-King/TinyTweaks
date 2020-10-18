@@ -98,6 +98,9 @@
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects": "Improved Soul Fire",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.@Tooltip[0]": "Makes fire rendered on the hud and entities on fire blue",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.@Tooltip[1]": "when lit on fire by soul fire",
+  "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage": "Higher Damage Soul Fire",
+  "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.@Tooltip[0]": "Makes entities ignited by soul fire take",
+  "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.@Tooltip[1]": "twice as much damage while burning",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons": "Infinite Cauldrons",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.@Tooltip": "Right click a cauldron with a Heart of the Sea to make it infinite",
   "text.autoconfig.tinytweaks.option.easyXp": "Easy XP",
@@ -129,6 +132,8 @@
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyXp.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.blueSoulFireEffects.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.autoPlanting.enabled.boolean.false": "§cOff",
@@ -155,5 +160,7 @@
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyXp.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.blueSoulFireEffects.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.boolean.false": "§cOff",
   "block.cauldron.makeInfinite": "This cauldron has been blessed with the heart of the sea"
 }
