@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GrindstoneScreenHandler.class)
 public abstract class DepositGrindstoneXp {
+	@SuppressWarnings("UnresolvedMixinReference")
 	@Mixin(targets = "net/minecraft/screen/GrindstoneScreenHandler$4")
 	public static abstract class SlotMixin {
 		@Shadow
@@ -26,12 +27,11 @@ public abstract class DepositGrindstoneXp {
 		@Unique
 		private final ThreadLocal<PlayerEntity> player = new ThreadLocal<>();
 
-		@Inject(method = "onTakeItem", at = @At("HEAD"))
+		@Inject(method = "method_7667", remap = false, at = @At("HEAD"))
 		private void captureArgs(PlayerEntity player, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
 			this.player.set(player);
 		}
 
-		@SuppressWarnings("UnresolvedMixinReference")
 		@Inject(method = "method_17417", at = @At("HEAD"), cancellable = true)
 		private void depositXpToPlayer(World world, BlockPos blockPos, CallbackInfo ci) {
 			if (Tweaks.CONFIG.easyXp && this.player.get() instanceof ServerPlayerEntity) {

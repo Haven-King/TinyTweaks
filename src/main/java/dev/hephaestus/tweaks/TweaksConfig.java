@@ -151,6 +151,9 @@ public class TweaksConfig implements ConfigData {
         public double slowAmount = 0.75D;
 
         public boolean climb = true;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public double treeClimbingSpeed = 0.75D;
     }
 
     public static class FlintAndSteelConfig {

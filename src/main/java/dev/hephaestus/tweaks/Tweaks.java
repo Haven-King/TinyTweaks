@@ -1,5 +1,6 @@
 package dev.hephaestus.tweaks;
 
+import dev.hephaestus.climbable.api.ClimbingSpeedRegistry;
 import dev.hephaestus.tweaks.block.Moistener;
 import dev.hephaestus.tweaks.client.render.block.entity.BarrelBlockLabelRenderer;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -10,10 +11,10 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegi
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.tag.BlockTags;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.mixin.Unique;
 
 public class Tweaks implements ModInitializer, ClientModInitializer {
     public static final BooleanProperty INFINITE = BooleanProperty.of("infinite");
@@ -23,7 +24,7 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
     public static final String MOD_ID = "tinytweaks";
     public static final String MOD_NAME = "TinyTweaks";
 
-    public static final double LILY_PAD_MOD = 0.2109375D /* 27 / 128 */;
+    public static final double LILY_PAD_MOD = 0.2109375D;
 
     public static TweaksConfig CONFIG = new TweaksConfig();
 
@@ -41,6 +42,8 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
         Moistener.canMoisten(Blocks.STONE_BRICK_SLAB, Blocks.MOSSY_STONE_BRICK_SLAB);
         Moistener.canMoisten(Blocks.STONE_BRICK_STAIRS, Blocks.MOSSY_STONE_BRICK_STAIRS);
         Moistener.canMoisten(Blocks.STONE_BRICK_WALL, Blocks.MOSSY_STONE_BRICK_WALL);
+
+        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, () -> CONFIG.leaves.treeClimbingSpeed, () -> CONFIG.leaves.climb);
     }
 
     public static void log(Level level, String message, Object... args){

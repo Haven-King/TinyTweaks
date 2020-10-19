@@ -24,6 +24,9 @@ repositories {
 		url = "http://maven.fabricmc.net/"
 		name = "Fabric"
 	}
+	maven {
+		url "https://hephaestus.dev/release"
+	}
 }
 
 dependencies {
@@ -36,6 +39,10 @@ dependencies {
 	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}") {
 		exclude group: "net.fabricmc.fabric-api"
 	}
+
+	modImplementation ("dev.hephaestus:climbable:${project.climbable_version}")
+	include "dev.hephaestus:climbable:${project.climbable_version}"
+
 
 //	modImplementation ("net.fabricmc:fabric-language-kotlin:1.3.72+build.1") {
 //		exclude group: "net.fabricmc.fabric-api"
