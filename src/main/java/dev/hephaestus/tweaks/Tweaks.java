@@ -43,7 +43,7 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
         Moistener.canMoisten(Blocks.STONE_BRICK_STAIRS, Blocks.MOSSY_STONE_BRICK_STAIRS);
         Moistener.canMoisten(Blocks.STONE_BRICK_WALL, Blocks.MOSSY_STONE_BRICK_WALL);
 
-        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, () -> CONFIG.leaves.treeClimbingSpeed, () -> CONFIG.leaves.climb);
+        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, e -> CONFIG.leaves.treeClimbingSpeed, e -> CONFIG.leaves.climb);
     }
 
     public static void log(Level level, String message, Object... args){
