@@ -53,7 +53,10 @@
     "item.HoeItemMixin",
     "item.ShovelMixin",
     "prod.DepositGrindstoneXp",
-    "prod.DepositGrindstoneXp$SlotMixin"
+    "prod.DepositGrindstoneXp$SlotMixin",
+    "world.SerializeChunkData",
+    "world.TrackBlockChanges",
+    "world.UpgradeChunk"
   ],
   "client": [
     "client.gui.hud.RenderSoulFire",
