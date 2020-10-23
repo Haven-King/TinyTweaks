@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.text.HoverEvent;
@@ -29,7 +30,8 @@ public abstract class LeafCollision {
     @Inject(method = "getCollisionShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"), cancellable = true)
     private void getCollisionShape(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (context != EntityShapeContext.ABSENT && this.getBlock().isIn(BlockTags.LEAVES)) {
-            if (world.getBlockState(pos).get(LeavesBlock.PERSISTENT)) {
+            BlockState state = world.getBlockState(pos);
+            if (state.getBlock().getStateManager().getProperty("persistent") != null && state.get(Properties.PERSISTENT)) {
                 cir.setReturnValue(Tweaks.CONFIG.leaves.persistentCollide ? VoxelShapes.fullCube() : VoxelShapes.empty());
             } else {
                 cir.setReturnValue(Tweaks.CONFIG.leaves.collide ? VoxelShapes.fullCube() : VoxelShapes.empty());
