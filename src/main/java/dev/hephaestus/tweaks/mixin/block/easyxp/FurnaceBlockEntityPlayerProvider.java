@@ -25,6 +25,7 @@ public abstract class FurnaceBlockEntityPlayerProvider implements PlayerProvider
 
 		if (playerEntity != null && Tweaks.CONFIG.easyXp) {
 			XpUtil.addXp(playerEntity, i);
+			PlayerProvider.init();
 			PlayerProvider.STATIC.get().setPlayer(null);
 		} else {
 			dropExperience(world, vec3d, i, f);
