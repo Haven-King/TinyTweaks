@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.easyharvest;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
@@ -27,14 +28,16 @@ public abstract class CocoaBeans extends HorizontalFacingBlock {
                     }
 
                     boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity)player).isDisconnected();
-                    if (playerAvailable)
+                    if (playerAvailable && !Tweaks.CONFIG.easyHarvestDropAsItems) {
                         player.inventory.offerOrDrop(world, stack);
-                    else
+                    } else {
                         Block.dropStack(world, pos, stack);
+                    }
                 });
 
                 world.setBlockState(pos, state.with(CocoaBlock.AGE, 0));
             }
+
             return ActionResult.SUCCESS;
         } else {
             return ActionResult.PASS;

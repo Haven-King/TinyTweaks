@@ -48,10 +48,11 @@ public class SugarCane extends Block {
 
         if (n > 0) {
             boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity) player).isDisconnected();
-            if (playerAvailable)
+            if (playerAvailable && !Tweaks.CONFIG.easyHarvestDropAsItems) {
                 player.inventory.offerOrDrop(world, new ItemStack(Items.SUGAR_CANE, n));
-            else
+            } else {
                 Block.dropStack(world, pos, new ItemStack(Items.SUGAR_CANE, n));
+            }
         }
 
         return n > 0;

@@ -17,6 +17,10 @@ public class TweaksConfig implements ConfigData {
     public boolean easyHarvestSugarcane = true;
 
     @ConfigEntry.Category("plants")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean easyHarvestDropAsItems = false;
+
+    @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.CollapsibleObject
     public AutoPlanting autoPlanting = new AutoPlanting();
 

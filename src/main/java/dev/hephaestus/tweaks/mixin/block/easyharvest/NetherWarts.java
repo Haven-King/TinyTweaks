@@ -30,10 +30,11 @@ public abstract class NetherWarts extends PlantBlock {
                     }
 
                     boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity)player).isDisconnected();
-                    if (playerAvailable)
+                    if (playerAvailable && !Tweaks.CONFIG.easyHarvestDropAsItems) {
                         player.inventory.offerOrDrop(world, stack);
-                    else
+                    } else {
                         Block.dropStack(world, pos, stack);
+                    }
                 });
 
                 world.setBlockState(pos, state.with(NetherWartBlock.AGE, 0));
