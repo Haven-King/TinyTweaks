@@ -36,15 +36,7 @@ public class LabelRenderer {
     private static final Quaternion rotate180 = new Quaternion(yAxis, 180, true);
     private static final Quaternion rotate270 = new Quaternion(yAxis, 270, true);
 
-    static boolean test = true;
     public static void renderLabel(LockableContainerBlockEntity blockEntity, BlockEntityRenderDispatcher dispatcher, MatrixStack matrices, VertexConsumerProvider vertexConsumers, boolean open, Direction facing) {
-        if (test) {
-            BlockState state = Blocks.STONE.getDefaultState();
-            BakedModel model = MinecraftClient.getInstance().getBlockRenderManager().getModel(state);
-            List<BakedQuad> quads = model.getQuads(state, null, new Random());
-
-            test = false;
-        }
         if (!blockEntity.hasCustomName() && MinecraftClient.getInstance().getNetworkHandler() != null) {
             MinecraftClient.getInstance().getNetworkHandler().getDataQueryHandler().queryBlockNbt(blockEntity.getPos(), (tag) -> {
                 if (tag.contains("CustomName", 8)) {
@@ -97,7 +89,7 @@ public class LabelRenderer {
                 TextRenderer textRenderer = dispatcher.getTextRenderer();
                 String string = blockEntity.getName().asString();
 
-                float s = (float) (-textRenderer.getStringWidth(string) / 2);
+                float s = (float) (-textRenderer.getWidth(string) / 2);
                 textRenderer.draw(string, s, 0f, 16777215, true, matrices.peek().getModel(), vertexConsumers, false, 0, 15728880);
                 matrices.pop();
             }
@@ -177,7 +169,7 @@ public class LabelRenderer {
                     TextRenderer textRenderer = dispatcher.getTextRenderer();
                     String string = blockEntity.getName().asString();
 
-                    float s = (float) (-textRenderer.getStringWidth(string) / 2);
+                    float s = (float) (-textRenderer.getWidth(string) / 2);
                     textRenderer.draw(string, s, 0f, 16777215, true, matrices.peek().getModel(), vertexConsumers, false, 0, 15728880);
                     matrices.pop();
                 }

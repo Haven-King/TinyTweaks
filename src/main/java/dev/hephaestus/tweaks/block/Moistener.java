@@ -25,4 +25,8 @@ public class Moistener {
 	public static void canMoisten(Block in, Block out) {
 		CONVERTIBLE.put(in, out);
 	}
+
+	public static boolean canMoisten(Block block) {
+		return CONVERTIBLE.containsKey(block) || CONVERTIBLE.inverse().containsKey(block);
+	}
 }

@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.2.7-SNAPSHOT'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -11,10 +11,22 @@ version = project.mod_version
 group = project.maven_group
 
 minecraft {
+	accessWidener = file("src/main/resources/tweaks.accesswidener")
 }
 
 repositories {
+	mavenLocal()
 	jcenter()
+	maven {
+		url = "https://www.cursemaven.com"
+	}
+	maven {
+		url = "http://maven.fabricmc.net/"
+		name = "Fabric"
+	}
+	maven {
+		url "https://hephaestus.dev/release"
+	}
 }
 
 dependencies {
@@ -24,15 +36,33 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 
-	modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
+	modImplementation ("io.github.prospector:modmenu:${project.mod_menu_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
 
-	modApi "me.shedaniel.cloth:config-2:${project.cloth_config_2_version}"
-	include "me.shedaniel.cloth:config-2:${project.cloth_config_2_version}"
+	modImplementation ("dev.hephaestus:climbable:${project.climbable_version}")
+	include "dev.hephaestus:climbable:${project.climbable_version}"
 
-	modCompile "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig1u_version}"
-	include "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig1u_version}"
 
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+//	modImplementation ("net.fabricmc:fabric-language-kotlin:1.3.72+build.1") {
+//		exclude group: "net.fabricmc.fabric-api"
+//	}
+//	modImplementation "curse.maven:sodium:3003093"
+//	modImplementation "curse.maven:lithium:3000628"
+
+	modApi ("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
+
+	include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+
+	modImplementation ("me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
+
+	include "me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}"
+
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {

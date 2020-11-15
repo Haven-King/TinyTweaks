@@ -17,8 +17,8 @@ public class TweaksConfig implements ConfigData {
     public boolean easyHarvestSugarcane = true;
 
     @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip
-    public boolean saplingsAutoPlant = true;
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoPlanting autoPlanting = new AutoPlanting();
 
     @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.CollapsibleObject
@@ -49,6 +49,19 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean breedWildWolves = true;
 
+    // - Nether! --------------------------------------------------------------
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.Gui.CollapsibleObject
+    public NetherRejuvenation netherRejuvenation = new NetherRejuvenation();
+
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean blueSoulFireEffects = true;
+
+    @ConfigEntry.Category("nether")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean soulFireDoesMoreDamage = false;
+
     // - Miscellaneous! -------------------------------------------------------
     @ConfigEntry.Category("misc")
     @ConfigEntry.Gui.CollapsibleObject
@@ -63,21 +76,68 @@ public class TweaksConfig implements ConfigData {
     public NamesAndThings namesAndThings = new NamesAndThings();
 
     @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 2)
+    @ConfigEntry.Gui.Tooltip(count = 4)
     public boolean mossyThings = true;
 
-    @ConfigEntry.Category("debug")
-    public boolean grassDestroysRedstoneTorches = false;
+    @ConfigEntry.Category("misc")
+    public boolean burningLogsDropCharcoal = true;
+
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean doubleDoors = true;
+
+    @ConfigEntry.Category("misc")
+    public boolean bubbleColumnsFlow = false;
+
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip
+    public boolean infiniteCauldrons = true;
+
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean easyXp = true;
+
+    public static class AutoPlanting {
+        @ConfigEntry.Gui.Tooltip(count = 4)
+        public boolean enabled = true;
+
+        @ConfigEntry.Gui.Tooltip
+        public int delay = 20;
+    }
 
     public static class Rejuvenation {
         @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;
 
+        @ConfigEntry.Gui.Tooltip
+        public double grassGrowthRate = 0.0125D;
+
+        @ConfigEntry.Gui.Tooltip(count = 5)
+        public double thePowerOfFriendship = 1.25;
+
         @ConfigEntry.Gui.Tooltip(count = 2)
-        public float longGrass = 0.01f;
+        public float longGrass = 0.01F;
 
         @ConfigEntry.Gui.Tooltip
         public boolean saplings = true;
+    }
+
+    public static class NetherRejuvenation {
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public boolean enabled = true;
+
+        @ConfigEntry.Gui.Tooltip
+        public double rootsGrowthRate = 0.0125D;
+
+        @ConfigEntry.Gui.Tooltip(count = 5)
+        public double thePowerOfFriendship = 1.25;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        public int sproutRootsRatio = 75;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public double vinesChance = 0.01;
     }
 
     public static class LeavesConfig {
@@ -88,7 +148,12 @@ public class TweaksConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean slow = true;
 
+        public double slowAmount = 0.75D;
+
         public boolean climb = true;
+
+        @ConfigEntry.Gui.Tooltip(count = 2)
+        public double treeClimbingSpeed = 0.75D;
     }
 
     public static class FlintAndSteelConfig {

@@ -1,7 +1,6 @@
 package dev.hephaestus.tweaks.entity.ai.goal;
 
 import dev.hephaestus.tweaks.Tweaks;
-import jdk.internal.jline.internal.Nullable;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -32,7 +31,7 @@ public class GroundFoodMateGoal extends Goal {
     }
 
     public boolean canStart() {
-        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
+        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
             this.foodEntity = this.findFood();
         }
 
@@ -57,9 +56,8 @@ public class GroundFoodMateGoal extends Goal {
         }
     }
 
-    @Nullable
     private ItemEntity findFood() {
-        List<ItemEntity> list = animal.world.getEntities(ItemEntity.class, this.animal.getBoundingBox().expand(8.0D), null);
+        List<ItemEntity> list = animal.world.getEntitiesByClass(ItemEntity.class, this.animal.getBoundingBox().expand(8.0D), null);
         double d = Double.MAX_VALUE;
 
         ItemEntity result = null;

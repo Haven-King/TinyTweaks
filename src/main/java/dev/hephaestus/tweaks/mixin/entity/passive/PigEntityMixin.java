@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.annotation.Nullable;
 
 @Mixin(PigEntity.class)
-public class PigEntityMixin extends AnimalEntity {
+public abstract class PigEntityMixin extends AnimalEntity {
     @Shadow @Final private static Ingredient BREEDING_INGREDIENT;
 
     protected PigEntityMixin(EntityType<? extends AnimalEntity> type, World world) {
@@ -26,13 +26,6 @@ public class PigEntityMixin extends AnimalEntity {
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     public void addGoal(CallbackInfo ci) {
-        this.goalSelector.add(4, new GroundFoodMateGoal(this, BREEDING_INGREDIENT));
-    }
-
-    @Shadow
-    @Nullable
-    @Override
-    public PigEntity createChild(PassiveEntity mate) {
-        return null;
+        this.goalSelector.add(3, new GroundFoodMateGoal(this, BREEDING_INGREDIENT));
     }
 }
