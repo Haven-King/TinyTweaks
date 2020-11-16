@@ -9,6 +9,7 @@ A collection of small tweaks for Minecraft.
 * Rejuvenation - Grass and long grass spread naturally over time
 * Plant Hitboxes - Removes hitboxes from long grass. Hitboxes are shown when using shears. Seeds can be gathered by using a hoe on the ground below them
 * Passable Leaves - Removes collision from leaves
+* Instant Leaf Decay - Leaves decay instantly when outside range of a log block
 * Better Lily Pads - Allows boats to pass through lily pads without breaking them. Also allows entities to rise through the bottom of a lily pad
 * Farmer Villager Automation - Farmer villagers will deposit excess items into a nearby chest
 
