@@ -91,6 +91,7 @@ public class TweaksConfig implements ConfigData {
     public boolean doubleDoors = true;
 
     @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip(count = 3)
     public boolean bubbleColumnsFlow = false;
 
     @ConfigEntry.Category("misc")
