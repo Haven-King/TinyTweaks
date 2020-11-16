@@ -61,9 +61,7 @@ public class MakeCauldronsInfinite {
                                     (double) pos.getY() + 2.0D,
                                     (double) pos.getZ() + 0.5D,
                                     1,
-                                    (double) ((float) int_1 + random.nextFloat()) - 0.5D,
-                                    (float) int_3 - random.nextFloat() - 1.0F,
-                                    (double) ((float) int_2 + random.nextFloat()) - 0.5D,
+                                    0,0,0,
                                     1);
                         }
                     }
