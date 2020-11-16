@@ -10,6 +10,7 @@
     "block.MakeCauldronsInfinite",
     "block.MakeLanternsBlastResistant",
     "block.NetherRejuvenationNyliumSpread",
+    "block.RemoveDeadLeaves",
     "block.StopBubbleColumnsFromFlowing",
     "block.betterlilypads.Collision",
     "block.betterlilypads.Rendering",

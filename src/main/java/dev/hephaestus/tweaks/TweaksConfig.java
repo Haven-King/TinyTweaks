@@ -37,6 +37,10 @@ public class TweaksConfig implements ConfigData {
     public LeavesConfig leaves = new LeavesConfig();
 
     @ConfigEntry.Category("plants")
+    @ConfigEntry.Gui.Tooltip
+    public boolean instantLeafDecay = true;
+
+    @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean betterLilyPads = true;
 
