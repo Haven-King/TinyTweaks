@@ -6,6 +6,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,18 +22,22 @@ public class MoistenAbstractBlock {
 		if (Tweaks.CONFIG.mossyThings && Moistener.canMoisten(state.getBlock())) {
 			boolean isSkyVisible = false;
 			boolean isWaterNearby = false;
-			for (BlockPos adjacent : BlockPos.iterate(pos.up().north().west(), pos.down().south().east())) {
-				if (world.isSkyVisible(adjacent)) isSkyVisible = true;
-				if (world.getFluidState(adjacent).getFluid() == Fluids.WATER) isWaterNearby = true;
+
+			if (state.getBlock().getStateManager().getProperties().contains(Properties.WATERLOGGED)) {
+				isWaterNearby = state.get(Properties.WATERLOGGED);
 			}
 
-			if (isSkyVisible) {
-				if (world.isRaining() && world.getBiome(pos).getDownfall() > 0) {
-					world.setBlockState(pos, Moistener.moisten(state));
-				} else if (world.isDay() && !isWaterNearby) {
-					world.setBlockState(pos, Moistener.dry(state));
-				}
+			for (BlockPos adjacent : BlockPos.iterate(pos.up().north().west(), pos.down().south().east())) {
+				if (!isSkyVisible && world.isSkyVisible(adjacent)) isSkyVisible = true;
+				if (!isWaterNearby && world.getFluidState(adjacent).getFluid() == Fluids.WATER) isWaterNearby = true;
+				if (isSkyVisible && isWaterNearby) break;
+			}
 
+			if ((isSkyVisible && world.isRaining() && world.getBiome(pos).getDownfall() > 0)
+					|| (isWaterNearby)) {
+				world.setBlockState(pos, Moistener.moisten(state));
+			} else if (isSkyVisible && world.isDay()) {
+				world.setBlockState(pos, Moistener.dry(state));
 			}
 		}
 	}

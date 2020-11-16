@@ -31,6 +31,7 @@
     "dev.DepositGrindstoneXp",
     "entity.AutoPlant",
     "entity.BurnUsableEntities",
+    "entity.GetHeldItem",
     "entity.SoulFireDoesMoreDamage",
     "entity.ai.brain.task.FarmerVillagersDepositSurplus",
     "entity.betterlilypads.FallingParticles",
@@ -55,6 +56,7 @@
     "prod.DepositGrindstoneXp",
     "prod.DepositGrindstoneXp$SlotMixin",
     "world.SerializeChunkData",
+    "world.TickMore",
     "world.TrackBlockChanges",
     "world.UpgradeChunk"
   ],

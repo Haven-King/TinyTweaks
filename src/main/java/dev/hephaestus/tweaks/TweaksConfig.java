@@ -17,6 +17,10 @@ public class TweaksConfig implements ConfigData {
     public boolean easyHarvestSugarcane = true;
 
     @ConfigEntry.Category("plants")
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public boolean easyHarvestDropAsItems = false;
+
+    @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.CollapsibleObject
     public AutoPlanting autoPlanting = new AutoPlanting();
 
@@ -31,6 +35,11 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.CollapsibleObject
     public LeavesConfig leaves = new LeavesConfig();
+
+    @ConfigEntry.Category("plants")
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.BoundedDiscrete(min = 1, max = 100)
+    public int leafDecaySpeed = 1;
 
     @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.Tooltip(count = 2)
@@ -87,6 +96,7 @@ public class TweaksConfig implements ConfigData {
     public boolean doubleDoors = true;
 
     @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip(count = 3)
     public boolean bubbleColumnsFlow = false;
 
     @ConfigEntry.Category("misc")
