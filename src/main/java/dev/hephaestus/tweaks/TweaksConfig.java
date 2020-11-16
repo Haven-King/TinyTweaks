@@ -38,7 +38,8 @@ public class TweaksConfig implements ConfigData {
 
     @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.Tooltip
-    public boolean instantLeafDecay = false;
+    @ConfigEntry.BoundedDiscrete(min = 1, max = 100)
+    public int leafDecaySpeed = 1;
 
     @ConfigEntry.Category("plants")
     @ConfigEntry.Gui.Tooltip(count = 2)
