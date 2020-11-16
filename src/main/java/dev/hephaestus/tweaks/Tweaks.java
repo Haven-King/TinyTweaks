@@ -8,10 +8,14 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.item.Item;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +29,8 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
     public static final double LILY_PAD_MOD = 0.2109375D;
 
     public static TweaksConfig CONFIG = new TweaksConfig();
+
+    public static Tag<Item> SHOWS_GRASS_HITBOXES = TagRegistry.item(new Identifier(MOD_ID, "shows_grass_hitboxes"));
 
     @Override
     public void onInitialize() {

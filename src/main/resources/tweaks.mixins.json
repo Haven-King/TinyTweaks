@@ -32,6 +32,7 @@
     "dev.DepositGrindstoneXp",
     "entity.AutoPlant",
     "entity.BurnUsableEntities",
+    "entity.GetHeldItem",
     "entity.SoulFireDoesMoreDamage",
     "entity.ai.brain.task.FarmerVillagersDepositSurplus",
     "entity.betterlilypads.FallingParticles",
