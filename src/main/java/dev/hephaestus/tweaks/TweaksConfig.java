@@ -77,7 +77,7 @@ public class TweaksConfig implements ConfigData {
     public FlintAndSteelConfig flintAndSteel = new FlintAndSteelConfig();
 
     @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 2)
+    @ConfigEntry.Gui.Tooltip
     public boolean lanternBlastResistance = true;
 
     @ConfigEntry.Category("misc")

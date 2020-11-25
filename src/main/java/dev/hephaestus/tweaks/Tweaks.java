@@ -28,15 +28,17 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
 
     public static final double LILY_PAD_MOD = 0.2109375D;
 
-    public static TweaksConfig CONFIG = new TweaksConfig();
+    public static final TweaksConfig CONFIG;
+
+    static {
+        AutoConfig.register(TweaksConfig.class, GsonConfigSerializer::new);
+        CONFIG = AutoConfig.getConfigHolder(TweaksConfig.class).getConfig();
+    }
 
     public static Tag<Item> SHOWS_GRASS_HITBOXES = TagRegistry.item(new Identifier(MOD_ID, "shows_grass_hitboxes"));
 
     @Override
     public void onInitialize() {
-        AutoConfig.register(TweaksConfig.class, GsonConfigSerializer::new);
-        CONFIG = AutoConfig.getConfigHolder(TweaksConfig.class).getConfig();
-
         Moistener.canMoisten(Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE);
         Moistener.canMoisten(Blocks.COBBLESTONE_SLAB, Blocks.MOSSY_COBBLESTONE_SLAB);
         Moistener.canMoisten(Blocks.COBBLESTONE_STAIRS, Blocks.MOSSY_COBBLESTONE_STAIRS);
