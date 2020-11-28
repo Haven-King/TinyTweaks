@@ -22,6 +22,7 @@
     "block.easyxp.Blocks",
     "block.easyxp.FurnaceBlockEntityPlayerProvider",
     "block.easyxp.PassPlayerToEntity",
+    "block.entity.LockableContainerBlockEntityMixin",
     "block.mossythings.MoistenAbstractBlock",
     "block.mossythings.MoistenBlock",
     "block.planthitboxes.FernBlocks",

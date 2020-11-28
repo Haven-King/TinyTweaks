@@ -37,15 +37,7 @@ public class LabelRenderer {
     private static final Quaternion rotate270 = new Quaternion(yAxis, 270, true);
 
     public static void renderLabel(LockableContainerBlockEntity blockEntity, BlockEntityRenderDispatcher dispatcher, MatrixStack matrices, VertexConsumerProvider vertexConsumers, boolean open, Direction facing) {
-        if (!blockEntity.hasCustomName() && MinecraftClient.getInstance().getNetworkHandler() != null) {
-            MinecraftClient.getInstance().getNetworkHandler().getDataQueryHandler().queryBlockNbt(blockEntity.getPos(), (tag) -> {
-                if (tag.contains("CustomName", 8)) {
-                    blockEntity.setCustomName(Text.Serializer.fromJson(tag.getString("CustomName")));
-                } else {
-                    blockEntity.setCustomName(new LiteralText(""));
-                }
-            });
-        } else if (blockEntity.hasWorld() && dispatcher.crosshairTarget.getType() == HitResult.Type.BLOCK && ((BlockHitResult) dispatcher.crosshairTarget).getBlockPos().equals(blockEntity.getPos())) {
+        if (blockEntity.hasCustomName() && blockEntity.hasWorld() && dispatcher.crosshairTarget.getType() == HitResult.Type.BLOCK && ((BlockHitResult) dispatcher.crosshairTarget).getBlockPos().equals(blockEntity.getPos())) {
             if (!open) {
                 matrices.push();
                 BlockPos top = blockEntity.getPos().up();
