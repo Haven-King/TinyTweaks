@@ -1,7 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.easyxp;
 
 import dev.hephaestus.tweaks.Tweaks;
-import dev.hephaestus.tweaks.block.PlayerProvider;
+import dev.hephaestus.tweaks.util.XpBlock;
 import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,33 +18,53 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Mixin(Block.class)
-public class Blocks implements PlayerProvider {
-	@Unique private final ThreadLocal<ServerPlayerEntity> playerEntity = new ThreadLocal<>();
-
-	@Override
-	public ServerPlayerEntity getPlayer() {
-		return this.playerEntity.get();
-	}
-
-	@Override
-	public void setPlayer(ServerPlayerEntity player) {
-		this.playerEntity.set(player);
-	}
+public class Blocks implements XpBlock {
+	@Unique private final ThreadLocal<Map<BlockPos, ServerPlayerEntity>> players = ThreadLocal.withInitial(HashMap::new);
+	@Unique private final ThreadLocal<Map<BlockPos, BlockEntity>> blockEntities = ThreadLocal.withInitial(HashMap::new);
 
 	@Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;onStacksDropped(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V"))
 	private static void assignPlayerToBlock(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfo ci) {
 		if (entity instanceof ServerPlayerEntity && Tweaks.CONFIG.easyXp) {
-			((PlayerProvider) state.getBlock()).setPlayer((ServerPlayerEntity) entity);
+			((XpBlock) state.getBlock()).add(pos, (ServerPlayerEntity) entity);
+		}
+
+		if (blockEntity != null && Tweaks.CONFIG.easyXp) {
+			((XpBlock) state.getBlock()).add(pos, blockEntity);
 		}
 	}
 
 	@Inject(method = "dropExperience", at = @At("HEAD"), cancellable = true)
 	protected void depositXpToPlayer(ServerWorld world, BlockPos pos, int size, CallbackInfo ci) {
-		if (this.getPlayer() != null && Tweaks.CONFIG.easyXp) {
-			XpUtil.addXp(this.getPlayer(), size);
-			this.setPlayer(null);
+		ServerPlayerEntity player = this.players.get().get(pos);
+
+		if (player != null && Tweaks.CONFIG.easyXp) {
+			XpUtil.addXp(player, size);
+			players.get().remove(pos);
 			ci.cancel();
 		}
+	}
+
+	@Override
+	public void add(BlockPos pos, ServerPlayerEntity player) {
+		this.players.get().put(pos, player);
+	}
+
+	@Override
+	public void add(BlockPos pos, BlockEntity blockEntity) {
+		this.blockEntities.get().put(pos, blockEntity);
+	}
+
+	@Override
+	public ServerPlayerEntity getPlayer(BlockPos pos) {
+		return this.players.get().get(pos);
+	}
+
+	@Override
+	public BlockEntity getBlockEntity(BlockPos pos) {
+		return this.blockEntities.get().get(pos);
 	}
 }
