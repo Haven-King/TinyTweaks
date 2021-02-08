@@ -32,7 +32,7 @@
     "dev.DepositGrindstoneXp",
     "entity.AutoPlant",
     "entity.BurnUsableEntities",
-    "entity.GetHeldItem",
+    "entity.ExtendShapeContext",
     "entity.SoulFireDoesMoreDamage",
     "entity.ai.brain.task.FarmerVillagersDepositSurplus",
     "entity.betterlilypads.FallingParticles",
@@ -61,6 +61,7 @@
     "world.UpgradeChunk"
   ],
   "client": [
+    "client.SeeThroughLeaves",
     "client.gui.hud.RenderSoulFire",
     "client.gui.screen.ingame.PopulateSignEditScreen",
     "client.particle.GetParticlesForEmptyBlocks",
