@@ -16,6 +16,9 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +52,24 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
         Moistener.canMoisten(Blocks.STONE_BRICK_STAIRS, Blocks.MOSSY_STONE_BRICK_STAIRS);
         Moistener.canMoisten(Blocks.STONE_BRICK_WALL, Blocks.MOSSY_STONE_BRICK_WALL);
 
-        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, e -> CONFIG.leaves.treeClimbingSpeed, e -> CONFIG.leaves.climb);
+        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, e -> CONFIG.leaves.treeClimbingSpeed, e -> {
+            if (CONFIG.leaves.climb) {
+                World world = e.world;
+                BlockPos feet = e.getBlockPos();
+
+                for (BlockPos pos : BlockPos.iterate(feet, feet.up((int) e.getHeight()))) {
+                    if (world.getBlockState(pos).isIn(BlockTags.LEAVES) && (
+                            world.getBlockState(pos.north()).getBlock().isIn(BlockTags.LOGS) ||
+                            world.getBlockState(pos.east()).getBlock().isIn(BlockTags.LOGS) ||
+                            world.getBlockState(pos.south()).getBlock().isIn(BlockTags.LOGS) ||
+                            world.getBlockState(pos.west()).getBlock().isIn(BlockTags.LOGS))) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        });
     }
 
     public static void log(Level level, String message, Object... args){
