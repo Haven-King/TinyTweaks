@@ -111,6 +111,7 @@ public class TweaksConfig implements ConfigData {
     public boolean snowFallsThroughLeaves = true;
 
     @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip
     public boolean armorStandSwap = true;
 
     @ConfigEntry.Category("misc")
