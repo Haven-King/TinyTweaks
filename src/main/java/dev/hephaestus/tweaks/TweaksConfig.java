@@ -110,6 +110,9 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("misc")
     public boolean snowFallsThroughLeaves = true;
 
+    @ConfigEntry.Category("misc")
+    public boolean armorStandSwap = true;
+
     public static class AutoPlanting {
         @ConfigEntry.Gui.Tooltip(count = 4)
         public boolean enabled = true;

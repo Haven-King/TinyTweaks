@@ -8,13 +8,18 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -69,6 +74,30 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
             }
 
             return false;
+        });
+
+        UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
+            if (playerEntity.isSneaking() && CONFIG.armorStandSwap && entity instanceof ArmorStandEntity) {
+                ArmorStandEntity armorStand = (ArmorStandEntity) entity;
+                boolean fired = false;
+
+                for (EquipmentSlot slot : EquipmentSlot.values()) {
+                    if (slot.getType() == EquipmentSlot.Type.ARMOR) {
+                        ItemStack newStack = armorStand.getEquippedStack(slot);
+                        ItemStack oldStack = playerEntity.getEquippedStack(slot);
+
+                        if (!newStack.isEmpty() || !oldStack.isEmpty()) {
+                            playerEntity.equipStack(slot, newStack);
+                            armorStand.equipStack(slot, oldStack);
+                            fired = true;
+                        }
+                    }
+                }
+
+                return fired ? ActionResult.SUCCESS : ActionResult.PASS;
+            }
+
+            return ActionResult.PASS;
         });
     }
 
