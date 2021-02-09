@@ -23,7 +23,7 @@ public interface DoorHandler {
             Collection<BlockPos> tracking = handler.tracking();
 
             tracking.removeIf(pos -> {
-                if (horizontalDistance(pos, playerPos) > 2 || pos.getManhattanDistance(playerPos) > 3) {
+                if (horizontalDistance(pos, playerPos) > 2 || pos.getManhattanDistance(playerPos) > 2) {
                     BlockState state = player.world.getBlockState(pos);
 
                     if (state.getBlock() instanceof DoorBlock && state.get(DoorBlock.OPEN)) {

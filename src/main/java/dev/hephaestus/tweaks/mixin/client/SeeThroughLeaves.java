@@ -5,10 +5,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -22,11 +24,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public abstract class SeeThroughLeaves {
-    @Shadow public abstract Block getBlock();
+    @Shadow public abstract boolean isIn(Tag<Block> tag);
+
+    @Shadow public abstract boolean isOf(Block block);
 
     @Inject(method = "getVisualShape",at = @At("HEAD"), cancellable = true)
-    private void makeLeavesNotSolid( BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (((EntityProvider) context).getEntity() instanceof PlayerEntity && this.getBlock().isIn(BlockTags.LEAVES) && MinecraftClient.getInstance().options.graphicsMode.getId() > 0) {
+    private void makeLeavesNotSolid(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
+        if (((EntityProvider) context).getEntity() instanceof PlayerEntity && this.isOf(Blocks.SNOW)) {
+            cir.setReturnValue(VoxelShapes.empty());
+        }
+
+        if (((EntityProvider) context).getEntity() instanceof PlayerEntity && this.isIn(BlockTags.LEAVES) && MinecraftClient.getInstance().options.graphicsMode.getId() > 0) {
             cir.setReturnValue(VoxelShapes.empty());
         }
     }
