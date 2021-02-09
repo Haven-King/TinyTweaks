@@ -5,6 +5,7 @@
   "plugin": "dev.hephaestus.tweaks.mixin.VolatileMixinPlugin",
   "mixins": [
     "block.BurnedLogsDropCharcoal",
+    "block.DoorBlockAccessor",
     "block.EditableSigns",
     "block.LeafCollision",
     "block.MakeCauldronsInfinite",
@@ -30,6 +31,7 @@
     "block.rejuvenation.RejuvenateDeadBushes",
     "block.rejuvenation.TallGrassSpread",
     "dev.DepositGrindstoneXp",
+    "entity.AutoOpenDoors",
     "entity.AutoPlant",
     "entity.BurnUsableEntities",
     "entity.ExtendShapeContext",

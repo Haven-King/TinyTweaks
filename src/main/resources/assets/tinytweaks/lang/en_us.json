@@ -118,7 +118,9 @@
   "text.autoconfig.tinytweaks.option.easyXp.@Tooltip[1]": "experience orbs in the world",
   "text.autoconfig.tinytweaks.option.snowFallsThroughLeaves": "Snow Falls Through Leaves",
   "text.autoconfig.tinytweaks.option.armorStandSwap": "Armor Stand Swap",
-  "text.autoconfig.tinytweaks.option.armorStandSwap.@Tooltip[0]": "Right click an armor stand while sneaking to swap armor with it.",
+  "text.autoconfig.tinytweaks.option.armorStandSwap.@Tooltip[0]": "Right click an armor stand while sneaking to swap armor with it",
+  "text.autoconfig.tinytweaks.option.automaticDoors": "Automatic Doors",
+  "text.autoconfig.tinytweaks.option.automaticDoors.@Tooltip": "Wooden doors open and close automatically as you walk through them",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestDropAsItems.boolean.true": "§aOn",
@@ -150,6 +152,7 @@
   "text.autoconfig.tinytweaks.option.armorStandSwap.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.automaticDoors.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyHarvestDropAsItems.boolean.false": "§cOff",
@@ -181,5 +184,6 @@
   "text.autoconfig.tinytweaks.option.armorStandSwap.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.automaticDoors.boolean.false": "§cOff",
   "block.cauldron.makeInfinite": "This cauldron has been blessed with the heart of the sea"
 }

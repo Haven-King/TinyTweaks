@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -47,6 +48,7 @@ public abstract class Doors {
 		openOther(world, pos, null);
 	}
 
+	@Unique
 	private void openOther(World world, BlockPos pos, PlayerEntity player) {
 		if (Tweaks.CONFIG.doubleDoors) {
 			BlockState state = world.getBlockState(pos);

@@ -113,6 +113,10 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Category("misc")
     public boolean armorStandSwap = true;
 
+    @ConfigEntry.Category("misc")
+    @ConfigEntry.Gui.Tooltip
+    public boolean automaticDoors = true;
+
     public static class AutoPlanting {
         @ConfigEntry.Gui.Tooltip(count = 4)
         public boolean enabled = true;
