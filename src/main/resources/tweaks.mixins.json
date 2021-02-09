@@ -56,6 +56,8 @@
     "item.ShovelMixin",
     "prod.DepositGrindstoneXp",
     "world.SerializeChunkData",
+    "world.SnowFallsUnderTrees",
+    "world.SnowGeneratesUnderTrees",
     "world.TickMore",
     "world.TrackBlockChanges",
     "world.UpgradeChunk"
