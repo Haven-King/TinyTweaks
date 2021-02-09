@@ -107,6 +107,9 @@ public class TweaksConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip(count = 2)
     public boolean easyXp = true;
 
+    @ConfigEntry.Category("misc")
+    public boolean snowFallsThroughLeaves = true;
+
     public static class AutoPlanting {
         @ConfigEntry.Gui.Tooltip(count = 4)
         public boolean enabled = true;

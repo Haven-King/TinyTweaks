@@ -116,6 +116,7 @@
   "text.autoconfig.tinytweaks.option.easyXp": "Easy XP",
   "text.autoconfig.tinytweaks.option.easyXp.@Tooltip[0]": "XP is given right to the player, instead of spawning",
   "text.autoconfig.tinytweaks.option.easyXp.@Tooltip[1]": "experience orbs in the world",
+  "text.autoconfig.tinytweaks.option.snowFallsThroughLeaves": "Snow Falls Through Leaves",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestSugarcane.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestDropAsItems.boolean.true": "§aOn",
@@ -143,6 +144,7 @@
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyXp.boolean.true": "§aOn",
+  "text.autoconfig.tinytweaks.option.snowFallsThroughLeaves.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.boolean.true": "§aOn",
   "text.autoconfig.tinytweaks.option.easyHarvestCrops.boolean.false": "§cOff",
@@ -172,6 +174,7 @@
   "text.autoconfig.tinytweaks.option.netherRejuvenation.enabled.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.infiniteCauldrons.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.easyXp.boolean.false": "§cOff",
+  "text.autoconfig.tinytweaks.option.snowFallsThroughLeaves.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.blueSoulFireEffects.boolean.false": "§cOff",
   "text.autoconfig.tinytweaks.option.soulFireDoesMoreDamage.boolean.false": "§cOff",
   "block.cauldron.makeInfinite": "This cauldron has been blessed with the heart of the sea"
