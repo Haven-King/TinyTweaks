@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "plugin": "dev.hephaestus.tweaks.mixin.VolatileMixinPlugin",
   "mixins": [
+    "block.AddContainerLabels",
     "block.BurnedLogsDropCharcoal",
     "block.DoorBlockAccessor",
     "block.EditableSigns",
