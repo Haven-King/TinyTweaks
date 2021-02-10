@@ -47,6 +47,7 @@
     "entity.passive.ChickenEntityMixin",
     "entity.passive.CowEntityMixin",
     "entity.passive.HorseAndDonkeyMixin",
+    "entity.passive.OcelotEntityMixin",
     "entity.passive.PigEntityMixin",
     "entity.passive.SheepEntityMixin",
     "entity.passive.WolfEntityMixin",
