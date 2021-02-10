@@ -4,8 +4,6 @@ import dev.hephaestus.tweaks.Tweaks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.world.GameRules;
 
 import java.util.EnumSet;
@@ -13,21 +11,11 @@ import java.util.List;
 
 public class GroundFoodMateGoal extends Goal {
     private final AnimalEntity animal;
-    private final FoodPredicate food;
     private ItemEntity foodEntity;
 
-    public interface FoodPredicate {
-        boolean eval(ItemStack item);
-    }
-
-    public GroundFoodMateGoal(AnimalEntity animal, FoodPredicate predicate) {
+    public GroundFoodMateGoal(AnimalEntity animal) {
         this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
         this.animal = animal;
-        this.food = predicate;
-    }
-
-    public GroundFoodMateGoal(AnimalEntity animal, Ingredient food) {
-        this(animal, food::test);
     }
 
     public boolean canStart() {
@@ -62,7 +50,7 @@ public class GroundFoodMateGoal extends Goal {
 
         ItemEntity result = null;
         for (ItemEntity itemEntity: list) {
-            if (this.food.eval(itemEntity.getStack()) && this.animal.squaredDistanceTo(itemEntity) < d) {
+            if (this.animal.isBreedingItem(itemEntity.getStack()) && this.animal.squaredDistanceTo(itemEntity) < d) {
                 result = itemEntity;
                 d = this.animal.squaredDistanceTo(itemEntity);
             }

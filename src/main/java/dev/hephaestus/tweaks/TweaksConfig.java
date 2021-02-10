@@ -56,7 +56,7 @@ public class TweaksConfig implements ConfigData {
 
     @ConfigEntry.Category("animals")
     @ConfigEntry.Gui.Tooltip
-    public boolean breedWildWolves = true;
+    public boolean animalsEatCrops = true;
 
     // - Nether! --------------------------------------------------------------
     @ConfigEntry.Category("nether")
