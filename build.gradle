@@ -40,6 +40,9 @@ dependencies {
 		exclude group: "net.fabricmc.fabric-api"
 	}
 
+	modImplementation "me.jellysquid.mods:lithium:0.6.3-SNAPSHOT"
+	modImplementation "me.jellysquid.mods:lithium-api:0.6.3-SNAPSHOT"
+
 	modImplementation ("dev.hephaestus:climbable:${project.climbable_version}")
 	include "dev.hephaestus:climbable:${project.climbable_version}"
 

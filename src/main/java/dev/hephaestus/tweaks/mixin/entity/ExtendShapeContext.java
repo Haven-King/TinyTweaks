@@ -3,19 +3,18 @@ package dev.hephaestus.tweaks.mixin.entity;
 import dev.hephaestus.tweaks.util.EntityProvider;
 import net.minecraft.block.EntityShapeContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import net.minecraft.item.Items;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityShapeContext.class)
 public class ExtendShapeContext implements EntityProvider, ItemConvertible {
-    @Shadow @Final private Item heldItem;
+    @Mutable @Shadow @Final private Item heldItem;
     @Unique private Entity entity = null;
 
     @Inject(method = "<init>(Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
@@ -30,6 +29,10 @@ public class ExtendShapeContext implements EntityProvider, ItemConvertible {
 
     @Override
     public Item asItem() {
+        if (this.heldItem == null) {
+            this.heldItem = this.entity instanceof LivingEntity ? ((LivingEntity)this.entity).getMainHandStack().getItem() : Items.AIR;
+        }
+
         return this.heldItem;
     }
 }
