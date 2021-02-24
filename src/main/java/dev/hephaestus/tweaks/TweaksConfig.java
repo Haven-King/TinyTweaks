@@ -1,11 +1,8 @@
 package dev.hephaestus.tweaks;
 
-import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.config.v1.FabricDataTypes;
 import net.fabricmc.fabric.api.config.v1.FabricSaveTypes;
 import net.fabricmc.fabric.api.config.v1.SyncType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.SemanticVersion;
 import net.fabricmc.loader.api.config.data.SaveType;
 import net.fabricmc.loader.api.config.entrypoint.Config;
 import net.fabricmc.loader.api.config.serialization.ConfigSerializer;
