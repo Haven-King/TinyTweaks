@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.client.render.block.entity;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -10,11 +10,8 @@ import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.model.Model;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.text.LiteralText;
@@ -25,9 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.Random;
 
 @Environment(EnvType.CLIENT)
 public class LabelRenderer {
@@ -75,7 +69,7 @@ public class LabelRenderer {
 
                 matrices.translate(0D, 0D, dz);
 
-                float scale = 0.010416667F * (((float) Tweaks.CONFIG.namesAndThings.labelScale) / 100);
+                float scale = 0.010416667F * (((float) TweaksPreferences.Labels.SCALE.getValue()) / 100);
                 matrices.scale(scale, -scale, scale);
 
                 TextRenderer textRenderer = dispatcher.getTextRenderer();
@@ -155,7 +149,7 @@ public class LabelRenderer {
 
                     matrices.translate(dx, dy, dz);
 
-                    float scale = 0.010416667F * (((float)Tweaks.CONFIG.namesAndThings.labelScale) / 100);
+                    float scale = 0.010416667F * (((float) TweaksPreferences.Labels.SCALE.getValue()) / 100);
                     matrices.scale(scale, -scale, scale);
 
                     TextRenderer textRenderer = dispatcher.getTextRenderer();

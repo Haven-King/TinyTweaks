@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.world;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.server.world.ServerWorld;
@@ -33,7 +34,7 @@ public abstract class TickMore extends World {
 		int startY = chunkSection.getYOffset();
 
 		for (int i = 0; i < randomTickSpeed; ++i) {
-			for (int j = 0; j < Tweaks.CONFIG.leafDecaySpeed - 1; ++j) {
+			for (int j = 0; j < TweaksConfig.Plants.Leaves.LEAF_DECAY_SPEED.getValue() - 1; ++j) {
 				BlockPos blockPos4 = this.getRandomPosInChunk(startX, startY, startZ, 15);
 				profiler.push("randomTick");
 				BlockState blockState = chunkSection.getBlockState(blockPos4.getX() - startX, blockPos4.getY() - startY, blockPos4.getZ() - startZ);

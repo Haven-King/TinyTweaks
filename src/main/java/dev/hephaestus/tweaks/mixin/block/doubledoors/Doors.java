@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.doubledoors;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoorBlock;
@@ -50,7 +51,7 @@ public abstract class Doors {
 
 	@Unique
 	private void openOther(World world, BlockPos pos, PlayerEntity player) {
-		if (Tweaks.CONFIG.doubleDoors) {
+		if (TweaksConfig.Misc.DOUBLE_DOORS.getValue()) {
 			BlockState state = world.getBlockState(pos);
 			BlockPos otherPos = null;
 			BlockState otherState = null;

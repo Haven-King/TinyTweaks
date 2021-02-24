@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.block.rejuvenation;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +16,7 @@ import java.util.Random;
 public class TallGrassSpread {
     @Inject(method = "randomTick", at = @At(value = "INVOKE", target = "net/minecraft/block/SpreadableBlock.getDefaultState()Lnet/minecraft/block/BlockState;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     public void growGrass(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (Tweaks.CONFIG.rejuvenation.enabled && state.getBlock() == Blocks.GRASS_BLOCK) {
+        if (TweaksConfig.Plants.Rejuvenation.ENABLED.getValue() && state.getBlock() == Blocks.GRASS_BLOCK) {
             Block above = world.getBlockState(pos.up()).getBlock();
             int friends = 1;
 
@@ -27,26 +27,28 @@ public class TallGrassSpread {
                         Block friend = world.getBlockState(pos.add(x, y, z)).getBlock();
                         if (friend instanceof FernBlock || friend instanceof TallPlantBlock) {
                             friends++;
-                            friends *= Tweaks.CONFIG.rejuvenation.thePowerOfFriendship;
+                            friends *= TweaksConfig.Plants.Rejuvenation.FRIENDSHIP.getValue();
                         }
                     }
                 }
             }
 
-            if (above == Blocks.AIR && random.nextFloat() < Tweaks.CONFIG.rejuvenation.grassGrowthRate * (friends)) {
+            if (above == Blocks.AIR && random.nextFloat() < TweaksConfig.Plants.Rejuvenation.GRASS_GROWTH_RATE.getValue() * (friends)) {
                 world.setBlockState(pos.up(), Blocks.GRASS.getDefaultState());
                 ci.cancel();
-            } else if (Tweaks.CONFIG.rejuvenation.longGrass > 0.000001 && above == Blocks.GRASS) {
+            } else if (TweaksConfig.Plants.Rejuvenation.LONG_GRASS_RATIO.getValue() > 0.000001 && above == Blocks.GRASS) {
                 Random tallGrassRandom = new Random();
                 tallGrassRandom.setSeed(pos.asLong());
-                if (tallGrassRandom.nextFloat() < Tweaks.CONFIG.rejuvenation.longGrass && random.nextFloat() < Tweaks.CONFIG.rejuvenation.grassGrowthRate) {
+                if (tallGrassRandom.nextFloat() < TweaksConfig.Plants.Rejuvenation.LONG_GRASS_RATIO.getValue()
+                        && random.nextFloat() < TweaksConfig.Plants.Rejuvenation.GRASS_GROWTH_RATE.getValue()) {
                     ((TallPlantBlock) Blocks.TALL_GRASS).placeAt(world, pos.up(), 2);
                     ci.cancel();
                 }
             }
 
 
-            if (Tweaks.CONFIG.rejuvenation.saplings && world.getBlockState(pos.up()).getBlock() == Blocks.DEAD_BUSH) {
+            if (TweaksConfig.Plants.Rejuvenation.DEAD_BUSHES_TO_SAPLINGS.getValue()
+                    && world.getBlockState(pos.up()).getBlock() == Blocks.DEAD_BUSH) {
                 Block sapling = Blocks.OAK_SAPLING;
                 world.setBlockState(pos.up(), sapling.getDefaultState());
                 ci.cancel();

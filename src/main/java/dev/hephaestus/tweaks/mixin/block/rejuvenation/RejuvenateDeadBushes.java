@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.block.rejuvenation;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DeadBushBlock;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class RejuvenateDeadBushes {
     @Inject(method = "canPlantOnTop", at = @At("TAIL"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     public void canBeOnGrass(BlockState floor, BlockView view, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        if (Tweaks.CONFIG.rejuvenation.enabled && floor.getBlock() == Blocks.GRASS_BLOCK)
+        if (TweaksConfig.Plants.Rejuvenation.ENABLED.getValue() && floor.getBlock() == Blocks.GRASS_BLOCK)
             cir.setReturnValue(true);
     }
 }

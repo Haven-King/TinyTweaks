@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.easyxp;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.PlayerProvider;
 import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,7 +24,7 @@ public abstract class DepositGrindstoneXp implements PlayerProvider {
 	@SuppressWarnings("UnresolvedMixinReference")
 	@Inject(method = "method_17417", at = @At("HEAD"), cancellable = true)
 	private void depositXpToPlayer(World world, BlockPos blockPos, CallbackInfo ci) {
-		if (Tweaks.CONFIG.easyXp && this.getPlayer() instanceof ServerPlayerEntity) {
+		if (TweaksConfig.Misc.EASY_XP.getValue() && this.getPlayer() instanceof ServerPlayerEntity) {
 			XpUtil.addXp((ServerPlayerEntity) this.getPlayer(), this.getExperience(world));
 			world.syncWorldEvent(1042, blockPos, 0);
 			ci.cancel();

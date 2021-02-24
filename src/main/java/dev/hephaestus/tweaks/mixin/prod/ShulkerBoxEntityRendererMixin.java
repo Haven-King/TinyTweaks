@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.prod;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import dev.hephaestus.tweaks.client.render.block.entity.LabelRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -28,7 +28,7 @@ public abstract class ShulkerBoxEntityRendererMixin extends BlockEntityRenderer<
     @Dynamic
     @Inject(method = "method_3569", at = @At("TAIL"))
     private void renderLabel(BlockEntity shulkerBoxBlockEntity, float f, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int i, int j, CallbackInfo ci) {
-        if (Tweaks.CONFIG.namesAndThings.containerLabels && shulkerBoxBlockEntity.hasWorld()) {
+        if (TweaksPreferences.Labels.ENABLED.getValue() && shulkerBoxBlockEntity.hasWorld()) {
             LabelRenderer.renderLabel(((ShulkerBoxBlockEntity)shulkerBoxBlockEntity), dispatcher, matrices, vertexConsumers, ((ShulkerBoxBlockEntity)shulkerBoxBlockEntity).getAnimationStage() != ShulkerBoxBlockEntity.AnimationStage.CLOSED, Direction.UP);
         }
     }

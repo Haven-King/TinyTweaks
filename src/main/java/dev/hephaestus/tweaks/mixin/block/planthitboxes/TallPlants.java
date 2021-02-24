@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.planthitboxes;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.block.ShapeContext;
@@ -19,7 +20,7 @@ public class TallPlants extends PlantBlock {
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        if (!Tweaks.CONFIG.plantHitboxes && !(context instanceof ItemConvertible && ((ItemConvertible) context).asItem().isIn(Tweaks.SHOWS_GRASS_HITBOXES))) {
+        if (!TweaksPreferences.PLANT_HITBOXES.getValue() && !(context instanceof ItemConvertible && ((ItemConvertible) context).asItem().isIn(Tweaks.SHOWS_GRASS_HITBOXES))) {
             return VoxelShapes.empty();
         } else {
             return super.getOutlineShape(state, view, pos, context);

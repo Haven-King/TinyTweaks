@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.block.easyxp;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.XpBlock;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -29,7 +29,7 @@ public abstract class Furnaces extends BlockWithEntity implements XpBlock {
 
     @Redirect(method = "onStateReplaced", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/AbstractFurnaceBlockEntity;method_27354(Lnet/minecraft/world/World;Lnet/minecraft/util/math/Vec3d;)Ljava/util/List;"))
     private List<Recipe<?>> getPlayerLocation(AbstractFurnaceBlockEntity abstractFurnaceBlockEntity, World world, Vec3d vec3d) {
-        if (Tweaks.CONFIG.easyXp) {
+        if (TweaksConfig.Misc.EASY_XP.getValue()) {
             return null;
         } else {
             return abstractFurnaceBlockEntity.method_27354(world, vec3d);
@@ -43,7 +43,7 @@ public abstract class Furnaces extends BlockWithEntity implements XpBlock {
         ServerPlayerEntity player = this.getPlayer(pos);
         BlockEntity blockEntity = this.getBlockEntity(pos);
 
-        if (player != null && blockEntity instanceof AbstractFurnaceBlockEntity && Tweaks.CONFIG.easyXp) {
+        if (player != null && blockEntity instanceof AbstractFurnaceBlockEntity && TweaksConfig.Misc.EASY_XP.getValue()) {
             ((AbstractFurnaceBlockEntity) blockEntity).method_27354(world, player.getPos());
         }
     }

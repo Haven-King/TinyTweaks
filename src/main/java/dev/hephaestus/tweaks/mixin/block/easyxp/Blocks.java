@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.block.easyxp;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.XpBlock;
 import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.block.Block;
@@ -28,11 +28,11 @@ public class Blocks implements XpBlock {
 
 	@Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;onStacksDropped(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V"))
 	private static void assignPlayerToBlock(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfo ci) {
-		if (entity instanceof ServerPlayerEntity && Tweaks.CONFIG.easyXp) {
+		if (entity instanceof ServerPlayerEntity && TweaksConfig.Misc.EASY_XP.getValue()) {
 			((XpBlock) state.getBlock()).add(pos, (ServerPlayerEntity) entity);
 		}
 
-		if (blockEntity != null && Tweaks.CONFIG.easyXp) {
+		if (blockEntity != null && TweaksConfig.Misc.EASY_XP.getValue()) {
 			((XpBlock) state.getBlock()).add(pos, blockEntity);
 		}
 	}
@@ -41,7 +41,7 @@ public class Blocks implements XpBlock {
 	protected void depositXpToPlayer(ServerWorld world, BlockPos pos, int size, CallbackInfo ci) {
 		ServerPlayerEntity player = this.players.get().get(pos);
 
-		if (player != null && Tweaks.CONFIG.easyXp) {
+		if (player != null && TweaksConfig.Misc.EASY_XP.getValue()) {
 			XpUtil.addXp(player, size);
 			players.get().remove(pos);
 			ci.cancel();

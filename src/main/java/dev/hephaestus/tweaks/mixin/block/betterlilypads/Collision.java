@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.betterlilypads;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +27,7 @@ public abstract class Collision extends PlantBlock {
 
     @Inject(method = "onEntityCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;breakBlock(Lnet/minecraft/util/math/BlockPos;ZLnet/minecraft/entity/Entity;)Z"), cancellable = true)
     public void overwriteEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
-        if (Tweaks.CONFIG.betterLilyPads)
+        if (TweaksConfig.Plants.BETTER_LILY_PADS.getValue())
             ci.cancel();
     }
 
@@ -35,13 +36,13 @@ public abstract class Collision extends PlantBlock {
 
     @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
     public void overwriteOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (Tweaks.CONFIG.betterLilyPads)
+        if (TweaksConfig.Plants.BETTER_LILY_PADS.getValue())
             cir.setReturnValue(OUTLINES);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        if (Tweaks.CONFIG.betterLilyPads)
+        if (TweaksConfig.Plants.BETTER_LILY_PADS.getValue())
             return context.isAbove(COLLIDER, pos, false) ? COLLIDER : VoxelShapes.empty();
         else
             return super.getCollisionShape(state, view, pos, context);

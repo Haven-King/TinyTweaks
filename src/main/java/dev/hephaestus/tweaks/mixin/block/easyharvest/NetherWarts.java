@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.easyharvest;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.NetherWartBlock;
@@ -22,7 +23,7 @@ public abstract class NetherWarts extends PlantBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (Tweaks.CONFIG.easyHarvestCrops && state.get(NetherWartBlock.AGE) == 3) {
+        if (TweaksConfig.Plants.EasyHarvest.CROPS.getValue() && state.get(NetherWartBlock.AGE) == 3) {
             if (!world.isClient) {
                 Block.getDroppedStacks(state, (ServerWorld) world, pos, null).forEach((stack) -> {
                     if (stack.getItem() == Items.NETHER_WART) {
@@ -30,7 +31,7 @@ public abstract class NetherWarts extends PlantBlock {
                     }
 
                     boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity)player).isDisconnected();
-                    if (playerAvailable && !Tweaks.CONFIG.easyHarvestDropAsItems) {
+                    if (playerAvailable && !TweaksPreferences.EASY_HARVEST_DROP_AS_ITEMS.getValue(player.getUuid())) {
                         player.inventory.offerOrDrop(world, stack);
                     } else {
                         Block.dropStack(world, pos, stack);

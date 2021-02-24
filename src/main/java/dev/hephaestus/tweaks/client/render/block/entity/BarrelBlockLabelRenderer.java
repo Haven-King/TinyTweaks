@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.client.render.block.entity;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -14,7 +14,7 @@ public class BarrelBlockLabelRenderer extends BlockEntityRenderer<BarrelBlockEnt
     }
     @Override
     public void render(BarrelBlockEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        if (Tweaks.CONFIG.namesAndThings.containerLabels && blockEntity.hasWorld()) {
+        if (TweaksPreferences.Labels.ENABLED.getValue() && blockEntity.hasWorld()) {
             LabelRenderer.renderLabel(blockEntity, dispatcher, matrices, vertexConsumers, blockEntity.getCachedState().get(BarrelBlock.OPEN), blockEntity.getCachedState().get(BarrelBlock.FACING));
         }
     }

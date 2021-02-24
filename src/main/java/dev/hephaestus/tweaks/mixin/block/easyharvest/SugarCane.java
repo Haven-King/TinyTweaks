@@ -1,19 +1,15 @@
 package dev.hephaestus.tweaks.mixin.block.easyharvest;
 
-import dev.hephaestus.tweaks.Tweaks;
-import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import dev.hephaestus.tweaks.TweaksConfig;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SugarCaneBlock;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -48,7 +44,7 @@ public class SugarCane extends Block {
 
         if (n > 0) {
             boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity) player).isDisconnected();
-            if (playerAvailable && !Tweaks.CONFIG.easyHarvestDropAsItems) {
+            if (playerAvailable && !TweaksPreferences.EASY_HARVEST_DROP_AS_ITEMS.getValue(player.getUuid())) {
                 player.inventory.offerOrDrop(world, new ItemStack(Items.SUGAR_CANE, n));
             } else {
                 Block.dropStack(world, pos, new ItemStack(Items.SUGAR_CANE, n));
@@ -61,7 +57,7 @@ public class SugarCane extends Block {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (Tweaks.CONFIG.easyHarvestSugarcane && tryBreakSugarcane(world, pos, player)) return ActionResult.SUCCESS;
+        if (TweaksConfig.Plants.EasyHarvest.SUGARCANE.getValue() && tryBreakSugarcane(world, pos, player)) return ActionResult.SUCCESS;
         else return ActionResult.PASS;
     }
 }

@@ -1,15 +1,10 @@
 package dev.hephaestus.tweaks.mixin.block;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.Tag;
-import net.minecraft.text.HoverEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
@@ -32,20 +27,22 @@ public abstract class LeafCollision {
         if (context != EntityShapeContext.ABSENT && this.getBlock().isIn(BlockTags.LEAVES)) {
             BlockState state = world.getBlockState(pos);
             if (state.getBlock().getStateManager().getProperty("persistent") != null && state.get(Properties.PERSISTENT)) {
-                cir.setReturnValue(Tweaks.CONFIG.leaves.persistentCollide ? VoxelShapes.fullCube() : VoxelShapes.empty());
+                cir.setReturnValue(TweaksConfig.Plants.Leaves.PERSISTENT_COLLISION.getValue() ? VoxelShapes.fullCube() : VoxelShapes.empty());
             } else {
-                cir.setReturnValue(Tweaks.CONFIG.leaves.collide ? VoxelShapes.fullCube() : VoxelShapes.empty());
+                cir.setReturnValue(TweaksConfig.Plants.Leaves.COLLISION.getValue() ? VoxelShapes.fullCube() : VoxelShapes.empty());
             }
         }
     }
 
     @Inject(method = "onEntityCollision", at = @At("HEAD"))
     private void onEntityCollision(World world, BlockPos pos, Entity entity, CallbackInfo ci) {
-        if (this.getBlock().isIn(BlockTags.LEAVES)) {
-            entity.fallDistance = entity.fallDistance * 0.7f;
+        if (this.getBlock().isIn(BlockTags.LEAVES) && TweaksConfig.Plants.Leaves.SLOW.getValue()) {
+            float slowAmount = TweaksConfig.Plants.Leaves.SLOW_AMOUNT.getValue().floatValue();
+
+            entity.fallDistance = entity.fallDistance * slowAmount;
 
             Vec3d velocity = entity.getVelocity();
-            entity.setVelocity(velocity.multiply(0.7D, (velocity.y > 0 ? 1.0D : 0.7D), 0.7D));
+            entity.setVelocity(velocity.multiply(slowAmount, (velocity.y > 0 ? 1.0D : slowAmount), slowAmount));
 
             if (entity.getVelocity().length() > 0.1D) {
                 entity.handleFallDamage(entity.fallDistance, 0.5f);

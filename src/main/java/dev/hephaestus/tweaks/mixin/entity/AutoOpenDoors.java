@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.entity;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.DoorHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -27,7 +28,7 @@ public abstract class AutoOpenDoors extends Entity implements DoorHandler {
     @Inject(method = "playerTick", at = @At(value = "HEAD"))
     private void openDoors(CallbackInfo ci) {
         //noinspection ConstantConditions
-        if (((Object) this) instanceof ServerPlayerEntity && Tweaks.CONFIG.automaticDoors) {
+        if (((Object) this) instanceof ServerPlayerEntity && TweaksConfig.Misc.AUTOMATIC_DOORS.getValue()) {
             ServerPlayerEntity player = ((ServerPlayerEntity) (Object) this);
             DoorHandler.handle(player);
         }

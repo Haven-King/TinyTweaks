@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.world;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.CauldronChunk;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,7 +37,7 @@ public abstract class TrackBlockChanges implements BlockView, CauldronChunk {
 
 	@Override
 	public boolean isInfinite(BlockPos pos) {
-		return Tweaks.CONFIG.infiniteCauldrons && this.cauldrons.getOrDefault(pos, false);
+		return TweaksConfig.Misc.INFINITE_CAULDRONS.getValue() && this.cauldrons.getOrDefault(pos, false);
 	}
 
 	@Override

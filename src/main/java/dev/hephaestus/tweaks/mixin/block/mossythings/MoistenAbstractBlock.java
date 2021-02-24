@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.block.mossythings;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.block.Moistener;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
@@ -19,7 +19,7 @@ import java.util.Random;
 public class MoistenAbstractBlock {
 	@Inject(method = "scheduledTick", at = @At("HEAD"))
 	private void doTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-		if (Tweaks.CONFIG.mossyThings && Moistener.canMoisten(state.getBlock())) {
+		if (TweaksConfig.Misc.MOSSY_THINGS.getValue() && Moistener.canMoisten(state.getBlock())) {
 			boolean isSkyVisible = false;
 			boolean isWaterNearby = false;
 

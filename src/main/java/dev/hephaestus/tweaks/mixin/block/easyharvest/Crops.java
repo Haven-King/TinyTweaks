@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.easyharvest;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
@@ -28,7 +29,7 @@ public abstract class Crops extends PlantBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (Tweaks.CONFIG.easyHarvestCrops && this.isMature(state)) {
+        if (TweaksConfig.Plants.EasyHarvest.CROPS.getValue() && this.isMature(state)) {
             if (!world.isClient) {
                 Block.getDroppedStacks(state, (ServerWorld) world, pos, null).forEach((stack) -> {
                     if (stack.getItem().toString().contains("seeds")) {
@@ -36,7 +37,7 @@ public abstract class Crops extends PlantBlock {
                     }
 
                     boolean playerAvailable = player.isAlive() || player instanceof ServerPlayerEntity && !((ServerPlayerEntity)player).isDisconnected();
-                    if (playerAvailable && !Tweaks.CONFIG.easyHarvestDropAsItems) {
+                    if (playerAvailable && !TweaksPreferences.EASY_HARVEST_DROP_AS_ITEMS.getValue(player.getUuid())) {
                         player.inventory.offerOrDrop(world, stack);
                     } else {
                         Block.dropStack(world, pos, stack);

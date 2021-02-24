@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.item;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FlintAndSteelItem;
@@ -18,8 +19,8 @@ public class FlintAndSteelMixin extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        if (Tweaks.CONFIG.flintAndSteel.enabled && !entity.isFireImmune()) {
-            entity.setOnFireFor(Tweaks.CONFIG.flintAndSteel.burnTime);
+        if (TweaksConfig.Misc.FLINT_AND_STEEL.ENABLED.getValue() && !entity.isFireImmune()) {
+            entity.setOnFireFor(TweaksConfig.Misc.FLINT_AND_STEEL.BURN_TIME.getValue());
             stack.damage(1, user, ((p) -> p.sendToolBreakStatus(hand)));
             return ActionResult.SUCCESS;
         } else {

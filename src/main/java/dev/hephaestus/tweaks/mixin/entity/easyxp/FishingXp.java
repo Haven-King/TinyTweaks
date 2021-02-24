@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.entity.easyxp;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -21,7 +21,7 @@ public abstract class FishingXp {
 
 	@Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"))
 	private boolean depositXpToPlayer(World world, Entity entity) {
-		if (this.getPlayerOwner() != null && Tweaks.CONFIG.easyXp && entity instanceof ExperienceOrbEntity) {
+		if (this.getPlayerOwner() != null && TweaksConfig.Misc.EASY_XP.getValue() && entity instanceof ExperienceOrbEntity) {
 			XpUtil.addXp((ServerPlayerEntity) this.getPlayerOwner(), (int) (Math.random() * 6 + 1));
 			return false;
 		}

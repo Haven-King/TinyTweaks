@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.entity.easyxp;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.XpUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -32,7 +32,7 @@ public abstract class VillagerTradeXp extends MerchantEntity {
 
 	@Redirect(method = "afterUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"))
 	private boolean depositXpToPlayer(World world, Entity entity) {
-		if (this.getCurrentCustomer() instanceof ServerPlayerEntity && Tweaks.CONFIG.easyXp) {
+		if (this.getCurrentCustomer() instanceof ServerPlayerEntity && TweaksConfig.Misc.EASY_XP.getValue()) {
 			XpUtil.addXp((ServerPlayerEntity) this.getCurrentCustomer(), i);
 			return false;
 		} else {
