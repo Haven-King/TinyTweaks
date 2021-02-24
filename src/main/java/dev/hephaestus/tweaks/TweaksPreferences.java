@@ -1,17 +1,18 @@
 package dev.hephaestus.tweaks;
 
-import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.config.v1.FabricDataTypes;
 import net.fabricmc.fabric.api.config.v1.FabricSaveTypes;
-import net.fabricmc.fabric.api.config.v1.GsonSerializer;
 import net.fabricmc.fabric.api.config.v1.SyncType;
 import net.fabricmc.loader.api.config.data.SaveType;
 import net.fabricmc.loader.api.config.entrypoint.Config;
 import net.fabricmc.loader.api.config.serialization.ConfigSerializer;
+import net.fabricmc.loader.api.config.serialization.PropertiesSerializer;
 import net.fabricmc.loader.api.config.value.ValueKey;
 import org.jetbrains.annotations.NotNull;
 
-public class TweaksPreferences extends Config<JsonObject> {
+import java.util.Map;
+
+public class TweaksPreferences extends Config<Map<String, String>> {
     public static final ValueKey<Boolean> PLANT_HITBOXES = value(true);
     public static final ValueKey<Boolean> BLUE_SOUL_FIRE = value(true);
     public static final ValueKey<Boolean> EASY_HARVEST_DROP_AS_ITEMS = builder(true)
@@ -23,8 +24,8 @@ public class TweaksPreferences extends Config<JsonObject> {
     }
 
     @Override
-    public @NotNull ConfigSerializer<JsonObject> getSerializer() {
-        return GsonSerializer.DEFAULT;
+    public @NotNull ConfigSerializer<Map<String, String>> getSerializer() {
+        return PropertiesSerializer.INSTANCE;
     }
 
     @Override
