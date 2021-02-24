@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.world;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
@@ -35,7 +36,7 @@ public abstract class SnowFallsUnderTrees extends World {
             BlockState state = this.getBlockState(blockPos2);
             int bottom = this.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, blockPos2).getY() - 1;
 
-            if (Tweaks.CONFIG.snowFallsThroughLeaves && state.isOf(Blocks.SNOW) && bottom < blockPos3.getY() - 1) {
+            if (TweaksConfig.Plants.Leaves.SNOW_FALLS_THROUGH_LEAVES.getValue() && state.isOf(Blocks.SNOW) && bottom < blockPos3.getY() - 1) {
                 BlockPos.Mutable mut = new BlockPos.Mutable().set(blockPos3).move(Direction.DOWN);
 
                 while (mut.getY() > bottom) {

@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.entity.ai.goal;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -19,7 +19,7 @@ public class GroundFoodMateGoal extends Goal {
     }
 
     public boolean canStart() {
-        if (Tweaks.CONFIG.animalsEatOffGround && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
+        if (TweaksConfig.Animals.EAT_OFF_GROUND.getValue() && this.animal.getEntityWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && this.animal.canEat() && this.animal.getBreedingAge() == 0) {
             this.foodEntity = this.findFood();
         }
 

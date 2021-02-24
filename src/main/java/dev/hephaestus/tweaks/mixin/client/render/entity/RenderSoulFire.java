@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.client.render.entity;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import dev.hephaestus.tweaks.util.SoulFire;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -30,7 +30,7 @@ public class RenderSoulFire {
 	@Redirect(method = "renderFire", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SpriteIdentifier;getSprite()Lnet/minecraft/client/texture/Sprite;", ordinal = 0))
 	private Sprite renderSoulFire0(SpriteIdentifier spriteIdentifier) {
 		SoulFire.FireTypeModifier.of(renderedEntity).updateFireType();
-		if (this.renderedEntity != null && Tweaks.CONFIG.blueSoulFireEffects && SoulFire.FireTypeModifier.of(this.renderedEntity).getFireType() == SoulFire.FireType.SOUL) {
+		if (this.renderedEntity != null && TweaksPreferences.BLUE_SOUL_FIRE.getValue() && SoulFire.FireTypeModifier.of(this.renderedEntity).getFireType() == SoulFire.FireType.SOUL) {
 			return SoulFire.SPRITE_0.getSprite();
 		} else {
 			return spriteIdentifier.getSprite();
@@ -40,7 +40,7 @@ public class RenderSoulFire {
 	@Redirect(method = "renderFire", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/SpriteIdentifier;getSprite()Lnet/minecraft/client/texture/Sprite;", ordinal = 1))
 	private Sprite renderSoulFire1(SpriteIdentifier spriteIdentifier) {
 		SoulFire.FireTypeModifier.of(renderedEntity).updateFireType();
-		if (this.renderedEntity != null && Tweaks.CONFIG.blueSoulFireEffects && SoulFire.FireTypeModifier.of(this.renderedEntity).getFireType() == SoulFire.FireType.SOUL) {
+		if (this.renderedEntity != null && TweaksPreferences.BLUE_SOUL_FIRE.getValue() && SoulFire.FireTypeModifier.of(this.renderedEntity).getFireType() == SoulFire.FireType.SOUL) {
 			return SoulFire.SPRITE_1.getSprite();
 		} else {
 			return spriteIdentifier.getSprite();

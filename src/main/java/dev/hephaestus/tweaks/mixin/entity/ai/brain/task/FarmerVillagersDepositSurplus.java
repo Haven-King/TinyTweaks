@@ -1,7 +1,6 @@
 package dev.hephaestus.tweaks.mixin.entity.ai.brain.task;
 
-import dev.hephaestus.tweaks.Tweaks;
-import net.minecraft.block.BarrelBlock;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -36,7 +35,7 @@ public class FarmerVillagersDepositSurplus {
     public void setDepositBlock(ServerWorld serverWorld, VillagerEntity villagerEntity, CallbackInfoReturnable<Boolean> cir, BlockPos.Mutable mutable) {
         BlockState blockState = serverWorld.getBlockState(mutable);
         Block block = blockState.getBlock();
-        if (Tweaks.CONFIG.farmerVillagerAutomation && (storage == null || !isStorage(serverWorld.getBlockState(storage).getBlock())) && isStorage(block)) {
+        if (TweaksConfig.Plants.FARMER_VILLAGER_AUTOMATION.getValue() && (storage == null || !isStorage(serverWorld.getBlockState(storage).getBlock())) && isStorage(block)) {
             this.storage = new BlockPos(mutable);
             nextStoreTime = serverWorld.getTime() + 100L;
         }
@@ -44,14 +43,14 @@ public class FarmerVillagersDepositSurplus {
 
     @Inject(method = "chooseRandomTarget", at = @At("HEAD"), cancellable = true)
     public void shouldStore(ServerWorld world, CallbackInfoReturnable<BlockPos> cir) {
-        if (Tweaks.CONFIG.farmerVillagerAutomation && storage != null && isStorage(world.getBlockState(storage).getBlock()) && world.getTime() > nextStoreTime) {
+        if (TweaksConfig.Plants.FARMER_VILLAGER_AUTOMATION.getValue() && storage != null && isStorage(world.getBlockState(storage).getBlock()) && world.getTime() > nextStoreTime) {
             cir.setReturnValue(storage);
         }
     }
 
     @Inject(method = "keepRunning", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/block/BlockState;getBlock()Lnet/minecraft/block/Block;"), locals = LocalCapture.CAPTURE_FAILHARD)
     public void shouldStoreThings(ServerWorld serverWorld, VillagerEntity villagerEntity, long l, CallbackInfo ci, BlockState blockState, Block block) {
-        if (Tweaks.CONFIG.farmerVillagerAutomation && currentTarget == storage) {
+        if (TweaksConfig.Plants.FARMER_VILLAGER_AUTOMATION.getValue() && currentTarget == storage) {
             @SuppressWarnings("ConstantConditions")
             Inventory target = HopperBlockEntity.getInventoryAt(serverWorld, this.currentTarget);
 

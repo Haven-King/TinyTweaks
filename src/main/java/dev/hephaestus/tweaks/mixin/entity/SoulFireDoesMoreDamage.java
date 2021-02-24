@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.entity;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.SoulFire;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -48,23 +48,21 @@ public abstract class SoulFireDoesMoreDamage implements SoulFire.FireTypeModifie
 			return;
 		}
 
-		if (Tweaks.CONFIG.blueSoulFireEffects) {
-			Box box = this.getBoundingBox();
-			BlockPos blockPos = new BlockPos(box.minX + 0.001D, box.minY + 0.001D, box.minZ + 0.001D);
-			BlockPos blockPos2 = new BlockPos(box.maxX - 0.001D, box.maxY - 0.001D, box.maxZ - 0.001D);
-			BlockPos.Mutable mutable = new BlockPos.Mutable();
-			if (this.world.isRegionLoaded(blockPos, blockPos2)) {
-				for (int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
-					for (int j = blockPos.getY(); j <= blockPos2.getY(); ++j) {
-						for (int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
-							mutable.set(i, j, k);
+		Box box = this.getBoundingBox();
+		BlockPos blockPos = new BlockPos(box.minX + 0.001D, box.minY + 0.001D, box.minZ + 0.001D);
+		BlockPos blockPos2 = new BlockPos(box.maxX - 0.001D, box.maxY - 0.001D, box.maxZ - 0.001D);
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		if (this.world.isRegionLoaded(blockPos, blockPos2)) {
+			for (int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
+				for (int j = blockPos.getY(); j <= blockPos2.getY(); ++j) {
+					for (int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
+						mutable.set(i, j, k);
 
-							Block fire = this.world.getBlockState(mutable).getBlock();
-							if (fire == Blocks.SOUL_FIRE) {
-								this.setFireType(SoulFire.FireType.SOUL);
-							} else if (fire == Blocks.FIRE) {
-								this.setFireType(SoulFire.FireType.NORMAL);
-							}
+						Block fire = this.world.getBlockState(mutable).getBlock();
+						if (fire == Blocks.SOUL_FIRE) {
+							this.setFireType(SoulFire.FireType.SOUL);
+						} else if (fire == Blocks.FIRE) {
+							this.setFireType(SoulFire.FireType.NORMAL);
 						}
 					}
 				}
@@ -81,7 +79,7 @@ public abstract class SoulFireDoesMoreDamage implements SoulFire.FireTypeModifie
 
 	@ModifyConstant(method = "baseTick", constant = @Constant(floatValue = 1.0F))
 	private float getDamage(float damage) {
-		return this.getFireType() == SoulFire.FireType.NORMAL ? damage : damage * 2;
+		return this.getFireType() == SoulFire.FireType.NORMAL ? damage : damage * TweaksConfig.Misc.SOUL_FIRE_DAMAGE_MODIFIER.getValue();
 	}
 
 	@Inject(method = "toTag", at = @At("TAIL"))

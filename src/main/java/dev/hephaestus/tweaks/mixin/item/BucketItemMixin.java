@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.item;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,7 +37,7 @@ public class BucketItemMixin {
 
 	@Redirect(method = "placeFluid", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"))
 	private boolean placeBubbleColumnIfPossible(World world, BlockPos pos, BlockState state, int flags) {
-		if (!Tweaks.CONFIG.bubbleColumnsFlow && state.getFluidState().getFluid() == Fluids.WATER) {
+		if (!TweaksConfig.Misc.BUBBLE_COLUMNS_FLOW.getValue() && state.getFluidState().getFluid() == Fluids.WATER) {
 			BlockState downState = world.getBlockState(pos.down());
 			if (downState.getBlock() == Blocks.BUBBLE_COLUMN)
 				state = downState;

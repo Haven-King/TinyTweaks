@@ -23,8 +23,9 @@
     "client": [
       "dev.hephaestus.tweaks.Tweaks"
     ],
-    "modmenu": [
-      "dev.hephaestus.tweaks.ModMenuIntegration"
+    "config": [
+      "dev.hephaestus.tweaks.TweaksConfig",
+      "dev.hephaestus.tweaks.TweaksPreferences"
     ]
   },
   "accessWidener" : "tweaks.accesswidener",

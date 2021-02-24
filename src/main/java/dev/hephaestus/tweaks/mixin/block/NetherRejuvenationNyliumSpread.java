@@ -1,8 +1,9 @@
 package dev.hephaestus.tweaks.mixin.block;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldView;
@@ -22,16 +23,16 @@ public abstract class NetherRejuvenationNyliumSpread {
 		BlockPos blockPos = pos.up();
 		BlockState blockState = world.getBlockState(blockPos);
 
+		Identifier biomeId = world.getRegistryManager().get(Registry.BIOME_KEY).getId(world.getBiome(pos));
 
-
-		return blockState.isAir() &&
-				(state.getBlock() == Blocks.WARPED_NYLIUM && world.getRegistryManager().get(Registry.BIOME_KEY).getId(world.getBiome(pos)).getPath().equals("warped_forest") ||
-				state.getBlock() == Blocks.CRIMSON_NYLIUM && world.getRegistryManager().get(Registry.BIOME_KEY).getId(world.getBiome(pos)).getPath().equals("crimson_forest"));
+		return biomeId != null && blockState.isAir() &&
+				(state.getBlock() == Blocks.WARPED_NYLIUM && biomeId.getPath().equals("warped_forest") ||
+				state.getBlock() == Blocks.CRIMSON_NYLIUM && biomeId.getPath().equals("crimson_forest"));
 	}
 
 	@Inject(method = "randomTick", at = @At("TAIL"))
 	private void spread(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-		if (Tweaks.CONFIG.netherRejuvenation.enabled && stayAlive(state, world, pos)) {
+		if (TweaksConfig.Plants.NetherRejuvenation.ENABLED.getValue() && stayAlive(state, world, pos)) {
 			int friends = 0;
 
 			for (int x = -1; x <= 1; x++) {
@@ -40,18 +41,18 @@ public abstract class NetherRejuvenationNyliumSpread {
 						Block friend = world.getBlockState(pos.add(x, y, z)).getBlock();
 						if (friend instanceof RootsBlock || friend instanceof SproutsBlock) {
 							friends++;
-							friends *= Tweaks.CONFIG.netherRejuvenation.thePowerOfFriendship;
+							friends *= TweaksConfig.Plants.NetherRejuvenation.FRIENDSHIP.getValue();
 						}
 					}
 				}
 			}
 
-			if (world.getBlockState(pos.up()).isAir() && random.nextFloat() < Tweaks.CONFIG.netherRejuvenation.rootsGrowthRate * (friends)) {
+			if (world.getBlockState(pos.up()).isAir() && random.nextFloat() < TweaksConfig.Plants.NetherRejuvenation.ROOTS_GROWTH_RATE.getValue() * (friends)) {
 				float f = random.nextFloat();
-				double ratio = Tweaks.CONFIG.netherRejuvenation.sproutRootsRatio / 100D;
+				double ratio = TweaksConfig.Plants.NetherRejuvenation.SPROUT_ROOTS_RATIO.getValue() / 100D;
 				Block block;
 
-				if (f < Tweaks.CONFIG.netherRejuvenation.vinesChance && state.isOf(Blocks.WARPED_NYLIUM)) {
+				if (f < TweaksConfig.Plants.NetherRejuvenation.VINES_CHANCE.getValue() && state.isOf(Blocks.WARPED_NYLIUM)) {
 					block = Blocks.TWISTING_VINES;
 				} else if (f > ratio) {
 					block = state.isOf(Blocks.CRIMSON_NYLIUM) ? Blocks.CRIMSON_ROOTS : Blocks.WARPED_ROOTS;

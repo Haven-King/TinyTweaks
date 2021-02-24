@@ -1,193 +1,102 @@
 package dev.hephaestus.tweaks;
 
-import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.fabric.api.config.v1.FabricDataTypes;
+import net.fabricmc.fabric.api.config.v1.FabricSaveTypes;
+import net.fabricmc.fabric.api.config.v1.SyncType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.SemanticVersion;
+import net.fabricmc.loader.api.config.data.SaveType;
+import net.fabricmc.loader.api.config.entrypoint.Config;
+import net.fabricmc.loader.api.config.serialization.ConfigSerializer;
+import net.fabricmc.loader.api.config.serialization.PropertiesSerializer;
+import net.fabricmc.loader.api.config.value.ValueKey;
+import org.jetbrains.annotations.NotNull;
 
-@Config(name = "tinytweaks")
-@Config.Gui.Background("minecraft:textures/block/hay_block_side.png")
-public class TweaksConfig implements ConfigData {
-    // - Plants! --------------------------------------------------------------
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip
-    public boolean easyHarvestCrops = true;
+import java.util.Map;
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean easyHarvestSugarcane = true;
+public class TweaksConfig extends Config<Map<String, String>> {
+    public static class Plants {
+        public static final ValueKey<Boolean> BETTER_LILY_PADS = builder(true)
+                .with(FabricDataTypes.SYNC_TYPE, SyncType.INFO).build();
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean easyHarvestDropAsItems = false;
+        public static final ValueKey<Boolean> FARMER_VILLAGER_AUTOMATION = value(true);
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.CollapsibleObject
-    public AutoPlanting autoPlanting = new AutoPlanting();
+        public static class EasyHarvest {
+            public static final ValueKey<Boolean> CROPS = value(true);
+            public static final ValueKey<Boolean> SUGARCANE = value(true);
+        }
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.CollapsibleObject
-    public Rejuvenation rejuvenation = new Rejuvenation();
+        public static class AutoPlanting {
+            public static final ValueKey<Boolean> ENABLED = value(true);
+            public static final ValueKey<Integer> DELAY = builder(20).bounds(0, 100).build();
+        }
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip(count = 4)
-    public boolean plantHitboxes = false;
+        public static class Leaves {
+            public static final ValueKey<Boolean> COLLISION = builder(false)
+                    .with(FabricDataTypes.SYNC_TYPE, SyncType.INFO).build();
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.CollapsibleObject
-    public LeavesConfig leaves = new LeavesConfig();
+            public static final ValueKey<Boolean> PERSISTENT_COLLISION = value(false);
+            public static final ValueKey<Boolean> SLOW = value(true);
+            public static final ValueKey<Double> SLOW_AMOUNT = builder(0.7D).bounds(0D, 1D).build();
+            public static final ValueKey<Boolean> CLIMBING = value(true);
+            public static final ValueKey<Double> CLIMBING_SPEED = builder(0.75).bounds(0D, 1D).build();
+            public static final ValueKey<Integer> LEAF_DECAY_SPEED = builder(1).bounds(1, 100).build();
+            public static final ValueKey<Boolean> SNOW_FALLS_THROUGH_LEAVES = value(true);
+        }
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 1, max = 100)
-    public int leafDecaySpeed = 1;
+        public static class Rejuvenation {
+            public static final ValueKey<Boolean> ENABLED = value(true);
+            public static final ValueKey<Double> GRASS_GROWTH_RATE = builder(0.0125D).bounds(0.001, 1D).build();
+            public static final ValueKey<Double> FRIENDSHIP = builder(1.25D).bounds(0D, 10D).build();
+            public static final ValueKey<Double> LONG_GRASS_RATIO = builder(0.01D).bounds(0D, 1D).build();
+            public static final ValueKey<Boolean> DEAD_BUSHES_TO_SAPLINGS = value(true);
+        }
 
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean betterLilyPads = true;
-
-    @ConfigEntry.Category("plants")
-    @ConfigEntry.Gui.Tooltip
-    public boolean farmerVillagerAutomation = true;
-
-    // - Animals! -------------------------------------------------------------
-    @ConfigEntry.Category("animals")
-    @ConfigEntry.Gui.Tooltip
-    public boolean animalsEatOffGround = true;
-
-    @ConfigEntry.Category("animals")
-    @ConfigEntry.Gui.Tooltip
-    public boolean animalsEatCrops = true;
-
-    // - Nether! --------------------------------------------------------------
-    @ConfigEntry.Category("nether")
-    @ConfigEntry.Gui.CollapsibleObject
-    public NetherRejuvenation netherRejuvenation = new NetherRejuvenation();
-
-    @ConfigEntry.Category("nether")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean blueSoulFireEffects = true;
-
-    @ConfigEntry.Category("nether")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean soulFireDoesMoreDamage = false;
-
-    // - Miscellaneous! -------------------------------------------------------
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.CollapsibleObject
-    public FlintAndSteelConfig flintAndSteel = new FlintAndSteelConfig();
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip
-    public boolean lanternBlastResistance = true;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.CollapsibleObject
-    public NamesAndThings namesAndThings = new NamesAndThings();
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 4)
-    public boolean mossyThings = true;
-
-    @ConfigEntry.Category("misc")
-    public boolean burningLogsDropCharcoal = true;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean doubleDoors = true;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 3)
-    public boolean bubbleColumnsFlow = false;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip
-    public boolean infiniteCauldrons = true;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip(count = 2)
-    public boolean easyXp = true;
-
-    @ConfigEntry.Category("misc")
-    public boolean snowFallsThroughLeaves = true;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip
-    public boolean armorStandSwap = true;
-
-    @ConfigEntry.Category("misc")
-    @ConfigEntry.Gui.Tooltip
-    public boolean automaticDoors = true;
-
-    public static class AutoPlanting {
-        @ConfigEntry.Gui.Tooltip(count = 4)
-        public boolean enabled = true;
-
-        @ConfigEntry.Gui.Tooltip
-        public int delay = 20;
+        public static class NetherRejuvenation {
+            public static final ValueKey<Boolean> ENABLED = value(true);
+            public static final ValueKey<Double> ROOTS_GROWTH_RATE = builder(0.0125D).bounds(0.001, 1D).build();
+            public static final ValueKey<Double> FRIENDSHIP = builder(1.25).bounds(0D, 10D).build();
+            public static final ValueKey<Integer> SPROUT_ROOTS_RATIO = builder(75).bounds(0, 100).build();
+            public static final ValueKey<Double> VINES_CHANCE = builder(0.01D).bounds(0D, 1D).build();
+        }
     }
 
-    public static class Rejuvenation {
-        @ConfigEntry.Gui.Tooltip
-        public boolean enabled = true;
-
-        @ConfigEntry.Gui.Tooltip
-        public double grassGrowthRate = 0.0125D;
-
-        @ConfigEntry.Gui.Tooltip(count = 5)
-        public double thePowerOfFriendship = 1.25;
-
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public float longGrass = 0.01F;
-
-        @ConfigEntry.Gui.Tooltip
-        public boolean saplings = true;
+    public static class Animals {
+        public static final ValueKey<Boolean> EAT_OFF_GROUND = value(true);
+        public static final ValueKey<Boolean> EAT_CROPS = value(true);
     }
 
-    public static class NetherRejuvenation {
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public boolean enabled = true;
+    public static class Misc {
+        public static final ValueKey<Boolean> STURDY_LANTERNS = value(true);
+        public static final ValueKey<Boolean> MOSSY_THINGS = value(true);
+        public static final ValueKey<Boolean> BURNING_LOGS_DROP_CHARCOAL = value(true);
+        public static final ValueKey<Boolean> DOUBLE_DOORS = value(true);
+        public static final ValueKey<Boolean> BUBBLE_COLUMNS_FLOW = value(true);
+        public static final ValueKey<Boolean> INFINITE_CAULDRONS = value(true);
+        public static final ValueKey<Boolean> EASY_XP = value(true);
+        public static final ValueKey<Boolean> ARMOR_STAND_SWAP = value(true);
+        public static final ValueKey<Boolean> AUTOMATIC_DOORS = value(true);
+        public static final ValueKey<Float> SOUL_FIRE_DAMAGE_MODIFIER = builder(1F).bounds(1F, 100F).build();
 
-        @ConfigEntry.Gui.Tooltip
-        public double rootsGrowthRate = 0.0125D;
-
-        @ConfigEntry.Gui.Tooltip(count = 5)
-        public double thePowerOfFriendship = 1.25;
-
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int sproutRootsRatio = 75;
-
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public double vinesChance = 0.01;
+        public static class FLINT_AND_STEEL {
+            public static final ValueKey<Boolean> ENABLED = value(true);
+            public static final ValueKey<Integer> BURN_TIME = value(3);
+        }
     }
 
-    public static class LeavesConfig {
-        public boolean collide = false;
-        @ConfigEntry.Gui.Tooltip
-        public boolean persistentCollide = false;
-
-        @ConfigEntry.Gui.Tooltip
-        public boolean slow = true;
-
-        public double slowAmount = 0.75D;
-
-        public boolean climb = true;
-
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public double treeClimbingSpeed = 0.75D;
+    @Override
+    public @NotNull ConfigSerializer<Map<String, String>> getSerializer() {
+        return PropertiesSerializer.INSTANCE;
     }
 
-    public static class FlintAndSteelConfig {
-        @ConfigEntry.Gui.Tooltip
-        public boolean enabled = true;
-        public int burnTime = 3;
+    @Override
+    public @NotNull SaveType getSaveType() {
+        return FabricSaveTypes.LEVEL;
     }
 
-    public static class NamesAndThings {
-        @ConfigEntry.Gui.Tooltip
-        public boolean containerLabels = true;
-
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 200)
-        public long labelScale = 100;
+    @Override
+    public @NotNull String getName() {
+        return "config";
     }
 }

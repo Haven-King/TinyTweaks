@@ -3,8 +3,6 @@ package dev.hephaestus.tweaks;
 import dev.hephaestus.climbable.api.ClimbingSpeedRegistry;
 import dev.hephaestus.tweaks.block.Moistener;
 import dev.hephaestus.tweaks.client.render.block.entity.BarrelBlockLabelRenderer;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
@@ -16,13 +14,11 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -35,13 +31,6 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
     public static final String MOD_NAME = "TinyTweaks";
 
     public static final double LILY_PAD_MOD = 0.2109375D;
-
-    public static final TweaksConfig CONFIG;
-
-    static {
-        AutoConfig.register(TweaksConfig.class, GsonConfigSerializer::new);
-        CONFIG = AutoConfig.getConfigHolder(TweaksConfig.class).getConfig();
-    }
 
     public static Tag<Item> SHOWS_GRASS_HITBOXES = TagRegistry.item(new Identifier(MOD_ID, "shows_grass_hitboxes"));
 
@@ -57,8 +46,8 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
         Moistener.canMoisten(Blocks.STONE_BRICK_STAIRS, Blocks.MOSSY_STONE_BRICK_STAIRS);
         Moistener.canMoisten(Blocks.STONE_BRICK_WALL, Blocks.MOSSY_STONE_BRICK_WALL);
 
-        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, e -> CONFIG.leaves.treeClimbingSpeed, e -> {
-            if (CONFIG.leaves.climb) {
+        ClimbingSpeedRegistry.registerClimbableTag(BlockTags.LOGS, e -> TweaksConfig.Plants.Leaves.CLIMBING_SPEED.getValue(), e -> {
+            if (TweaksConfig.Plants.Leaves.CLIMBING.getValue()) {
                 World world = e.world;
                 BlockPos feet = e.getBlockPos();
 
@@ -77,7 +66,7 @@ public class Tweaks implements ModInitializer, ClientModInitializer {
         });
 
         UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
-            if (playerEntity.isSneaking() && CONFIG.armorStandSwap && entity instanceof ArmorStandEntity) {
+            if (playerEntity.isSneaking() && TweaksConfig.Misc.ARMOR_STAND_SWAP.getValue() && entity instanceof ArmorStandEntity) {
                 ArmorStandEntity armorStand = (ArmorStandEntity) entity;
                 boolean fired = false;
 

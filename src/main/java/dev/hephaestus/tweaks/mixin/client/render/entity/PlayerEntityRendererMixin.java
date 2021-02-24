@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.client.render.entity;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -23,7 +24,7 @@ public class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClie
 
     @Inject(method = "getPositionOffset", at = @At("HEAD"), cancellable = true)
     public void moveUp(AbstractClientPlayerEntity abstractClientPlayerEntity, float f, CallbackInfoReturnable<Vec3d> cir) {
-        if (Tweaks.CONFIG.betterLilyPads && abstractClientPlayerEntity.getVehicle() instanceof BoatEntity) {
+        if (TweaksConfig.Plants.BETTER_LILY_PADS.getValue() && abstractClientPlayerEntity.getVehicle() instanceof BoatEntity) {
             cir.setReturnValue(super.getPositionOffset(abstractClientPlayerEntity, f).add(new Vec3d(0.0D, Tweaks.LILY_PAD_MOD, 0.0D)));
         }
     }

@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.mixin.client.gui.hud;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksPreferences;
 import dev.hephaestus.tweaks.util.SoulFire;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,7 +20,7 @@ public class RenderSoulFire {
 	private static Sprite getSoulFireSprite(SpriteIdentifier spriteIdentifier) {
 		ClientPlayerEntity playerEntity = MinecraftClient.getInstance().player;
 
-		if (playerEntity != null && Tweaks.CONFIG.blueSoulFireEffects) {
+		if (playerEntity != null && TweaksPreferences.BLUE_SOUL_FIRE.getValue()) {
 			SoulFire.FireTypeModifier.of(playerEntity).updateFireType();
 
 			if (SoulFire.FireTypeModifier.of(playerEntity).getFireType() == SoulFire.FireType.SOUL) {

@@ -1,20 +1,16 @@
 package dev.hephaestus.tweaks.mixin.block;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.util.CauldronChunk;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CauldronBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
@@ -22,17 +18,12 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Random;
 
 @Mixin(CauldronBlock.class)
 public class MakeCauldronsInfinite {
@@ -42,7 +33,7 @@ public class MakeCauldronsInfinite {
 
         CauldronChunk cauldronChunk = (CauldronChunk) world.getChunk(pos);
 
-        if (Tweaks.CONFIG.infiniteCauldrons && stack.getItem().equals(Items.HEART_OF_THE_SEA) && !cauldronChunk.isInfinite(pos)) {
+        if (TweaksConfig.Misc.INFINITE_CAULDRONS.getValue() && stack.getItem().equals(Items.HEART_OF_THE_SEA) && !cauldronChunk.isInfinite(pos)) {
             if (!world.isClient) {
                 world.setBlockState(pos, state.with(Properties.LEVEL_3, 3));
                 cauldronChunk.setInfinite(pos, true);
@@ -53,7 +44,6 @@ public class MakeCauldronsInfinite {
                             int_2 = 2;
                         }
 
-                        Random random = world.getRandom();
                         for (int int_3 = 0; int_3 <= 1; ++int_3) {
                             ((ServerWorld) world).spawnParticles(
                                     ParticleTypes.ENCHANT,

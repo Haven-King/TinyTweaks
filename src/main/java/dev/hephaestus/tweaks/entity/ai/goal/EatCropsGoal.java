@@ -1,6 +1,6 @@
 package dev.hephaestus.tweaks.entity.ai.goal;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -30,7 +30,7 @@ public class EatCropsGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        return this.animal.canEat() && Tweaks.CONFIG.animalsEatCrops && this.canEat() != null;
+        return this.animal.canEat() && TweaksConfig.Animals.EAT_CROPS.getValue() && this.canEat() != null;
     }
 
     @Override

@@ -1,11 +1,7 @@
 package dev.hephaestus.tweaks.mixin.entity;
 
-import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import dev.hephaestus.tweaks.item.Tags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.pattern.CachedBlockPosition;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -36,7 +32,7 @@ public abstract class AutoPlant extends Entity {
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;tick()V"))
     public void plantSaplings(CallbackInfo ci) {
-        if (Tweaks.CONFIG.autoPlanting.enabled && this.age >= Tweaks.CONFIG.autoPlanting.delay) {
+        if (TweaksConfig.Plants.AutoPlanting.ENABLED.getValue() && this.age >= TweaksConfig.Plants.AutoPlanting.DELAY.getValue()) {
             ItemStack stack = this.getStack();
             BlockPos pos = this.getBlockPos();
             if (this.getBlockPos() != triedToPlantAt && world.getFluidState(pos).isEmpty()) {

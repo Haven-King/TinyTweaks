@@ -1,6 +1,7 @@
 package dev.hephaestus.tweaks.mixin.block.betterlilypads;
 
 import dev.hephaestus.tweaks.Tweaks;
+import dev.hephaestus.tweaks.TweaksConfig;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -21,7 +22,7 @@ public abstract class Rendering {
 
 	@Inject(method = "getModelOffset", at = @At("HEAD"), cancellable = true)
 	private void offsetLilyPadsDown(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
-		if (Tweaks.CONFIG.betterLilyPads && this.getBlock() == Blocks.LILY_PAD) {
+		if (TweaksConfig.Plants.BETTER_LILY_PADS.getValue() && this.getBlock() == Blocks.LILY_PAD) {
 			cir.setReturnValue(DOWN);
 		}
 	}
