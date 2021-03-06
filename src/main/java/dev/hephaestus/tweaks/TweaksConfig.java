@@ -1,21 +1,22 @@
 package dev.hephaestus.tweaks;
 
-import net.fabricmc.fabric.api.config.v1.FabricDataTypes;
-import net.fabricmc.fabric.api.config.v1.FabricSaveTypes;
-import net.fabricmc.fabric.api.config.v1.SyncType;
-import net.fabricmc.loader.api.config.data.SaveType;
-import net.fabricmc.loader.api.config.entrypoint.Config;
-import net.fabricmc.loader.api.config.serialization.ConfigSerializer;
-import net.fabricmc.loader.api.config.serialization.PropertiesSerializer;
-import net.fabricmc.loader.api.config.value.ValueKey;
+import dev.inkwell.conrad.api.Config;
+import dev.inkwell.optionionated.api.data.DataType;
+import dev.inkwell.optionionated.api.data.SaveType;
+import dev.inkwell.optionionated.api.data.SyncType;
+import dev.inkwell.optionionated.api.serialization.ConfigSerializer;
+import dev.inkwell.optionionated.api.serialization.PropertiesSerializer;
+import dev.inkwell.optionionated.api.util.Version;
+import dev.inkwell.optionionated.api.value.ValueKey;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
 public class TweaksConfig extends Config<Map<String, String>> {
     public static class Plants {
         public static final ValueKey<Boolean> BETTER_LILY_PADS = builder(true)
-                .with(FabricDataTypes.SYNC_TYPE, SyncType.INFO).build();
+                .with(DataType.SYNC_TYPE, SyncType.INFO).build();
 
         public static final ValueKey<Boolean> FARMER_VILLAGER_AUTOMATION = value(true);
 
@@ -31,7 +32,7 @@ public class TweaksConfig extends Config<Map<String, String>> {
 
         public static class Leaves {
             public static final ValueKey<Boolean> COLLISION = builder(false)
-                    .with(FabricDataTypes.SYNC_TYPE, SyncType.INFO).build();
+                    .with(DataType.SYNC_TYPE, SyncType.INFO).build();
 
             public static final ValueKey<Boolean> PERSISTENT_COLLISION = value(false);
             public static final ValueKey<Boolean> SLOW = value(true);
@@ -89,11 +90,16 @@ public class TweaksConfig extends Config<Map<String, String>> {
 
     @Override
     public @NotNull SaveType getSaveType() {
-        return FabricSaveTypes.LEVEL;
+        return SaveType.LEVEL;
     }
 
     @Override
     public @NotNull String getName() {
         return "config";
+    }
+
+    @Override
+    public boolean upgrade(@Nullable Version from, Map<String, String> representation) {
+        return true;
     }
 }

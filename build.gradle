@@ -53,9 +53,7 @@ dependencies {
 	include "dev.hephaestus:climbable:${project.climbable_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-config-api-v1:${project.config_version}"
-	modImplementation "dev.monarkhes:vivid:${project.vivid_version}"
-	modImplementation "dev.monarkhes:conrad:${project.conrad_version}"
+	modImplementation "dev.inkwell:conrad:${project.conrad_version}"
 }
 
 processResources {
